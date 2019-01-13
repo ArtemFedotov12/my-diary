@@ -1,0 +1,25 @@
+
+div.main{
+    position: relative;
+    background-color: #dad6d5;
+    color:black;
+    width: 53.33%;
+    margin:auto;
+    margin-top: 165px;
+}
+div.name{
+    text-align: center;
+}
+div.image{
+    float: left;
+    padding: 15px;
+    width: 25%;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+div.information{
+    width: 75%;
+}

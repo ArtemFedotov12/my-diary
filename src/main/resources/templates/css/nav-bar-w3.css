@@ -1,0 +1,109 @@
+
+
+.topnav {
+  /*  Relative for button Sign_out*/
+
+    overflow: hidden;
+    background-color: #333;
+
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: center;
+}
+.topnav a {
+    padding: 12px;
+    display: inline-block;
+    float: left;
+    min-width: 88px;
+    width: 10%;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #36bb37;
+    color: black;
+}
+.nav-bar :target{
+    background-color: #36bb37;
+
+}
+button.sign_out{
+    padding: 10px 17px;
+    position: absolute;
+    top:6px;
+    right:5px;
+    background-color: #2081ee;
+    color:#FFFFFF;
+    border-radius: 5px;
+
+    border: none;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+
+
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+
+}
+button.sign_out:hover{
+    background-color: #2b9fff;
+
+}
+
+
+/*@media screen and (min-width: 768px) {
+    .position-absolute{
+        padding: 0 19% 0 32%;
+    }
+    .topnav a {
+        padding: 14px 3%;
+    }
+}*/
+.topnav .icon {
+    display: none;
+}
+@media screen and (max-width: 600px) {
+
+    .topnav a:not(:first-child) {display: none;}
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    .nav-bar{
+        padding: 0;
+        display: block;
+
+    }
+
+    button.sign_out{
+        display: none !important;
+    }
+
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: center;
+    }
+}
+div.user_name{
+    position: fixed;
+    top:55px;
+    right: 0;
+    color: #3be62a;
+    font-family: "Times New Roman",Times, serif;
+    font-size: 40px;
+}

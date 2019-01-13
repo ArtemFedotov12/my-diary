@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+div.login{
+    position: relative;
+    margin:auto;
+    width: 300px;
+    margin-top: 200px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+@media screen and (max-width: 600px) {
+    div.login{
+      /*  margin-top:90px;
+        margin-bottom: 100px;*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 100px;
+    }
+
+}
+a.registration{
+    color: #026800;
+}
+a.registration:link {
+    color: red;
+}
+a.registration:hover{
+    color: #e2ee31;
+}
+input[type=text],input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 3px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    outline: 0;
+}
+input[type=text]:focus, input[type=password]:focus {
+    border: 3px solid #3be62a;
+
+
+}
+input[type=submit] {
+    width: 100%;
+    background-color: #3e9612;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 41px;
+    cursor: pointer;
+    text-decoration-color: #2081ee;
+}
+input[type=submit]:hover {
+    background-color: #7056af;
+    transition-duration: 0.5s;
+
+}
+.forgot-password-registration{
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    padding-top: 3px;
+}
