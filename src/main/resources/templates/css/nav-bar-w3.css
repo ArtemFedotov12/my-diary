@@ -71,11 +71,14 @@ button.sign_out:hover{
     display: none;
 }
 @media screen and (max-width: 600px) {
-
+    .topnav a{
+        text-align: left;
+    }
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
         float: right;
         display: block;
+        text-align: center;
     }
     .nav-bar{
         padding: 0;
@@ -96,7 +99,6 @@ button.sign_out:hover{
     .topnav.responsive a {
         float: none;
         display: block;
-        text-align: center;
     }
 }
 div.user_name{
