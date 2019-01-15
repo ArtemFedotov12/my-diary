@@ -15,17 +15,15 @@
         <div class="information">
             <div class="clearfix">
                 <#--<p class="editClass"><#if teacherPage.email??>${teacherPage.email}</#if></p>-->
-                <input type="text" id="emailInputId" class="editClass input-email" value="<#if teacherPage.email??>${teacherPage.email}</#if>" readonly>
-                <button onclick="changeEmail()" class="editClass btn-edit">Edit</button>
-            </div>
-
-            <div id="blockId" style="display: none">
-                <button onclick="handleRequest()">Send</button>
+                    <input type="text" id="emailInputId" class="editClass input-email" value="<#if teacherPage.email??>${teacherPage.email}</#if>" readonly>
+                    <button onclick="changeEmail()" id="buttonChangeEmailId" class="editClass btn-edit">Edit</button>
+                    <button onclick="handleRequest()" id="buttonHandleRequestId" class="editClass btn-edit" style="display: none">Save</button>
             </div>
 
 
 
-            <div id="response"></div>
+
+            <div id="responseToHide"></div>
 
             <select name="country" style="width: 60%">
                 <option value="au">Ukraine</option>
