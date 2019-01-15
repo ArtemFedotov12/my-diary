@@ -1,12 +1,8 @@
 function changeEmail() {
     document.getElementById("blockId").style.display = "block";
-    var arrayOfEdidClass = document.getElementsByClassName("editClass");
-    for (var i = 0; i < arrayOfEdidClass.length; i++) {
-        arrayOfEdidClass[i].style.display = "none";
-    }
 
     var emailValue = document.getElementsByClassName("editClass")[0].innerText;
-    document.getElementById("emailInputId").value = emailValue;
+    document.getElementById("emailInputId").readOnly =false;
 }
 
 function handleRequest() {
@@ -17,7 +13,7 @@ function handleRequest() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var responseObject = JSON.parse(this.responseText);
-            document.getElementsByClassName("editClass")[0].innerHTML=responseObject.email;
+            //document.getElementById("emailInputId").innerHTML=responseObject.email;
             var responseText = "";
             if(responseObject.status=="success"){
                 responseText="Save Succesfully";
@@ -43,5 +39,5 @@ function handleRequest() {
     }
 
 
-
+    document.getElementById("emailInputId").readOnly =true;
 }

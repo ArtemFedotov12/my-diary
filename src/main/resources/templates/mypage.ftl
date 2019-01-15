@@ -14,12 +14,12 @@
 
         <div class="information">
             <div class="clearfix">
-                <p class="editClass"><#if teacherPage.email??>${teacherPage.email}</#if></p>
+                <#--<p class="editClass"><#if teacherPage.email??>${teacherPage.email}</#if></p>-->
+                <input type="text" id="emailInputId" class="editClass input-email" value="<#if teacherPage.email??>${teacherPage.email}</#if>" readonly>
                 <button onclick="changeEmail()" class="editClass btn-edit">Edit</button>
             </div>
 
             <div id="blockId" style="display: none">
-                <input type="text" id="emailInputId">
                 <button onclick="handleRequest()">Send</button>
             </div>
 
