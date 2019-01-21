@@ -1,5 +1,6 @@
 package com.start.diary;
 
+import com.start.diary.Main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -7,8 +8,30 @@ import java.util.List;
 import java.util.stream.Collector;
 
 public class Main {
+
+
     public static void main(String[] args) {
-        ArrayList<String> strings = new ArrayList<String>(
+
+byte[] a={49,50,51,52,53,54,55};
+String b=new String(a);
+        System.out.println(b);
+
+        String c=new String(a,2,4);
+        System.out.println(c);
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+ /*      ArrayList<String> strings = new ArrayList<String>(
                 Arrays.asList("Buenos Aires", "Córdoba", "La Plata"));
         String joinBuilder = strings.stream().collect(
                 Collector.of(
@@ -29,6 +52,5 @@ public class Main {
         );
 // Используем его для получение списка строк без дубликатов из стрима
         List<String> distinct1 = strings.stream().distinct().collect(toList);
-        System.out.println(distinct1);
-    }
-}
+
+        System.out.println(distinct1);*/
