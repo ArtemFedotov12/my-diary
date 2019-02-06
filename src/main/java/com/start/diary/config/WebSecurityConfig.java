@@ -21,7 +21,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //Bean for form "Login". We can get user from our DB
@@ -46,11 +46,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                     .loginPage("/login")
+                    .defaultSuccessUrl("/",true)
                     .permitAll()
                 .and()
                     .rememberMe()
                 .and()
                     .logout()
+                    .logoutSuccessUrl("/login")
                     .permitAll();
     }
 
