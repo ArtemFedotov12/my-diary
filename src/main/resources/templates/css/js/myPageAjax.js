@@ -1,23 +1,28 @@
 function changeEmail() {
-    document.getElementById("blockId").style.display = "block";
-    var arrayOfEdidClass = document.getElementsByClassName("editClass");
-    for (var i = 0; i < arrayOfEdidClass.length; i++) {
-        arrayOfEdidClass[i].style.display = "none";
+    document.getElementById("sendBtn").style.display = "block";
+    document.getElementById("editBtn").style.display = "none";
+
+    var arrayOfFields=document.getElementsByClassName("fields");
+    for (var i = 0; i < arrayOfFields.length; i++) {
+        arrayOfFields[i].disabled=false;
     }
 
-    var emailValue = document.getElementsByClassName("editClass")[0].innerText;
-    document.getElementById("emailInputId").value = emailValue;
+
+   /* var emailValue = document.getElementsByClassName("editClass")[0].innerText;
+    document.getElementById("emailInputId").value = emailValue;*/
 }
 
 function handleRequest() {
 
-    var emailValue = document.getElementById("emailInputId").value;
+    var email = document.getElementsByClassName("fields")[0].value;
+    var town = document.getElementsByClassName("fields")[1].value;
+
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var responseObject = JSON.parse(this.responseText);
-            document.getElementsByClassName("editClass")[0].innerHTML=responseObject.email;
+            /*document.getElementsByClassName("editClass")[0].innerHTML=responseObject.email;*/
             var responseText = "";
             if(responseObject.status=="success"){
                 responseText="Save Succesfully";
@@ -26,22 +31,19 @@ function handleRequest() {
             }else {
                 responseText = "Wasn't Save";
             }
-
-
-            document.getElementById("response").innerHTML = responseText;
         }
     };
-    var sendParams = "/ajax?emailvalue=" + emailValue;
+    var sendParams = "/ajax?email=" + email+"&town=" + town;
     xhttp.open("GET",sendParams, true);
     xhttp.send();
 
 
-    document.getElementById("blockId").style.display = "none";
-    var arrayOfEdidClass = document.getElementsByClassName("editClass");
-    for (var i = 0; i < arrayOfEdidClass.length; i++) {
-        arrayOfEdidClass[i].style.display = "block";
+    document.getElementById("sendBtn").style.display = "none";
+    document.getElementById("editBtn").style.display = "block";
+    var arrayOfFields=document.getElementsByClassName("fields");
+    for (var i = 0; i < arrayOfFields.length; i++) {
+        arrayOfFields[i].disabled=true;
     }
-
 
 
 }

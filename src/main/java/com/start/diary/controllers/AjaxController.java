@@ -22,14 +22,17 @@ public class AjaxController {
     @RequestMapping("/ajax")
     @ResponseBody
     public String handlerRequest(@AuthenticationPrincipal Teacher teacher,
-                                     @RequestParam(name="emailvalue") String emailvalue) {
+                                     @RequestParam String email,
+                                     @RequestParam String town) {
         String response;
         JSONObject obj = new JSONObject();
-        if (emailvalue.compareTo("optional")!=0){
+        if (email.compareTo("optional")!=0){
             obj.put("status", "success");
-            obj.put("email", emailvalue);
+            obj.put("email", email);
+            obj.put("town",town);
 
-            teacher.setEmail(emailvalue);
+            teacher.setEmail(email);
+            teacher.setTown(town);
             teacherRepo.save(teacher);
         }else {
             obj.put("status", "error");

@@ -34,7 +34,7 @@ public class TeacherService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //return userRepo.findByUsername(username);
+        //TO DO check unique registration username(login)
         return teacherRepo.findByName(username);
     }
 

@@ -11,8 +11,6 @@ div.name{
     text-align: center;
 }
 div.image{
-    float: left;
-    padding: 15px;
     width: 25%;
 }
 .clearfix::after {
@@ -22,4 +20,8 @@ div.image{
 }
 div.information{
     width: 75%;
+}
+div.column{
+    float: left;
+    padding: 15px;
 }
