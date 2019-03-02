@@ -1,13 +1,20 @@
 <#import "part/page.ftl" as p>
 <@p.page>
+    <h1><#if errorMessge??>${errorMessge}</#if></h1>
+    <h1 id="loginInfo" style="display: none"></h1>
         <div class="login">
-            <form action="/login" method="post"">
-               <#--<p> <input type="text" name="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
+            <form action="/login" method="post">
+             <#--  <p> <input type="text" name="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
                 <p><input type="password" name="password" placeholder="Password" autofocus></p>-->
-            <div><input type="text" name="username" placeholder="Name" maxlength="10" autocomplete="on"/></div>
-            <div> <input type="password" name="password" placeholder="Password"/> </label></div>
+
+                <input id="username" type="text" name="username" placeholder="Name"/>
+                <input type="password" name="password" placeholder="Password"/>
+                <input id="us" type="text" name="username" placeholder="Name" style="display:none;"/>
+
+
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
-                <div><input type="submit" value="Submit"sds></div>
+                <div><input type="button" value="Submit" onclick="loginRequest()"></div>
+                <input id="submitBtn" type="submit" style="display: none">
             <div class="forgot-password-registration">
             <a href="" style="padding-right: 14px">Forget password?</a>
             <a href="/registration">Registration</a>
@@ -16,3 +23,9 @@
         </div>
 
 </@p.page>
+<script>
+    $(document).ready(function(){
+        $("#username").val("");
+    });
+
+</script>

@@ -24,7 +24,7 @@ div.registration{
 
 }
 
-input[type=text],input[type=password],input[type=email],input[disabled], select {
+input[type=text],input[type=password],input[type=email],input[disabled],input[type=button], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -41,7 +41,7 @@ div.input[type=text]:focus, div.input[type=password]:focus,input[type=email]:foc
 
 
 }
-input[type=submit] {
+input[type=submit],input[type=button] {
     width: 100%;
     background-color: #3e9612;
     color: white;
@@ -52,7 +52,7 @@ input[type=submit] {
     cursor: pointer;
     text-decoration-color: #2081ee;
 }
-input[type=submit]:hover {
+input[type=submit]:hover,input[type=button]:hover {
     background-color: #7056af;
     transition-duration: 0.5s;
 
