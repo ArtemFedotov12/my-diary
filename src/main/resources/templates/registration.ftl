@@ -15,11 +15,13 @@
     private String town;
     private String country;
     private String schoolnumber;-->
+                <div class="form-row">
 
-    <div><#if nameError??>${nameError} </#if></div>
-    <input type="text" class="${(nameError??)?string('is-invalid','')}" name="name" placeholder="Name" autocomplete="off" value="B"/>
+    <div class="invalid-feedback""><#if nameError??>${nameError} </#if></div>
+    <input type="text" class="${(nameError??)?string('is-invalid','')} form-control is-valid" name="name" placeholder="Name" autocomplete="off" value="B"/>
 
-    <div><#if emailError??>${emailError} </#if></div>
+
+    <div class="invalid-feedback""><#if emailError??>${emailError} </#if></div>
     <input type="email" class="${(emailError??)?string('is-invalid','')}" name="email" placeholder="vasya@gmail.com" autocomplete="off" value="vasya@gmail.com"/>
 
     <div><#if passwordError??>${passwordError} </#if></div>
@@ -52,7 +54,7 @@
 
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <div><input type="submit" value="Submit"></div>
-
+                </div>
     </form>
 </div>
 

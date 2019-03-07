@@ -3,17 +3,20 @@
     <h1><#if errorMessge??>${errorMessge}</#if></h1>
     <h1 id="loginInfo" style="display: none"></h1>
         <div class="login">
-            <form action="/login" method="post">
+            <form action="/login" method="post" >
              <#--  <p> <input type="text" name="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
                 <p><input type="password" name="password" placeholder="Password" autofocus></p>-->
 
                 <input id="username" type="text" name="username" placeholder="Name"/>
                 <input type="password" name="password" placeholder="Password"/>
                 <input id="us" type="text" name="username" placeholder="Name" style="display:none;"/>
+                <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                </div>
 
 
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
-                <div><input type="button" value="Submit" onclick="loginRequest()"></div>
+                <div><input type="button" class="btn-login" id="BtnLoginRequest"  value="Submit"></div>
                 <input id="submitBtn" type="submit" style="display: none">
             <div class="forgot-password-registration">
             <a href="" style="padding-right: 14px">Forget password?</a>
