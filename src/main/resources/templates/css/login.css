@@ -5,7 +5,7 @@
 div.login{
     position: relative;
     margin:auto;
-    width: 300px;
+    width: 318px;
     margin-top: 200px;
     font-size: 14px;
     border-radius: 5px;
@@ -23,26 +23,22 @@ div.login{
     }
 
 }
-a.registration{
-    color: #026800;
-}
-a.registration:link {
-    color: red;
-}
-a.registration:hover{
-    color: #e2ee31;
-}
-input[type=text],input[type=password],input[type=button], select {
-    width: 100%;
+
+
+input[type=text],input[type=password]{
+    /*width: 100%;*/
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
-    border: 3px solid #ccc;
-    border-radius: 20px;
+    border-radius: 24px;
+    font-size: 18px;
+   /* display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 24px;
     box-sizing: border-box;
     outline: 0;
-    background-color: purple;
+    background-color: #ffffff;*/
 }
+
 
 .btn-login {
     width: 100%;

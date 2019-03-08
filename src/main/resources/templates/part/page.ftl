@@ -1,5 +1,5 @@
 <#include "security.ftl">
-<#macro page>
+
 <!DOCTYPE html>
 <html lang="en"  xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -33,8 +33,9 @@
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <#--tag should be inside HEAD jQuery-->
     </head>
-<body class="body">
 
+<body class="body">
+<#macro page>
 <!-- !!!!!!!!!!!!!!!!!!!!!!!!!! id="main" for js for footer-->
 <div id="main">
     <div class="topnav" id="myTopnav">
@@ -86,7 +87,7 @@
             <!--<div class="footer-bottom">&#169 2018-2019 "Dnevnik-online.com"</div>-->
         </div>
     </div>
-
+</#macro>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/templates/css/js/topnav.js" type="text/javascript"></script>
 <script src="/templates/css/js/footer.js" type="text/javascript"></script>
@@ -95,4 +96,3 @@
 <script src="/templates/css/js/login.js" ></script>
 </body>
 </html>
-</#macro>

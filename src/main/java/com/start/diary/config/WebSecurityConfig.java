@@ -1,6 +1,7 @@
 package com.start.diary.config;
 
 
+import com.start.diary.service.LoginRegistrationService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(8);
+    }
+    @Bean
+    LoginRegistrationService getLoginRegistrationService(){
+        return new LoginRegistrationService();
     }
 
     @Override
