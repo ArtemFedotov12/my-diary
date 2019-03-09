@@ -31,8 +31,21 @@
                             }
                             else {
                                 $("#submitBtn").click();
+                                //var data = 'username=' + $('#username').val() + '&password=' + $('#password').val()+'&_csrf='+ $('#token').val();
+                          /*      var request = $.ajax({
+                                    url: "/login",
+                                    method: "POST",
+                                    data: $("#loginFormName").serialize(),
+                                    dataType: 'json',
+                                    contentType: 'json'
+                                });
+                                request.done(function( msg ) {
+                                    console.log("id");
+                                });
 
-
+                                request.fail(function( jqXHR, textStatus ) {
+                                    console.log("idi naxyu");
+                                });*/
                             }
 
 

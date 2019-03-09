@@ -1,5 +1,13 @@
-<#import "part/page.ftl" as p>
-<@p.page>
+<#import "part/navbarFooter.ftl" as navFoot>
+<#import "part/head.ftl" as h>
+
+<@h.head>
+    <link rel="stylesheet" href="/templates/css/login.css">
+
+</@h.head>
+
+    <body class="body">
+<@navFoot.navbarFooter>
 
 <h1>sxsd</h1>
     <table>
@@ -24,4 +32,9 @@
     </table>
 
 
-</@p.page>
+</@navFoot.navbarFooter>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/templates/css/js/topnav.js" type="text/javascript"></script>
+<script src="/templates/css/js/footer.js" type="text/javascript"></script>
+
+    </body>

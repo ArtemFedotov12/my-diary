@@ -11,7 +11,7 @@
     <h1><#if errorMessge??>${errorMessge}</#if></h1>
     <h1 id="loginInfo" style="display: none"></h1>
     <div class="login">
-        <form action="/login" method="post" >
+        <form id="loginFormName" action="/login" method="post" >
             <#--  <p> <input type="text" name="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
                <p><input type="password" name="password" placeholder="Password" autofocus></p>-->
 
@@ -44,7 +44,7 @@
 <script src="/templates/css/js/login.js" ></script>
 
 </body>
-</html>
+
 
 
 <script>

@@ -40,7 +40,7 @@ input[type=text],input[type=password],input[type=email],input[disabled],input[ty
     border: 1px solid #3be62a !important;
 }*/
 input[type=submit],input[type=button] {
-    width: 322%;
+    width: 100%;
     background-color: #3e9612;
     color: white;
     padding: 14px 20px;

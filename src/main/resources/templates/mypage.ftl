@@ -1,10 +1,15 @@
+<#import "part/navbarFooter.ftl" as navFoot>
+<#import "part/head.ftl" as h>
 <#include "part/security.ftl">
-<#import "part/page.ftl" as p>
-<@p.page>
+<@h.head>
+    <link rel="stylesheet" href="/templates/css/mypage.css">
 
+</@h.head>
+<body class="body">
+<@navFoot.navbarFooter>
 
     <div class="main clearfix">
-        <div class="name"><#if teacher.name??><h1>${name}</h1></#if></div>
+        <div class="name"><#if teacher.name??><h1>${teacher.name}</h1></#if></div>
 
         <div class="image column">
             <#if teacherPage.filename??><img src="/img/${teacherPage.filename}" style="width: 100%"></#if>
@@ -36,7 +41,11 @@
 
 
     </div>
-
-</@p.page>
+</@navFoot.navbarFooter>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/templates/css/js/topnav.js" type="text/javascript"></script>
+<script src="/templates/css/js/footer.js" type="text/javascript"></script>
+<script src="/templates/css/js/myPageAjax.js" type="text/javascript"></script>
+</body>
 
 
