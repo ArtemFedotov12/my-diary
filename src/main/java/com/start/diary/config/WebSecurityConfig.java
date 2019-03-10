@@ -2,6 +2,7 @@ package com.start.diary.config;
 
 
 import com.start.diary.service.LoginRegistrationService;
+import com.start.diary.service.RegistrationService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     LoginRegistrationService getLoginRegistrationService(){
         return new LoginRegistrationService();
+    }
+    @Bean
+    RegistrationService getRegistrationService(){
+        return  new RegistrationService();
     }
 
     @Override

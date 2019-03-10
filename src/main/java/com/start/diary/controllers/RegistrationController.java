@@ -43,7 +43,7 @@ public class RegistrationController {
         return "registration";
     }
 
-    @PostMapping("/registration")
+    /*@PostMapping("/registration")
     public String registrationPost(
             @RequestParam("file") MultipartFile file,
             @RequestParam("passwordConfirm") String passwordConfirm,
@@ -87,7 +87,7 @@ public class RegistrationController {
 
             return "registration";
         }
-    }
+    }*/
 
     @GetMapping("/activate/{code}")
     public String activate(Model model, @PathVariable String code) {
