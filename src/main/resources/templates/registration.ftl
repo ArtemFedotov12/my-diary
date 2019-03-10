@@ -17,34 +17,34 @@
 
     <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
     <div class="registration" name="registrationform" id="registrationId">
-        <form id="#registerSubmit" <#--enctype="multipart/form-data"--> action="/test" method="post" <#--enctype="multipart/form-data"-->>
+        <form id="#registerSubmit" <#--enctype="multipart/form-data" action="/test" method="post" enctype="multipart/form-data"-->>
 
 
             <div class="invalid-feedback"><#if nameError??>${nameError} </#if></div>
-    <input type="text" class="${(nameError??)?string('is-invalid','')} form-control is-valid" name="name" placeholder="Name" autocomplete="off" value="BWW"/>
+    <input type="text" class="${(nameError??)?string('is-invalid','')} form-control is-valid" name="name" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
 
 
     <div class="invalid-feedback"><#if emailError??>${emailError} </#if></div>
-    <input type="email" class="${(emailError??)?string('is-invalid','')} form-control is-valid" name="email" placeholder="vasdsdsya@gmail.com" autocomplete="off" value="vasya@gmail.com"/>
+    <input type="email" class="${(emailError??)?string('is-invalid','')} form-control is-valid" name="email" id="email" placeholder="vasdsdsya@gmail.com" autocomplete="off" value="vasya@gmail.com"/>
 
     <div><#if passwordError??>${passwordError} </#if></div>
-    <input type="password" class="${(passwordError??)?string('is-invalid','')}" name="password" placeholder="Password" autocomplete="off" value="1">
+    <input type="password" class="${(passwordError??)?string('is-invalid','')}" name="password" id="password" placeholder="Password" autocomplete="off" value="1">
 
     <div><#if password2Error??>${password2Error} </#if></div>
-    <input type="password" class="${(password2Error??)?string('is-invalid','')}" name="psw" placeholder="Confirm" autocomplete="off" value="1">
+    <input type="password" class="${(password2Error??)?string('is-invalid','')}" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm" autocomplete="off" value="1">
 
 
-    <select  name="country" style="margin: 8px 0px">
+    <select  name="country" id="country" style="margin: 8px 0px">
         <option value="au">Ukraine</option>
         <option value="ca">Russia</option>
         <option value="usa">USA</option>
     </select>
 
     <div><#if townError??>${townError} </#if></div>
-    <input type="text" class="${(townError??)?string('is-invalid','')}" name="town" placeholder="Town" value="b"/>
+    <input type="text" class="${(townError??)?string('is-invalid','')}" name="town" id="town" placeholder="Town" value="b"/>
 
     <div><#if schoolnumberError??>${schoolnumberError} </#if></div>
-    <input type="text" class="${(townError??)?string('is-invalid','')}" name="schoolnumber" placeholder="Schoolnumber" value="b"/>
+    <input type="text" class="${(townError??)?string('is-invalid','')}" name="schoolnumber" id="schoolnumber" placeholder="Schoolnumber" value="b"/>
 
     <#--<input type="file" name="file">-->
 
@@ -56,7 +56,7 @@
     </div>-->
 
     <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <div><input type="submit" value="Submit" <#--onclick="submitForm(this.form)"-->></div>
+    <div><input type="button" value="Submit" onclick="submitForm(this.form)"></div>
 
     </form>
     </div>

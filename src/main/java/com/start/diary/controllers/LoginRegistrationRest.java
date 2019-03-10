@@ -63,11 +63,13 @@ public class LoginRegistrationRest {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PostMapping("/test")
-    @Consumes("application/json;charset=UTF-8")
-    public String test(
-           // @RequestBody MultiValueMap<String, String> formData
-              TeacherNew teacher
-            /*    @FormParam("psw") String psw*/
+    @Consumes("application/json")
+    public ResponseEntity<Object> test(
+            //@RequestBody MultiValueMap<String, String> formData
+             @RequestBody Teacher teacher
+           //@RequestParam("psw") String psw
+             //  @RequestBody String psw
+               // @FormParam("psw") String psw
               //@RequestParam("g-recaptcha-response") String captchaResponse,
                //@Valid Teacher teacher,
              // @RequestBody String psw
@@ -77,16 +79,12 @@ public class LoginRegistrationRest {
     )
 
     {
-       /* POJO pj = new POJO();
-        ObjectMapper mapper = new ObjectMapper();
-        pj = mapper.readValue(json, POJO.class);*/
+        Map<String,String> map = new HashMap<>();
+        ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
+
         System.out.println("breddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-        //System.out.println("Name: "+ teacher.getName());
-        System.out.println("Name: "+ teacher.name);
-      //  System.out.println(formData.get("psw"));
-        //System.out.println(formData.get("name"));
-        //System.out.println(teacher.getName());
-        return "String";
+        System.out.println(teacher.getPasswordConfirm());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
