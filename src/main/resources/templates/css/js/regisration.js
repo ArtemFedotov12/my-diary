@@ -1,12 +1,7 @@
-function submitForm(form) {
-    var token = $("meta[name='_csrf']").attr("content");
-   /* $.ajaxSetup({
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('Csrf-Token', token);
-        }
-    });*/
-// HERE
-    //var formData = $(form).serializeArray();
+$(document).ready(function(){
+    //$("#registerSubmit").on('click', function(){
+    $("#registerSubmit").click(function(){
+console.log("click was")
     var formData = {
         name : $("#name").val(),
         email : $("#email").val(),
@@ -15,15 +10,13 @@ function submitForm(form) {
         schoolnumber : $("#schoolnumber").val(),
         passwordConfirm : $("#passwordConfirm").val()
     }
- /*   var psw={
-        psw : $("#psw").val()
-    }*/
+
     console.log("ppc");
     console.log(JSON.stringify(formData)+"!!");
     var token = $("meta[name='_csrf']").attr("content");
    // var header = $("meta[name='_csrf_header']").attr("content");
     $.ajax({
-        url: "/test",
+        url: "/registration",
         method: "POST",
         data:JSON.stringify(formData),  //$("#registerSubmit").serialize(),JSON.stringify(formData),
         headers: {"X-CSRF-TOKEN": token},
@@ -37,38 +30,8 @@ function submitForm(form) {
         }
     });
 
-
-
-   // var formData = $(form).serializeArray();
-   // console.log(formData);
-    //formData[_csrf_param_name] = _csrf_token; // Adds the token
-   /* var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    var request = $.ajax({
-        url: "/registration2",
-        method: "POST",
-     //   data:formData, //JSON.stringify(formData),
-       /!* headers: {
-            "_csrf":token,
-            "_csrf_header":header
-        },*!/
-        headers: {"X-CSRF-TOKEN": token},
-        contentType : 'application/json',
-       // dataType: "json"
-    });*/
-
-
-/*    request.done(function( result ) {
-        console.log("kryto");
-       // console.log(result.data["test"]);
-
-    });
-
-    request.fail(function( jqXHR, textStatus ) {
-        console.log("ploxo");
-    });*/
-}
-
+});
+});
 /*
 $(document).ready(function(){
     // click on button submit
@@ -90,3 +53,9 @@ $(document).ready(function(){
         })
     });
 });*/
+/* $.ajaxSetup({
+     beforeSend: function(xhr) {
+         xhr.setRequestHeader('Csrf-Token', token);
+     }
+ });*/
+//var formData = $(form).serializeArray();

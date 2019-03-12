@@ -62,7 +62,7 @@ public class LoginRegistrationRest {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    @PostMapping("/test")
+    @PostMapping("/registration")
     @Consumes("application/json")
     public ResponseEntity<Object> test(
             //@RequestBody MultiValueMap<String, String> formData

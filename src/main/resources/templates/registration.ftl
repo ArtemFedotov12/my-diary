@@ -17,7 +17,7 @@
 
     <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
     <div class="registration" name="registrationform" id="registrationId">
-        <form id="#registerSubmit" <#--enctype="multipart/form-data" action="/test" method="post" enctype="multipart/form-data"-->>
+        <form  <#--enctype="multipart/form-data" action="/test" method="post" enctype="multipart/form-data"-->>
 
 
             <div class="invalid-feedback"><#if nameError??>${nameError} </#if></div>
@@ -56,7 +56,8 @@
     </div>-->
 
     <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <div><input type="button" value="Submit" onclick="submitForm(this.form)"></div>
+            <#--registration.js on click run the function-->
+    <div><input id="registerSubmit" type="button" value="Submit"></div>
 
     </form>
     </div>
