@@ -9,24 +9,36 @@ console.log("click was")
         town : $("#town").val(),
         schoolnumber : $("#schoolnumber").val(),
         passwordConfirm : $("#passwordConfirm").val()
-    }
 
-    console.log("ppc");
-    console.log(JSON.stringify(formData)+"!!");
+    };
+
+
+  //  console.log(JSON.stringify(formData)+"!!");
     var token = $("meta[name='_csrf']").attr("content");
    // var header = $("meta[name='_csrf_header']").attr("content");
     $.ajax({
         url: "/registration",
         method: "POST",
-        data:JSON.stringify(formData),  //$("#registerSubmit").serialize(),JSON.stringify(formData),
+        data:JSON.stringify(formData),
         headers: {"X-CSRF-TOKEN": token},
         contentType : 'application/json',//;charset=utf-8
         dataType: "json",
         success: function (result) {
             console.log(result);
+            console.log(result.data["kek"]);
         },
-        error: function(xhr, resp, text) {
-            console.log(xhr, resp, text);
+        error: function(e) {
+            console.log(e);
+            console.log("tyt");
+            console.log(e.responseJSON.data["kek"]);
+            if (e.responseJSON.data["kek"]=="kek"){
+                console.log("ok kek")
+            }
+            //console.log(e.data["kek"]);
+            if(e.responseJSON.data["nameError"]!=null){
+                $("#feedback").text(e.responseJSON.data["nameError"]);
+            }
+
         }
     });
 

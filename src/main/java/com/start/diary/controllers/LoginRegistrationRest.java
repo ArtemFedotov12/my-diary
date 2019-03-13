@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +30,7 @@ import javax.ws.rs.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class LoginRegistrationRest {
@@ -58,32 +60,28 @@ public class LoginRegistrationRest {
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
 
-            loginRegistrationService.loginValidation(username,map);
+        loginRegistrationService.loginValidation(username,map);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    @PostMapping("/registration")
-    @Consumes("application/json")
-    public ResponseEntity<Object> test(
-            //@RequestBody MultiValueMap<String, String> formData
-             @RequestBody Teacher teacher
-           //@RequestParam("psw") String psw
-             //  @RequestBody String psw
-               // @FormParam("psw") String psw
-              //@RequestParam("g-recaptcha-response") String captchaResponse,
-               //@Valid Teacher teacher,
-             // @RequestBody String psw
-            //11 video 5.06
-            //there is one subtlety
-            //BindingResult bindingResult
-    )
 
-    {
+    //http://appsdeveloperblog.com/postmapping-requestbody-spring-mvc/
+    @PostMapping("/registration")
+    public ResponseEntity<Object> test(@Valid @RequestBody Teacher teacher, Errors errors){
+
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
+        map.put("kek","kek");
 
-        System.out.println("breddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-        System.out.println(teacher.getPasswordConfirm());
+        if (errors.hasErrors()){
+            response.setStatus("badRequest");
+            map.putAll(ControllerUtils.getErrors(errors));
+            System.out.println("Map:");
+            System.out.println(map);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -91,12 +89,12 @@ public class LoginRegistrationRest {
     @PostMapping(value = "/registration2",consumes = {MediaType.APPLICATION_JSON_VALUE})
     public String /*ResponseEntity<Object>*/ registrationPost(
             //@RequestParam("file") MultipartFile file,
-           // @RequestParam("passwordConfirm") String passwordConfirm,
+            // @RequestParam("passwordConfirm") String passwordConfirm,
             //  @RequestParam("g-recaptcha-response") String captchaResponse,
             /*@Valid*/ //Teacher teacher
             //11 video 5.06
             //there is one subtlety
-           // BindingResult bindingResult
+            // BindingResult bindingResult
     )
             throws IOException {
         /*System.out.println("Reigrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
@@ -104,7 +102,7 @@ public class LoginRegistrationRest {
         map.put("test","test1");
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);*/
 
-       // registrationService.handlingCaptchaAndFile(captchaResponse,file,map,teacher);
+        // registrationService.handlingCaptchaAndFile(captchaResponse,file,map,teacher);
         //reCaptcha
 /*        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
@@ -130,7 +128,7 @@ public class LoginRegistrationRest {
 
 
 
-       //boolean v=registrationService.addTeacherRegistration(teacher,map,passwordConfirm,bindingResult) && !map.containsKey("captchaError");
+        //boolean v=registrationService.addTeacherRegistration(teacher,map,passwordConfirm,bindingResult) && !map.containsKey("captchaError");
 
 
 

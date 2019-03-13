@@ -14,52 +14,51 @@
 
 
     <h1>Registration</h1>
+    <div id="feedback">aaa</div>
 
-    <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
+<#--<div class="registration" name="registrationform" id="registrationId"></div>-->
     <div class="registration" name="registrationform" id="registrationId">
         <form  <#--enctype="multipart/form-data" action="/test" method="post" enctype="multipart/form-data"-->>
 
-
+                <div></div>
             <div class="invalid-feedback"><#if nameError??>${nameError} </#if></div>
-    <input type="text" class="${(nameError??)?string('is-invalid','')} form-control is-valid" name="name" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
+            <input type="text" class="${(nameError??)?string('is-invalid','')} form-control is-valid" name="name" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
 
 
-    <div class="invalid-feedback"><#if emailError??>${emailError} </#if></div>
-    <input type="email" class="${(emailError??)?string('is-invalid','')} form-control is-valid" name="email" id="email" placeholder="vasdsdsya@gmail.com" autocomplete="off" value="vasya@gmail.com"/>
+            <div class="invalid-feedback"><#if emailError??>${emailError} </#if></div>
+            <input type="email" class="${(emailError??)?string('is-invalid','')} form-control is-valid" name="email" id="email" placeholder="vasdsdsya@gmail.com" autocomplete="off" value="vasya@gmail.com"/>
 
-    <div><#if passwordError??>${passwordError} </#if></div>
-    <input type="password" class="${(passwordError??)?string('is-invalid','')}" name="password" id="password" placeholder="Password" autocomplete="off" value="1">
+            <div><#if passwordError??>${passwordError} </#if></div>
+            <input type="password" class="${(passwordError??)?string('is-invalid','')}" name="password" id="password" placeholder="Password" autocomplete="off" value="1">
 
-    <div><#if password2Error??>${password2Error} </#if></div>
-    <input type="password" class="${(password2Error??)?string('is-invalid','')}" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm" autocomplete="off" value="1">
+            <div><#if password2Error??>${password2Error} </#if></div>
+            <input type="password" class="${(password2Error??)?string('is-invalid','')}" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm" autocomplete="off" value="1">
 
 
-    <select  name="country" id="country" style="margin: 8px 0px">
-        <option value="au">Ukraine</option>
-        <option value="ca">Russia</option>
-        <option value="usa">USA</option>
-    </select>
+            <select  name="country" id="country" style="margin: 8px 0px">
+                <option value="au">Ukraine</option>
+                <option value="ca">Russia</option>
+                <option value="usa">USA</option>
+            </select>
 
-    <div><#if townError??>${townError} </#if></div>
-    <input type="text" class="${(townError??)?string('is-invalid','')}" name="town" id="town" placeholder="Town" value="b"/>
+            <div><#if townError??>${townError} </#if></div>
+            <input type="text" class="${(townError??)?string('is-invalid','')}" name="town" id="town" placeholder="Town" value="b"/>
 
-    <div><#if schoolnumberError??>${schoolnumberError} </#if></div>
-    <input type="text" class="${(townError??)?string('is-invalid','')}" name="schoolnumber" id="schoolnumber" placeholder="Schoolnumber" value="b"/>
+            <div><#if schoolnumberError??>${schoolnumberError} </#if></div>
+            <input type="text" class="${(townError??)?string('is-invalid','')}" name="schoolnumber" id="schoolnumber" placeholder="Schoolnumber" value="b"/>
 
-    <#--<input type="file" name="file">-->
+            <input type="file" name="file">
 
-    <input type="reset" >
+           <#-- <div>
+                <#if captchaError??> ${captchaError}</#if>
+                <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
+            </div>-->
 
-  <#--  <div>
-        <#if captchaError??> ${captchaError}</#if>
-        <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
-    </div>-->
-
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
             <#--registration.js on click run the function-->
-    <div><input id="registerSubmit" type="button" value="Submit"></div>
+            <div><input id="registerSubmit" type="button" value="Submit"></div>
 
-    </form>
+        </form>
     </div>
 </@navFoot.navbarFooter>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
