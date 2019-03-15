@@ -8,39 +8,38 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Table(name = "teacher")
-
 public class Teacher implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @NotBlank(message = "Please fill the name")
     @Length(max = 60, message = "Message too long (more than 60symbols)")
-
     private String name;
-    @NotBlank(message = "Please fill the password")
 
+    @NotBlank(message = "Please fill the password")
     private String password;
+
+    @NotBlank(message = "Please confirm the password")
     @Transient
     private String passwordConfirm;
+
     @Email(message = "Email isn't correct")
     @NotBlank(message = "Please fill the email")
-
     private String email;
-    @NotBlank(message = "Please fill the town")
 
+    @NotBlank(message = "Please fill the town")
     private String town;
 
     private String country;
-    @NotBlank(message = "Please fill the schoolnumber")
 
+    @NotBlank(message = "Please fill the number of school")
     private String schoolnumber;
 
     private String filename;

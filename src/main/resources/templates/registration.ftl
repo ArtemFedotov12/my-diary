@@ -18,41 +18,80 @@
 
 <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
     <div class="registration" name="registrationform" id="registrationId">
-        <form  <#--enctype="multipart/form-data" action="/test" method="post" enctype="multipart/form-data"-->>
-
-                <div></div>
-            <div class="invalid-feedback"><#if nameError??>${nameError} </#if></div>
-            <input type="text" class="${(nameError??)?string('is-invalid','')} form-control is-valid" name="name" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
+        <form  <#--enctype="multipart/form-data" action="/test" method="post" enctype="multipart/form-data"--> autocomplete="off" onautocomplete="false">
 
 
-            <div class="invalid-feedback"><#if emailError??>${emailError} </#if></div>
-            <input type="email" class="${(emailError??)?string('is-invalid','')} form-control is-valid" name="email" id="email" placeholder="vasdsdsya@gmail.com" autocomplete="off" value="vasya@gmail.com"/>
+            <div>
+                <div class="invalid-feedback" id="nameLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+                <input type="text" class="form-control"  name="name" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
+            </div>
 
-            <div><#if passwordError??>${passwordError} </#if></div>
-            <input type="password" class="${(passwordError??)?string('is-invalid','')}" name="password" id="password" placeholder="Password" autocomplete="off" value="1">
+            <div>
+                <div class="invalid-feedback" id="emailLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+                <input type="email" class="form-control"  name="email" id="email" placeholder="vasdsdsya@gmail.com" autocomplete="off" value="vasya@gmail.com"/>
+            </div>
 
-            <div><#if password2Error??>${password2Error} </#if></div>
-            <input type="password" class="${(password2Error??)?string('is-invalid','')}" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm" autocomplete="off" value="1">
+
+            <div>
+                <div class="invalid-feedback" id="passwordLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+                <input type="password" class="form-control"  name="password" id="password" placeholder="Password"/>
+            </div>
 
 
-            <select  name="country" id="country" style="margin: 8px 0px">
-                <option value="au">Ukraine</option>
-                <option value="ca">Russia</option>
-                <option value="usa">USA</option>
-            </select>
+            <div>
+                <div class="invalid-feedback" id="passwordConfirmLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm" autocomplete="off" value="1">
+            </div>
 
-            <div><#if townError??>${townError} </#if></div>
-            <input type="text" class="${(townError??)?string('is-invalid','')}" name="town" id="town" placeholder="Town" value="b"/>
 
-            <div><#if schoolnumberError??>${schoolnumberError} </#if></div>
-            <input type="text" class="${(townError??)?string('is-invalid','')}" name="schoolnumber" id="schoolnumber" placeholder="Schoolnumber" value="b"/>
+            <div class="input-group mb-3">
+                <select class="form-control"  id="inputGroupSelect02" style="border-radius: 20px; margin:8px 0px -8px 0px;">
+                    <option selected>Choose...</option>
+                    <option value="au">Ukraine</option>
+                    <option value="ca">Russia</option>
+                    <option value="usa">USA</option>
+                </select>
+            </div>
 
-            <input type="file" name="file">
 
-           <#-- <div>
-                <#if captchaError??> ${captchaError}</#if>
-                <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
-            </div>-->
+            <div>
+                <div class="invalid-feedback" id="townLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+                <input type="text" class="form-control"  name="town" id="town" placeholder="Town" value="b"/>
+            </div>
+
+
+
+            <div>
+                <div class="invalid-feedback" id="schoolnumberLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+                <input type="text" class="form-control" name="schoolnumber" id="schoolnumber" placeholder="The number of school" value="b"/>
+            </div>
+
+            <div class="custom-file">
+                <div class="invalid-feedback" id="fileLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+               <#-- <input type="file" class="form-control" name="file">-->
+                <input type="file" class="custom-file-input form-control" id="file">
+                <label class="custom-file-label" for="file">Choose file</label>
+            </div>
+
+
+            <#-- <div>
+                 <#if captchaError??> ${captchaError}</#if>
+                 <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
+             </div>-->
 
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <#--registration.js on click run the function-->

@@ -1,73 +1,61 @@
 $(document).ready(function(){
     //$("#registerSubmit").on('click', function(){
     $("#registerSubmit").click(function(){
-console.log("click was")
-    var formData = {
-        name : $("#name").val(),
-        email : $("#email").val(),
-        country : $("#country").val(),
-        town : $("#town").val(),
-        schoolnumber : $("#schoolnumber").val(),
-        passwordConfirm : $("#passwordConfirm").val()
+        var formData = {
+            name : $("#name").val(),
+            email : $("#email").val(),
+            country : $("#country").val(),
+            town : $("#town").val(),
+            schoolnumber : $("#schoolnumber").val(),
+            password : $("#password").val(),
+            passwordConfirm : $("#passwordConfirm").val()
+        };
 
-    };
+        var token = $("meta[name='_csrf']").attr("content");
 
-
-  //  console.log(JSON.stringify(formData)+"!!");
-    var token = $("meta[name='_csrf']").attr("content");
-   // var header = $("meta[name='_csrf_header']").attr("content");
-    $.ajax({
-        url: "/registration",
-        method: "POST",
-        data:JSON.stringify(formData),
-        headers: {"X-CSRF-TOKEN": token},
-        contentType : 'application/json',//;charset=utf-8
-        dataType: "json",
-        success: function (result) {
-            console.log(result);
-            console.log(result.data["kek"]);
-        },
-        error: function(e) {
-            console.log(e);
-            console.log("tyt");
-            console.log(e.responseJSON.data["kek"]);
-            if (e.responseJSON.data["kek"]=="kek"){
-                console.log("ok kek")
-            }
-            //console.log(e.data["kek"]);
-            if(e.responseJSON.data["nameError"]!=null){
-                $("#feedback").text(e.responseJSON.data["nameError"]);
-            }
-
-        }
-    });
-
-});
-});
-/*
-$(document).ready(function(){
-    // click on button submit
-    $("#registerSubmit").on('click', function(){
-        // send ajax
         $.ajax({
-            url: '/test', // url where to submit the request
-            type : "POST", // type of action POST || GET
-            dataType : 'json', // data type
-            data : $("#form").serialize(), // post data || get data
-            success : function(result) {
-                // you can see the result from the console
-                // tab of the developer tools
-                console.log("ok");
+            url: "/registration",
+            method: "POST",
+            data:JSON.stringify(formData),
+            headers: {"X-CSRF-TOKEN": token},
+            contentType : 'application/json',//;charset=utf-8
+            dataType: "json",
+            success: function (result) {
             },
-            error: function(xhr, resp, text) {
-                console.log(xhr, resp, text);
+            //Bad_Request 400 HTTP
+            error: function(e) {
+                var data=e.responseJSON.data;
+                if(data["nameError"]!=null){
+                    $("#name").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#nameLabel").css("display", "block").text(data["nameError"]);
+                }else {
+                    $("#name").removeClass("is-invalid").addClass("is-valid");
+                    $("#nameLabel").css("display", "none");
+                }
+
+                if(data["emailError"]!=null){
+                    $("#email").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#emailLabel").css("display", "block").text(data["emailError"]);
+                }else {
+                    $("#email").removeClass("is-invalid").addClass("is-valid");
+                    $("#emailLabel").css("display", "none");
+                }
+
+                if(data["passwordError"]!=null){
+                    console.log("nnnnnnnnnnn");
+                    $("#password").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#passwordLabel").css("display", "block").text(data["passwordError"]);
+                }else {
+                    console.log("kkkkkkkkk");
+                    $("#password").removeClass("is-invalid").addClass("is-valid");
+                    $("#passwordLabel").css("display", "none");
+                }
+
+
+
+
             }
-        })
+        });
+
     });
-});*/
-/* $.ajaxSetup({
-     beforeSend: function(xhr) {
-         xhr.setRequestHeader('Csrf-Token', token);
-     }
- });*/
-//var formData = $(form).serializeArray();
+});

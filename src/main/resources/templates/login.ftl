@@ -16,8 +16,8 @@
                <p><input type="password" name="password" placeholder="Password" autofocus></p>-->
 
             <div>
-                <div class="invalid-feedback" id="userLabel" style="display: none">
-                    User doesn't exist
+                <div class="invalid-feedback" id="userNameLabel" style="display: none">
+                    Message
                 </div>
                 <input id="username" class="form-control"  type="text" name="username" placeholder="Name" required/>
             </div>
