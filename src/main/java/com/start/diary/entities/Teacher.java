@@ -1,6 +1,9 @@
 package com.start.diary.entities;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +14,11 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
-
+//Lombok
+@Data
+@NoArgsConstructor
+@ToString
+//Hibernate
 @Entity
 @Table(name = "teacher")
 public class Teacher implements UserDetails, Serializable {
@@ -46,30 +53,6 @@ public class Teacher implements UserDetails, Serializable {
     private String activationCode;
     private boolean active;
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public boolean getActive() {
-        return active;
-    }
-
-    public String getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
-
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     //This field exist in separate table
     //3 video 9.04
@@ -77,94 +60,11 @@ public class Teacher implements UserDetails, Serializable {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    //Always create empty constructor
-    public Teacher() {
-    }
-
-    public boolean isAdmin(){
-        return roles.contains(Role.ADMIN);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 
     @Override
     public String getUsername() {
         return name;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getSchoolnumber() {
-        return schoolnumber;
-    }
-
-    public void setSchoolnumber(String schoolnumber) {
-        this.schoolnumber = schoolnumber;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-    public boolean isActive() {
-        return active;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -184,8 +84,6 @@ public class Teacher implements UserDetails, Serializable {
     public boolean isEnabled() {
         return true;
     }
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

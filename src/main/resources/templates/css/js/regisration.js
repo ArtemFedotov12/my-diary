@@ -8,7 +8,8 @@ $(document).ready(function(){
             town : $("#town").val(),
             schoolnumber : $("#schoolnumber").val(),
             password : $("#password").val(),
-            passwordConfirm : $("#passwordConfirm").val()
+            passwordConfirm : $("#passwordConfirm").val(),
+            file:$("#file").val()
         };
 
         var token = $("meta[name='_csrf']").attr("content");
@@ -20,6 +21,8 @@ $(document).ready(function(){
             headers: {"X-CSRF-TOKEN": token},
             contentType : 'application/json',//;charset=utf-8
             dataType: "json",
+            cache: false,
+            processData: false,
             success: function (result) {
             },
             //Bad_Request 400 HTTP

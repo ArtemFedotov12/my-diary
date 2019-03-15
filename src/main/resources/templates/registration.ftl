@@ -78,10 +78,11 @@
                 <input type="text" class="form-control" name="schoolnumber" id="schoolnumber" placeholder="The number of school" value="b"/>
             </div>
 
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>
+           <#-- <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file">
+                <label class="custom-file-label" for="file">Choose file</label>
+            </div>-->
+            <input id="file" type="file" value="File">
 
             <#-- <div>
                  <#if captchaError??> ${captchaError}</#if>
