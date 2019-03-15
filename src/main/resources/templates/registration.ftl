@@ -18,7 +18,7 @@
 
 <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
     <div class="registration" name="registrationform" id="registrationId">
-        <form  <#--enctype="multipart/form-data" action="/test" method="post" enctype="multipart/form-data"--> autocomplete="off" onautocomplete="false">
+        <form  id="fileUploadForm" enctype="multipart/form-data" autocomplete="off">
 
 
             <div>
@@ -82,7 +82,7 @@
                 <input type="file" class="custom-file-input" id="file">
                 <label class="custom-file-label" for="file">Choose file</label>
             </div>-->
-            <input id="file" type="file" value="File">
+            <input id="filename" name="filename" type="file" value="File">
 
             <#-- <div>
                  <#if captchaError??> ${captchaError}</#if>
