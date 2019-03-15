@@ -69,8 +69,7 @@ public class LoginRegistrationRest {
     @PostMapping("/registration")
     public ResponseEntity<Object> test(@Valid @RequestBody Teacher teacher, Errors errors){
 
-        System.out.println(teacher.getPassword());
-        System.out.println(teacher.getPasswordConfirm());
+
 
 
         Map<String,String> map = new HashMap<>();

@@ -79,14 +79,9 @@
             </div>
 
             <div class="custom-file">
-                <div class="invalid-feedback" id="fileLabel" style="display: none">
-                    <#--Error Message-->
-                </div>
-               <#-- <input type="file" class="form-control" name="file">-->
-                <input type="file" class="custom-file-input form-control" id="file">
-                <label class="custom-file-label" for="file">Choose file</label>
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
-
 
             <#-- <div>
                  <#if captchaError??> ${captchaError}</#if>
