@@ -40,7 +40,7 @@
                 <div class="invalid-feedback" id="passwordLabel" style="display: none">
                     <#--Error Message-->
                 </div>
-                <input type="password" class="form-control"  name="password" id="password" placeholder="Password"/>
+                <input type="password" class="form-control"  name="password" id="password" placeholder="Password" value="1"/>
             </div>
 
 
@@ -52,15 +52,19 @@
             </div>
 
 
-            <div class="input-group mb-3">
-                <select class="form-control"  id="inputGroupSelect02" style="border-radius: 20px; margin:8px 0px -8px 0px;">
-                    <option selected>Choose...</option>
-                    <option value="au">Ukraine</option>
-                    <option value="ca">Russia</option>
-                    <option value="usa">USA</option>
-                </select>
+            <div>
+                <div class="invalid-feedback" id="countryLabel" style="display: none">
+                    <#--Error Message-->
+                </div>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="country"  <#--id="inputGroupSelect02" -->style="border-radius: 20px; margin:8px 0px -8px 0px;">
+                        <option selected value="">Choose...</option>
+                        <option value="au">Ukraine</option>
+                        <option value="ca">Russia</option>
+                        <option value="usa">USA</option>
+                    </select>
+                </div>
             </div>
-
 
             <div>
                 <div class="invalid-feedback" id="townLabel" style="display: none">
@@ -78,14 +82,14 @@
                 <input type="text" class="form-control" name="schoolnumber" id="schoolnumber" placeholder="The number of school" value="b"/>
             </div>
 
-           <#-- <div class="custom-file">
-                <input type="file" class="custom-file-input" id="file">
-                <label class="custom-file-label" for="file">Choose file</label>
-            </div>-->
-            <input id="filename" name="filename" type="file" value="File">
+            <#-- <div class="custom-file">
+                 <input type="file" class="custom-file-input" id="file">
+                 <label class="custom-file-label" for="file">Choose file</label>
+             </div>-->
+            <input id="filename" name="filename" type="file">
 
-            <#-- <div>
-                 <#if captchaError??> ${captchaError}</#if>
+          <#--  <div>
+
                  <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
              </div>-->
 

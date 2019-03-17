@@ -1,36 +1,23 @@
 package com.start.diary.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.start.diary.entities.Teacher;
-import com.start.diary.entities.TeacherNew;
-import com.start.diary.entities.dto.CaptchaResponseDto;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.TeacherRepo;
 import com.start.diary.service.LoginRegistrationService;
 import com.start.diary.service.RegistrationService;
 import com.start.diary.service.TeacherService;
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.ws.rs.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 public class LoginRegistrationRest {
@@ -69,16 +56,18 @@ public class LoginRegistrationRest {
     @PostMapping("/registration")
     public ResponseEntity<Object> test(@Valid @RequestBody Teacher teacher, Errors errors){
 
-        System.out.println(teacher);
-
-
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
         map.put("kek","kek");
-
-        if (errors.hasErrors()){
+            //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"
+        if (errors.hasErrors() || teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0){
             response.setStatus("badRequest");
             map.putAll(ControllerUtils.getErrors(errors));
+            //only if fileds as: password and passwordConfrim aren't empty
+            //and value of these fields are different
+            if (teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
+                map.put("passwordConfirmEqualError","Passwords aren't equal");
+            }
             System.out.println("Map:");
             System.out.println(map);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

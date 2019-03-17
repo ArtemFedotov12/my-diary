@@ -44,6 +44,7 @@ public class Teacher implements UserDetails, Serializable {
     @NotBlank(message = "Please fill the town")
     private String town;
 
+    @NotBlank(message = "Please select the country")
     private String country;
 
     @NotBlank(message = "Please fill the number of school")
