@@ -16,6 +16,41 @@
     <h1>Registration</h1>
     <div id="feedback">aaa</div>
 
+    <form id="fileUploadForm" action="/test" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="name">
+        <input type="password" name="password" placeholder="Password">
+        <input id="filename" name="filename" type="file">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input id="sbtm" type="button" value="Submit">
+    </form>
+
+    <script>
+        $("#sbtm").click(function(event){
+            console.log("ter");
+            var form = $('#fileUploadForm')[0];
+            var data = new FormData(form);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "/test",
+                data: data,
+                //http://api.jquery.com/jQuery.ajax/
+                //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+                processData: false, //prevent jQuery from automatically transforming the data into a query string
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+
+                },
+                error: function (e) {
+
+
+                }
+            });
+        });
+
+    </script>
 <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
     <div class="registration" name="registrationform" id="registrationId">
         <form  id="fileUploadForm" enctype="multipart/form-data" autocomplete="off">
@@ -98,6 +133,7 @@
             <div><input id="registerSubmit" type="button" value="Submit"></div>
 
         </form>
+
     </div>
 </@navFoot.navbarFooter>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

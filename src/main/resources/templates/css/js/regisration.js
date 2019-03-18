@@ -23,7 +23,7 @@ $(document).ready(function(){
             //enctype: 'multipart/form-data',
             data:JSON.stringify(formData),
             headers: {"X-CSRF-TOKEN": token},
-            contentType : 'application/json',//;charset=utf-8
+            contentType : 'multipart/form-data',//'application/json',//;charset=utf-8
             dataType: "json",
             cache: false,
             processData: false,

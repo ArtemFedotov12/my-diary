@@ -1,5 +1,6 @@
 package com.start.diary.controllers;
 
+import com.start.diary.entities.RequestRegistrationForm;
 import com.start.diary.entities.Teacher;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.TeacherRepo;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -52,9 +54,23 @@ public class LoginRegistrationRest {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/test")
+    public ResponseEntity<Object> testnew(@RequestParam("filename") MultipartFile file,
+                                           @Valid RequestRegistrationForm name) {
+
+
+        Map<String, String> map = new HashMap<>();
+        ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
+        map.put("kek", "kek");
+        System.out.println(file != null && !file.getOriginalFilename().isEmpty());
+        System.out.println(name.getName());
+        System.out.println(name.getPassword());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
     //http://appsdeveloperblog.com/postmapping-requestbody-spring-mvc/
     @PostMapping("/registration")
-    public ResponseEntity<Object> test(@Valid @RequestBody Teacher teacher, Errors errors){
+    public ResponseEntity<Object> test(@RequestParam("filename") MultipartFile file, @Valid @RequestBody Teacher teacher, Errors errors){
 
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
