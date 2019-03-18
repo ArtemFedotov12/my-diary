@@ -2,6 +2,7 @@ package com.start.diary.controllers;
 
 import com.start.diary.entities.RequestRegistrationForm;
 import com.start.diary.entities.Teacher;
+import com.start.diary.entities.dto.CaptchaResponseDto;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.TeacherRepo;
 import com.start.diary.service.LoginRegistrationService;
@@ -69,14 +70,27 @@ public class LoginRegistrationRest {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    //http://appsdeveloperblog.com/postmapping-requestbody-spring-mvc/
+
     @PostMapping("/registrationPost")
-    public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,@Valid Teacher teacher,Errors errors ){
-        System.out.println(file != null && !file.getOriginalFilename().isEmpty());
-        System.out.println(teacher.getName());
+    public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,
+                                       @RequestParam("g-recaptcha-response") String captchaResponse,
+                                       @Valid Teacher teacher,
+                                       Errors errors
+    ){
+       // System.out.println(file != null && !file.getOriginalFilename().isEmpty());
+
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
         map.put("kek","kek");
+
+        //reCaptcha
+        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
+        CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+        if (captchaResponseDto != null && !captchaResponseDto.isSuccess()) {
+            map.put("captchaError", "Fill captcha");
+        }
+
+
             //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"
         if (errors.hasErrors() || teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0){
             response.setStatus("badRequest");
@@ -84,10 +98,12 @@ public class LoginRegistrationRest {
             //only if fileds as: password and passwordConfrim aren't empty
             //and value of these fields are different
             if (teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
-                map.put("passwordConfirmEqualError","Passwords aren't equal");//*@Valid  Teacher teacher, Errors errors*//*
+                map.put( "passwordConfirmEqualError" , "Passwords aren't equal" );//*@Valid  Teacher teacher, Errors errors*//*
             }
             System.out.println("Map:");
             System.out.println(map);
+
+
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 

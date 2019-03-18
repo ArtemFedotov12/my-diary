@@ -16,42 +16,6 @@
     <h1>Registration</h1>
     <div id="feedback">aaa</div>
 
-    <form id="fileUploadForm" <#--action="/test" method="post" enctype="multipart/form-data"-->>
-        <input type="text" name="name" placeholder="name">
-        <input type="password" name="password" placeholder="Password">
-        <input id="filename" name="filename" type="file">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input id="sbtm" type="button" value="Submit">
-    </form>
-
-    <script>
-        $("#sbtm").click(function(event){
-            console.log("ter");
-            var form = $('#fileUploadForm')[0];
-            var data = new FormData(form);
-            console.log(data);
-            $.ajax({
-                type: "POST",
-                enctype: 'multipart/form-data',
-                url: "/test",
-                data: data,
-                //http://api.jquery.com/jQuery.ajax/
-                //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-                processData: false, //prevent jQuery from automatically transforming the data into a query string
-                contentType: false,
-                cache: false,
-                timeout: 600000,
-                success: function (data) {
-
-                },
-                error: function (e) {
-
-
-                }
-            });
-        });
-
-    </script>
 <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
     <div class="registration">
         <form  id="formRegistration" <#--enctype="multipart/form-data" autocomplete="off"-->>
@@ -124,10 +88,10 @@
              </div>-->
             <input  name="file" type="file">
 
-          <#--  <div>
 
+            <div>
                  <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
-             </div>-->
+             </div>
 
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <#--registration.js on click run the function-->
@@ -143,3 +107,46 @@
 <script src="/templates/css/js/regisration.js" ></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
+
+
+
+
+
+
+<#--
+<form id="fileUploadForm" &lt;#&ndash;action="/test" method="post" enctype="multipart/form-data"&ndash;&gt;>
+    <input type="text" name="name" placeholder="name">
+    <input type="password" name="password" placeholder="Password">
+    <input id="filename" name="filename" type="file">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input id="sbtm" type="button" value="Submit">
+</form>
+
+<script>
+    $("#sbtm").click(function(event){
+        console.log("ter");
+        var form = $('#fileUploadForm')[0];
+        var data = new FormData(form);
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/test",
+            data: data,
+            //http://api.jquery.com/jQuery.ajax/
+            //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+            processData: false, //prevent jQuery from automatically transforming the data into a query string
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+            },
+            error: function (e) {
+
+
+            }
+        });
+    });
+
+</script>-->
