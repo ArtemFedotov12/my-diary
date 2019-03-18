@@ -55,23 +55,25 @@ public class LoginRegistrationRest {
     }
 
     @PostMapping("/test")
-    public ResponseEntity<Object> testnew(@RequestParam("filename") MultipartFile file,
-                                           @Valid RequestRegistrationForm name) {
+    public ResponseEntity<Object> testnew(/*@RequestParam("filename") MultipartFile file,
+                                           @Valid RequestRegistrationForm name*/
+                                     @RequestParam("name") String name
+    ) {
 
 
         Map<String, String> map = new HashMap<>();
         ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
         map.put("kek", "kek");
-        System.out.println(file != null && !file.getOriginalFilename().isEmpty());
-        System.out.println(name.getName());
-        System.out.println(name.getPassword());
+        //System.out.println(file != null && !file.getOriginalFilename().isEmpty());
+        System.out.println(name);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     //http://appsdeveloperblog.com/postmapping-requestbody-spring-mvc/
-    @PostMapping("/registration")
-    public ResponseEntity<Object> test(@RequestParam("filename") MultipartFile file, @Valid @RequestBody Teacher teacher, Errors errors){
-
+    @PostMapping("/registrationPost")
+    public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,@Valid Teacher teacher,Errors errors ){
+        System.out.println(file != null && !file.getOriginalFilename().isEmpty());
+        System.out.println(teacher.getName());
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
         map.put("kek","kek");
@@ -82,7 +84,7 @@ public class LoginRegistrationRest {
             //only if fileds as: password and passwordConfrim aren't empty
             //and value of these fields are different
             if (teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
-                map.put("passwordConfirmEqualError","Passwords aren't equal");
+                map.put("passwordConfirmEqualError","Passwords aren't equal");//*@Valid  Teacher teacher, Errors errors*//*
             }
             System.out.println("Map:");
             System.out.println(map);

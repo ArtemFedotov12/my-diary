@@ -2,7 +2,7 @@ $(document).ready(function(){
     //$("#registerSubmit").on('click', function(){
     $("#registerSubmit").click(function(event){
 
-        var formData = {
+  /*      var formData = {
             name : $("#name").val(),
             email : $("#email").val(),
             country : $( "#country option:selected" ).val(),
@@ -11,14 +11,16 @@ $(document).ready(function(){
             password : $("#password").val(),
             passwordConfirm : $("#passwordConfirm").val(),
             filename:$("#filename").val()
-        };
+        };*/
 
-        console.log("Form Data:");
-        console.log(formData);
-        var token = $("meta[name='_csrf']").attr("content");
-
+        //console.log("Form Data:");
+        //console.log(formData);
+        //var token = $("meta[name='_csrf']").attr("content");
+        var form = $('#formRegistration')[0];
+        var data = new FormData(form);
+        console.log(data);
         $.ajax({
-            url: "/registration",
+           /* url: "/registration",
             method: "POST",
             //enctype: 'multipart/form-data',
             data:JSON.stringify(formData),
@@ -26,7 +28,18 @@ $(document).ready(function(){
             contentType : 'multipart/form-data',//'application/json',//;charset=utf-8
             dataType: "json",
             cache: false,
-            processData: false,
+            processData: false,*/
+
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/registrationPost",
+            data: data,
+            //http://api.jquery.com/jQuery.ajax/
+            //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+            processData: false, //prevent jQuery from automatically transforming the data into a query string
+            contentType: false,
+            cache: false,
+            timeout: 600000,
             success: function (result) {
                 //console.log(result["status"]);
                 if(result["status"]=="success"){

@@ -16,7 +16,7 @@
     <h1>Registration</h1>
     <div id="feedback">aaa</div>
 
-    <form id="fileUploadForm" action="/test" method="post" enctype="multipart/form-data">
+    <form id="fileUploadForm" <#--action="/test" method="post" enctype="multipart/form-data"-->>
         <input type="text" name="name" placeholder="name">
         <input type="password" name="password" placeholder="Password">
         <input id="filename" name="filename" type="file">
@@ -29,6 +29,7 @@
             console.log("ter");
             var form = $('#fileUploadForm')[0];
             var data = new FormData(form);
+            console.log(data);
             $.ajax({
                 type: "POST",
                 enctype: 'multipart/form-data',
@@ -52,8 +53,8 @@
 
     </script>
 <#--<div class="registration" name="registrationform" id="registrationId"></div>-->
-    <div class="registration" name="registrationform" id="registrationId">
-        <form  id="fileUploadForm" enctype="multipart/form-data" autocomplete="off">
+    <div class="registration">
+        <form  id="formRegistration" <#--enctype="multipart/form-data" autocomplete="off"-->>
 
 
             <div>
@@ -92,7 +93,7 @@
                     <#--Error Message-->
                 </div>
                 <div class="input-group mb-3">
-                    <select class="form-control" id="country"  <#--id="inputGroupSelect02" -->style="border-radius: 20px; margin:8px 0px -8px 0px;">
+                    <select class="form-control" name="country" id="country"  <#--id="inputGroupSelect02" -->style="border-radius: 20px; margin:8px 0px -8px 0px;">
                         <option selected value="">Choose...</option>
                         <option value="au">Ukraine</option>
                         <option value="ca">Russia</option>
@@ -121,7 +122,7 @@
                  <input type="file" class="custom-file-input" id="file">
                  <label class="custom-file-label" for="file">Choose file</label>
              </div>-->
-            <input id="filename" name="filename" type="file">
+            <input  name="file" type="file">
 
           <#--  <div>
 

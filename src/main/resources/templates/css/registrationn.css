@@ -5,6 +5,7 @@
 div.registration{
     position: relative;
     margin:auto;
+    margin-bottom: 80px;
     width: 350px;
     font-size: 14px;
     border-radius: 5px;
