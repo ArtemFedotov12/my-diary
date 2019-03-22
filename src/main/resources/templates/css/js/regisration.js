@@ -117,6 +117,13 @@ $(document).ready(function(){
                     $("#townLabel").css("display", "none");
                 }
 
+                if(data["captchaError"]!=null){
+                   // $("#reCaptcha").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#reCaptchaLabel").css("display", "block");
+                }else {
+                   // $("#reCaptcha").removeClass("is-invalid").addClass("is-valid");
+                    $("#reCaptchaLabel").css("display", "none");
+                }
 
 
 

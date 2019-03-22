@@ -73,6 +73,7 @@ public class LoginRegistrationRest {
 
     @PostMapping("/registrationPost")
     public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,
+                                       @RequestParam String passwordConfirm,
                                        @RequestParam("g-recaptcha-response") String captchaResponse,
                                        @Valid Teacher teacher,
                                        Errors errors
@@ -82,10 +83,11 @@ public class LoginRegistrationRest {
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
         map.put("kek","kek");
+        System.out.println("Psw: "+passwordConfirm);
 
 
         registrationService.handlingCaptchaAndFile(captchaResponse,file,map,teacher);
-        registrationService.addTeacherRegistration(teacher,map,teacher.getPasswordConfirm(),errors);
+        registrationService.addTeacherRegistration(teacher,map,passwordConfirm,errors);
         //reCaptcha
       /*  String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
@@ -95,12 +97,12 @@ public class LoginRegistrationRest {
 
 
             //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"
-        if (errors.hasErrors() || teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0){
+        if (errors.hasErrors() || teacher.getPassword().compareTo(passwordConfirm)!=0){
             response.setStatus("badRequest");
             map.putAll(ControllerUtils.getErrors(errors));
             //only if fileds as: password and passwordConfrim aren't empty
             //and value of these fields are different
-            if (teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
+            if (teacher.getPassword().compareTo(passwordConfirm)!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
                 map.put( "passwordConfirmEqualError" , "Passwords aren't equal" );//*@Valid  Teacher teacher, Errors errors*//*
             }
             System.out.println("Map:");

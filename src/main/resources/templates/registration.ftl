@@ -90,7 +90,11 @@
 
 
             <div>
-                <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
+                <div  class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
+                <#--Error Message-->
+                <div id="reCaptchaLabel" class="alert alert-danger" role="alert" style="display: none; margin: 0px">
+                    Please fill reCaptcha
+                </div>
             </div>
 
             <input type="hidden" name="_csrf" value="${_csrf.token}">

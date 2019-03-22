@@ -33,9 +33,9 @@ public class Teacher implements UserDetails, Serializable {
     @NotBlank(message = "Please fill the password")
     private String password;
 
-    @NotBlank(message = "Please confirm the password")
+  /*  @NotBlank(message = "Please confirm the password")
     @Transient
-    private String passwordConfirm;
+    private String passwordConfirm;*/
 
     @Email(message = "Email isn't correct")
     @NotBlank(message = "Please fill the email")
