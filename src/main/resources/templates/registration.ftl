@@ -7,6 +7,7 @@
     <meta name="_csrf" content="${_csrf.token}"/>
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 </@h.head>
 
 <body class="body">
@@ -14,9 +15,8 @@
 
 
     <h1>Registration</h1>
-    <div id="feedback">aaa</div>
 
-<#--<div class="registration" name="registrationform" id="registrationId"></div>-->
+
     <div class="registration">
         <form  id="formRegistration" <#--enctype="multipart/form-data" autocomplete="off"-->>
 
@@ -90,8 +90,8 @@
 
 
             <div>
-                 <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
-             </div>
+                <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
+            </div>
 
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <#--registration.js on click run the function-->

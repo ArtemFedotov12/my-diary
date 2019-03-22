@@ -76,19 +76,22 @@ public class LoginRegistrationRest {
                                        @RequestParam("g-recaptcha-response") String captchaResponse,
                                        @Valid Teacher teacher,
                                        Errors errors
-    ){
+    ) throws IOException {
        // System.out.println(file != null && !file.getOriginalFilename().isEmpty());
 
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
         map.put("kek","kek");
 
+
+        registrationService.handlingCaptchaAndFile(captchaResponse,file,map,teacher);
+        registrationService.addTeacherRegistration(teacher,map,teacher.getPasswordConfirm(),errors);
         //reCaptcha
-        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
+      /*  String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
         if (captchaResponseDto != null && !captchaResponseDto.isSuccess()) {
             map.put("captchaError", "Fill captcha");
-        }
+        }*/
 
 
             //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"

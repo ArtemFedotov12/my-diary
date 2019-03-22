@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -67,17 +68,17 @@ public class RegistrationService {
     }
 
 
-    public boolean addTeacherRegistration(Teacher teacher,Map<String,String> map, String passwordConfirm, BindingResult bindingResult){
+    public boolean addTeacherRegistration(Teacher teacher,Map<String,String> map, String passwordConfirm, Errors errors){
         boolean valueForReturn=true;
         Teacher teacherFromDb=teacherRepo.findByName(teacher.getName());
 
 
 
-        if(bindingResult.hasErrors()){
-            map.put("bindingResult","hasErrors");
-            map.forEach((k, v) -> ControllerUtils.getErrors(bindingResult).merge(k, v, (v1, v2) ->
+        if(errors.hasErrors()){
+            map.put("errors","hasErrors");
+            map.forEach((k, v) -> ControllerUtils.getErrors(errors).merge(k, v, (v1, v2) ->
                     {throw new AssertionError("duplicate values for key: "+k);}));
-            //map = ControllerUtils.getErrors(bindingResult);
+            //map = ControllerUtils.getErrors(errors);
             valueForReturn=false;
         }
 
