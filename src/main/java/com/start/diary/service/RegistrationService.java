@@ -68,16 +68,15 @@ public class RegistrationService {
     }
 
 
-    public boolean addTeacherRegistration(Teacher teacher,Map<String,String> map, String passwordConfirm, Errors errors){
+    public void addTeacherRegistration(Teacher teacher,Map<String,String> map, String passwordConfirm, Errors errors){
         boolean valueForReturn=true;
         Teacher teacherFromDb=teacherRepo.findByName(teacher.getName());
 
 
 
         if(errors.hasErrors()){
-            map.put("errors","hasErrors");
             map.forEach((k, v) -> ControllerUtils.getErrors(errors).merge(k, v, (v1, v2) ->
-                    {throw new AssertionError("duplicate values for key: "+k);}));
+            {throw new AssertionError("duplicate values for key: "+k);}));
             //map = ControllerUtils.getErrors(errors);
             valueForReturn=false;
         }
@@ -88,14 +87,21 @@ public class RegistrationService {
         }
 
 
-        if (teacher.getPassword().compareTo(passwordConfirm)!= 0) {
-            map.put("password2Error", "Passwords are not equal");
+        if (passwordConfirm.isEmpty()){
+            map.put("passwordConfirmError", "Please confirm the password");
             valueForReturn = false;
+        }else {
+            if (teacher.getPassword().compareTo(passwordConfirm)!= 0) {
+                map.put("passwordConfirmEqualError", "Passwords are not equal");
+                valueForReturn = false;
+            }
         }
 
 
 
-//End!!!!!! if ok we save our user
+
+
+//End!!!!!! if we don't have any errors(Error errors), we save our user
         if (valueForReturn){
             teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
             //3vid 17.30
@@ -108,9 +114,10 @@ public class RegistrationService {
 
             teacherRepo.save(teacher);
         }
-        return valueForReturn;
+
     }
 
+    //Email send Message
     private void sendMessage(Teacher teacher) {
         if (!StringUtils.isEmpty(teacher.getEmail())) {
             String message = String.format(

@@ -95,16 +95,17 @@ public class LoginRegistrationRest {
             map.put("captchaError", "Fill captcha");
         }*/
 
-
+        System.out.println("Map before IFFF:");
+        System.out.println(map);
             //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"
-        if (errors.hasErrors() || teacher.getPassword().compareTo(passwordConfirm)!=0){
+        if (errors.hasErrors() /*|| teacher.getPassword().compareTo(passwordConfirm)!=0*/){
             response.setStatus("badRequest");
             map.putAll(ControllerUtils.getErrors(errors));
             //only if fileds as: password and passwordConfrim aren't empty
             //and value of these fields are different
-            if (teacher.getPassword().compareTo(passwordConfirm)!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
-                map.put( "passwordConfirmEqualError" , "Passwords aren't equal" );//*@Valid  Teacher teacher, Errors errors*//*
-            }
+           /* if (teacher.getPassword().compareTo(passwordConfirm)!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
+                map.put( "passwordConfirmEqualError" , "Passwords aren't equal" );
+            }*/
             System.out.println("Map:");
             System.out.println(map);
 

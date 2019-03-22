@@ -4,6 +4,7 @@
 -->
 <#import "part/navbarFooter.ftl" as navFoot>
 <#import "part/head.ftl" as h>
+<#include "part/security.ftl">
 
 <@h.head>
     <link rel="stylesheet" href="/templates/css/login.css">
@@ -13,7 +14,7 @@
 <body class="body">
 <@navFoot.navbarFooter>
 <div>
-<h1>Welcome <#if name??>${name}!</#if></h1>
+<#--<h1>Welcome <#if name??>${name}!</#if></h1>-->
     <h1>Kek</h1>
 
 </div>
