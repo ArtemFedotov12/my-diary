@@ -41,6 +41,7 @@ $(document).ready(function(){
                     $( ".invalid-feedback" ).each(function() {
                         $(this).css("display", "none");
                     });
+                    $("#reCaptchaLabel").css("display", "none");
                 }
 
             },
