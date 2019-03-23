@@ -47,11 +47,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 //For Add Css "/templates/css/**"
                     .authorizeRequests()
-                    .antMatchers( "/test","/registrationPost","/registration","/templates/css/**","/activate/*","/lo").permitAll()
+                    .antMatchers( "/test","/registration","/templates/css/**","/activate/*","/lo","/loginError").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
+                    .failureUrl("/loginError")
                     .defaultSuccessUrl("/",true)
                     .permitAll()
                 .and()

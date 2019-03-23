@@ -58,8 +58,8 @@
                 </div>
                 <div class="input-group mb-3">
                     <select class="form-control" name="country" id="country"  <#--id="inputGroupSelect02" -->style="border-radius: 20px; margin:8px 0px -8px 0px;">
-                        <option selected value="">Choose...</option>
-                        <option value="au">Ukraine</option>
+                        <option  value="">Choose...</option>
+                        <option selected value="au">Ukraine</option>
                         <option value="ca">Russia</option>
                         <option value="usa">USA</option>
                     </select>
@@ -89,9 +89,9 @@
             <input  name="file" type="file">
 
 
-            <div>
-                <div  class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
-                <#--Error Message-->
+           <div>
+                <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
+                     <#--Error Message-->
                 <div id="reCaptchaLabel" class="alert alert-danger" role="alert" style="display: none; margin: 0px">
                     Please fill reCaptcha
                 </div>

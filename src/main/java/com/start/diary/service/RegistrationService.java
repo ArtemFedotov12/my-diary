@@ -69,31 +69,27 @@ public class RegistrationService {
 
 
     public void addTeacherRegistration(Teacher teacher,Map<String,String> map, String passwordConfirm, Errors errors){
-        boolean valueForReturn=true;
-        Teacher teacherFromDb=teacherRepo.findByName(teacher.getName());
+        Teacher teacherFromDatabaseByName=teacherRepo.findByName(teacher.getName());
+        Teacher teacherFromDatabaseByEmail=teacherRepo.findByEmail(teacher.getEmail());
 
 
 
-        if(errors.hasErrors()){
-            map.forEach((k, v) -> ControllerUtils.getErrors(errors).merge(k, v, (v1, v2) ->
-            {throw new AssertionError("duplicate values for key: "+k);}));
-            //map = ControllerUtils.getErrors(errors);
-            valueForReturn=false;
+        if (teacherFromDatabaseByName!=null){
+            map.put("nameUniqueError", "User already exists!");
         }
 
-        if (teacherFromDb!=null){
-            map.put("usernameError", "User exist!");
-            valueForReturn=false;
+        if (teacherFromDatabaseByEmail!=null){
+            map.put("emailUniqueError", "Email has already been registered");
+
         }
 
 
         if (passwordConfirm.isEmpty()){
             map.put("passwordConfirmError", "Please confirm the password");
-            valueForReturn = false;
+
         }else {
             if (teacher.getPassword().compareTo(passwordConfirm)!= 0) {
                 map.put("passwordConfirmEqualError", "Passwords are not equal");
-                valueForReturn = false;
             }
         }
 
@@ -102,7 +98,7 @@ public class RegistrationService {
 
 
 //End!!!!!! if we don't have any errors(Error errors), we save our user
-        if (valueForReturn){
+        if (map.isEmpty()){
             teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
             //3vid 17.30
             teacher.setRoles(Collections.singleton(Role.USER));

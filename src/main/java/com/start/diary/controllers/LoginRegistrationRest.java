@@ -54,116 +54,46 @@ public class LoginRegistrationRest {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @GetMapping("/loginError")
+    public ResponseEntity<Object> loginError(@RequestParam(required = false) String error){
+        System.out.println("tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+        Map<String,String> map = new HashMap<>();
+        ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
 
-    @PostMapping("/test")
-    public ResponseEntity<Object> testnew(/*@RequestParam("filename") MultipartFile file,
-                                           @Valid RequestRegistrationForm name*/
-                                     @RequestParam("name") String name
-    ) {
-
-
-        Map<String, String> map = new HashMap<>();
-        ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
-        map.put("kek", "kek");
-        //System.out.println(file != null && !file.getOriginalFilename().isEmpty());
-        System.out.println(name);
+        System.out.println("errrrrrrrrrrrrrrrrrr");
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/registrationPost")
+    @PostMapping("/registration")
     public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,
                                        @RequestParam String passwordConfirm,
-                                       @RequestParam("g-recaptcha-response") String captchaResponse,
+                                       @RequestParam(name = "g-recaptcha-response", required = false) String captchaResponse,
                                        @Valid Teacher teacher,
                                        Errors errors
     ) throws IOException {
-       // System.out.println(file != null && !file.getOriginalFilename().isEmpty());
-
+        //Response
         Map<String,String> map = new HashMap<>();
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
-        map.put("kek","kek");
-        System.out.println("Psw: "+passwordConfirm);
 
-
+        map.putAll(ControllerUtils.getErrors(errors));
+        System.out.println("Map Errors:");
+        System.out.println(map);
         registrationService.handlingCaptchaAndFile(captchaResponse,file,map,teacher);
         registrationService.addTeacherRegistration(teacher,map,passwordConfirm,errors);
-        //reCaptcha
-      /*  String url = String.format(CAPTCHA_URL, secret, captchaResponse);
-        CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
-        if (captchaResponseDto != null && !captchaResponseDto.isSuccess()) {
-            map.put("captchaError", "Fill captcha");
-        }*/
 
-        System.out.println("Map before IFFF:");
-        System.out.println(map);
-            //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"
-        if (errors.hasErrors() /*|| teacher.getPassword().compareTo(passwordConfirm)!=0*/){
+
+
+        //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"
+        if (errors.hasErrors() || !map.isEmpty()){
             response.setStatus("badRequest");
             map.putAll(ControllerUtils.getErrors(errors));
-            //only if fileds as: password and passwordConfrim aren't empty
-            //and value of these fields are different
-           /* if (teacher.getPassword().compareTo(passwordConfirm)!=0 && !map.containsKey("passwordError") && !map.containsKey("passwordConfirmError")){
-                map.put( "passwordConfirmEqualError" , "Passwords aren't equal" );
-            }*/
-            System.out.println("Map:");
+            System.out.println("Map All:");
             System.out.println(map);
-
 
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-
         return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-
-    @PostMapping(value = "/registration2",consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String /*ResponseEntity<Object>*/ registrationPost(
-            //@RequestParam("file") MultipartFile file,
-            // @RequestParam("passwordConfirm") String passwordConfirm,
-            //  @RequestParam("g-recaptcha-response") String captchaResponse,
-            /*@Valid*/ //Teacher teacher
-            //11 video 5.06
-            //there is one subtlety
-            // BindingResult bindingResult
-    )
-            throws IOException {
-        /*System.out.println("Reigrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-        Map<String,String> map = new HashMap<>();
-        map.put("test","test1");
-        ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);*/
-
-        // registrationService.handlingCaptchaAndFile(captchaResponse,file,map,teacher);
-        //reCaptcha
-/*        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
-        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
-        if (!response.isSuccess()) {
-            model.addAttribute("captchaError", "Fill captcha");
-        }
-        //reCaptcha
-
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            teacher.setFilename(resultFilename);
-        }*/
-
-
-
-        //boolean v=registrationService.addTeacherRegistration(teacher,map,passwordConfirm,bindingResult) && !map.containsKey("captchaError");
-
-
-
-        return /*new ResponseEntity<>(response, HttpStatus.OK)*/ "Str";
     }
 }

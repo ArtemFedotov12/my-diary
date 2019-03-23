@@ -20,19 +20,9 @@ $(document).ready(function(){
         var data = new FormData(form);
         console.log(data);
         $.ajax({
-           /* url: "/registration",
-            method: "POST",
-            //enctype: 'multipart/form-data',
-            data:JSON.stringify(formData),
-            headers: {"X-CSRF-TOKEN": token},
-            contentType : 'multipart/form-data',//'application/json',//;charset=utf-8
-            dataType: "json",
-            cache: false,
-            processData: false,*/
-
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "/registrationPost",
+            url: "/registration",
             data: data,
             //http://api.jquery.com/jQuery.ajax/
             //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
@@ -57,10 +47,19 @@ $(document).ready(function(){
             //Bad_Request 400 HTTP
             error: function(e) {
                 var data=e.responseJSON.data;
+                console.log(data);
                 if(data["nameError"]!=null){
                     $("#name").removeClass("is-valid").addClass("form-control is-invalid");
                     $("#nameLabel").css("display", "block").text(data["nameError"]);
-                }else {
+                }else if (data["nameUniqueError"]==null) {
+                    $("#name").removeClass("is-invalid").addClass("is-valid");
+                    $("#nameLabel").css("display", "none");
+                }
+
+                if(data["nameUniqueError"]!=null){
+                    $("#name").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#nameLabel").css("display", "block").text(data["nameUniqueError"]);
+                }else if(data["nameError"]==null){
                     $("#name").removeClass("is-invalid").addClass("is-valid");
                     $("#nameLabel").css("display", "none");
                 }
@@ -68,7 +67,14 @@ $(document).ready(function(){
                 if(data["emailError"]!=null){
                     $("#email").removeClass("is-valid").addClass("form-control is-invalid");
                     $("#emailLabel").css("display", "block").text(data["emailError"]);
-                }else {
+                }else if(data["emailUniqueError"]==null){
+                    $("#email").removeClass("is-invalid").addClass("is-valid");
+                    $("#emailLabel").css("display", "none");
+                }
+                if(data["emailUniqueError"]!=null){
+                    $("#email").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#emailLabel").css("display", "block").text(data["emailUniqueError"]);
+                }else if(data["emailError"]==null) {
                     $("#email").removeClass("is-invalid").addClass("is-valid");
                     $("#emailLabel").css("display", "none");
                 }
