@@ -42,7 +42,10 @@ $(document).ready(function(){
                         $(this).css("display", "none");
                     });
                     $("#reCaptchaLabel").css("display", "none");
+                    location.href = "http://localhost:8080/login";
                 }
+                //if(result === "no_errors")
+
 
             },
             //Bad_Request 400 HTTP
@@ -131,8 +134,6 @@ $(document).ready(function(){
                    // $("#reCaptcha").removeClass("is-invalid").addClass("is-valid");
                     $("#reCaptchaLabel").css("display", "none");
                 }
-
-
 
             }
         });
