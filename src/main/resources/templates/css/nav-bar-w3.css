@@ -75,9 +75,10 @@ button.sign_out:hover{
 @media screen and (max-width: 600px) {
 
     .nav-bar a:not(:first-child) {display: none;}
-    .nav-bar.responsive a:first-child{
-        background-color: #36bb37;
-}
+    .nav-bar a:first-child{
+        background-color: #2b9fff;
+        color: white;
+    }
     .topnav a.icon {
         float: right;
         display: block;
@@ -107,15 +108,7 @@ button.sign_out:hover{
     }
 
     .topnav.responsive {position: relative;}
-/*    .topnav.responsive .icon {
-        float: right;
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 8px;
-        color: white;
-        padding: 4px;
-    }*/
+
     .topnav.responsive a {
         float: none;
         display: block;
