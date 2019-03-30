@@ -3,7 +3,6 @@ package com.start.diary.controllers;
 import com.start.diary.entities.Teacher;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.TeacherRepo;
-import com.start.diary.service.LoginRegistrationService;
 import com.start.diary.service.RegistrationService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,31 +38,14 @@ public class LoginRegistrationRest {
     private String secret;
     @Autowired
     TeacherRepo teacherRepo;
-    @Autowired
-    LoginRegistrationService loginRegistrationService;
+
     @Autowired
     RegistrationService registrationService;
 
-    @GetMapping("/lo")
-    public ResponseEntity<Object> lo(@RequestParam String username){
-        System.out.println("tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
-        Map<String,String> map = new HashMap<>();
-        ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
 
-        loginRegistrationService.loginValidation(username,map);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-    @GetMapping("/loginError")
-    public ResponseEntity<Object> loginError(@RequestParam(required = false) String error){
-        System.out.println("tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
-        Map<String,String> map = new HashMap<>();
-        ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
 
-        System.out.println("errrrrrrrrrrrrrrrrrr");
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
 
     @PostMapping("/registration")
     public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,
@@ -73,28 +54,25 @@ public class LoginRegistrationRest {
                                        @Valid Teacher teacher,
                                        Errors errors
     ) throws IOException {
-        //Response
-        Map<String,String> map = new HashMap<>();
+
+        Map<String, String> map = new HashMap<>(ControllerUtils.getErrors(errors));
         ServiceResponse<Map<String,String>> response = new ServiceResponse<>("success",map);
 
-        map.putAll(ControllerUtils.getErrors(errors));
-        System.out.println("Map Errors:");
-        System.out.println(map);
+
         registrationService.handlingCaptchaAndFile(captchaResponse,file,map,teacher);
         registrationService.addTeacherRegistration(teacher,map,passwordConfirm,errors);
-
-
 
         //passwordConfirmEqualError we added manually, so we write this "teacher.getPassword().compareTo(teacher.getPasswordConfirm())!=0"
         if (errors.hasErrors() || !map.isEmpty()){
             response.setStatus("badRequest");
             map.putAll(ControllerUtils.getErrors(errors));
-            System.out.println("Map All:");
-            System.out.println(map);
-
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
+
+
+
 }

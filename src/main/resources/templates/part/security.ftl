@@ -7,7 +7,7 @@
         teacher=Session.SPRING_SECURITY_CONTEXT.authentication.principal
         name=teacher.getName()
         active=teacher.isActive()
-        <#--isAdmin=teacher.isAdmin()-->
+        isAdmin=teacher.isAdmin()
         currentUserId=teacher.getId()
    <#--     filename=teacher.getFilename()-->
     >

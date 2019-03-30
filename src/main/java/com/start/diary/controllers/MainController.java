@@ -3,6 +3,7 @@ package com.start.diary.controllers;
 import com.start.diary.entities.Teacher;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.TeacherRepo;
+import com.start.diary.service.TeacherService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +23,8 @@ import java.util.Map;
 public class MainController {
     @Autowired
     TeacherRepo teacherRepo;
+    @Autowired
+    TeacherService teacherService;
 
 
     @GetMapping("/")
@@ -29,10 +32,7 @@ public class MainController {
         model.addAttribute("name", name);
         return "main";
     }
-    @GetMapping("/bad")
-    public String bad() {
-        return "bad";
-    }
+
 
     @GetMapping("/mypage")
     public String bred(@AuthenticationPrincipal Teacher teacher, Model model) {
@@ -40,14 +40,26 @@ public class MainController {
         model.addAttribute("teacherPage",teacher1);
         return "mypage";
     }
- /*   @GetMapping(value = "/lo")
-    @ResponseBody
-    public String b() {
-        System.out.println("tyt");
+
+
+    @GetMapping("/registration")
+    public String registrationGet() {
+        return "registration";
+    }
+
+
+    @GetMapping("/activate/{code}")
+    public String activate(Model model, @PathVariable String code) {
+        boolean isActivated = teacherService.activateTeacher(code);
+
+        if (isActivated) {
+            model.addAttribute("message", "User successfully activated");
+        } else {
+            model.addAttribute("message", "Activation code is not found!");
+        }
+
         return "login";
-    }*/
-
-
+    }
 
 
 

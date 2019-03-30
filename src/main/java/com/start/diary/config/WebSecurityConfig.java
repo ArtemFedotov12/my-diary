@@ -1,7 +1,6 @@
 package com.start.diary.config;
 
 
-import com.start.diary.service.LoginRegistrationService;
 import com.start.diary.service.RegistrationService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(8);
     }
-    @Bean
-    LoginRegistrationService getLoginRegistrationService(){
-        return new LoginRegistrationService();
-    }
+
     @Bean
     RegistrationService getRegistrationService(){
         return  new RegistrationService();
@@ -47,12 +43,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 //For Add Css "/templates/css/**"
                     .authorizeRequests()
-                    .antMatchers( "/test","/registration","/templates/css/**","/activate/*","/lo","/loginError").permitAll()
+                    .antMatchers( "/test","/registration","/templates/css/**","/activate/*").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
-                    .failureUrl("/loginError")
+                    //.failureUrl("/login")
                     .defaultSuccessUrl("/",true)
                     .permitAll()
                 .and()

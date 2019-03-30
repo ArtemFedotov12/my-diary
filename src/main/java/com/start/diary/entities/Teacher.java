@@ -56,11 +56,15 @@ public class Teacher implements UserDetails, Serializable {
 
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     //This field exist in separate table
-    //3 video 9.04
+    //3 vid 9.04
     @CollectionTable(name="user_role",joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+        //security.ftl it is used
+    public boolean isAdmin(){
+        return  roles.contains(Role.ADMIN);
+    }
 
     @Override
     public String getUsername() {
