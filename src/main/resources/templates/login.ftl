@@ -8,7 +8,19 @@
 
 <body class="body">
 <@navFoot.navbarFooter>
-    <h1><#if errorMessge??>${errorMessge}</#if></h1>
+    <#--<h1><#if errorMessge??>${errorMessge}</#if></h1>-->
+    <#if Session.SPRING_SECURITY_LAST_EXCEPTION??>
+        <div class="alert alert-danger" role="alert">
+            <#--${Session.SPRING_SECURITY_LAST_EXCEPTION.message}-->
+            Bad credentials or Email hasn't been confirmed
+        </div>
+    </#if>
+    <#if message??>
+        <div class="alert alert-success" role="alert">
+                ${message}
+        </div>
+    </#if>
+
     <h1 id="loginInfo" style="display: none"></h1>
     <div class="login">
         <form id="loginFormName" action="/login" method="post" >
@@ -16,8 +28,8 @@
                <p><input type="password" name="password" placeholder="Password" autofocus></p>-->
 
             <div>
-                <div class="invalid-feedback" id="userLabel" style="display: none">
-                    User doesn't exist
+                <div class="invalid-feedback" id="userNameLabel" style="display: none">
+                    Message
                 </div>
                 <input id="username" class="form-control"  type="text" name="username" placeholder="Name" required/>
             </div>
@@ -29,8 +41,7 @@
 
 
             <input id="token" type="hidden" name="_csrf" value="${_csrf.token}">
-            <div><input type="button" class="btn-login" id="BtnLoginRequest"  value="Submit"></div>
-            <input id="submitBtn" type="submit" style="display: none">
+            <div><input type="submit" class="btn-login" <#--id="BtnLoginRequest"-->  value="Submit"></div>
             <div class="forgot-password-registration">
                 <a href="" style="padding-right: 14px">Forget password?</a>
                 <a href="/registration">Registration</a>

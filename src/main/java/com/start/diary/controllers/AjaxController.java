@@ -24,7 +24,7 @@ public class AjaxController {
     public String handlerRequest(@AuthenticationPrincipal Teacher teacher,
                                      @RequestParam String email,
                                      @RequestParam String town) {
-        String response;
+
         JSONObject obj = new JSONObject();
         if (email.compareTo("optional")!=0){
             obj.put("status", "success");

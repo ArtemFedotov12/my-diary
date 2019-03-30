@@ -93,6 +93,22 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/org.apache.streams/streams-pojo -->
+        <dependency>
+            <groupId>org.apache.streams</groupId>
+            <artifactId>streams-pojo</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+
+        <!-- JERSEY-->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.28</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <properties>

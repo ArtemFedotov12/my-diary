@@ -17,7 +17,9 @@
                     url: sendParams,
                     contentType : "application/json",
                     success: function (result) {
+                        console.log("result:"+result);
                         if (result.status == "success") {
+                            console.log("Data:"+ result.data);
                             console.log(result.data["email"]+" er");
                             if(result.data["isUserExist"]=="false")
                             {

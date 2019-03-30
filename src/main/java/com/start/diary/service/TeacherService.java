@@ -34,69 +34,20 @@ public class TeacherService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Teacher teacher=teacherRepo.findByName(username);
-        if(teacher!=null &teacher.getActive()==true){
-            return teacherRepo.findByName(username);
+        Teacher teacher = teacherRepo.findByName(username);
+        if(teacher==null || !teacher.isActive()){
+            throw  new UsernameNotFoundException("User not find");
         }
+
         //TO DO check unique registration username(login)
-        throw  new UsernameNotFoundException("user not find");
+        return teacher;
     }
 
 
-    public boolean addTeacherRegistration(Teacher teacher, Model model, String passwordConfirm, BindingResult bindingResult){
-        boolean valueForReturn=true;
-        Teacher teacherFromDb=teacherRepo.findByName(teacher.getName());
 
 
 
-        if(bindingResult.hasErrors()){
-            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
-            model.mergeAttributes(errors);
-            valueForReturn=false;
-        }
 
-        if (teacherFromDb!=null){
-            model.addAttribute("usernameError", "User exist!");
-            valueForReturn=false;
-        }
-
-
-        if (teacher.getPassword().compareTo(passwordConfirm)!= 0) {
-                model.addAttribute("password2Error", "Passwords are not equal");
-                valueForReturn = false;
-        }
-
-
-
-//End!!!!!! if ok we save our user
-        if (valueForReturn){
-            teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
-            //3vid 17.30
-            teacher.setRoles(Collections.singleton(Role.USER));
-
-            //Email
-            teacher.setActivationCode(UUID.randomUUID().toString());
-            teacher.setActive(false);
-            sendMessage(teacher);
-
-            teacherRepo.save(teacher);
-        }
-        return valueForReturn;
-    }
-
-
-    private void sendMessage(Teacher teacher) {
-        if (!StringUtils.isEmpty(teacher.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to Sweater. Please, visit next link: http://localhost:8080/activate/%s",
-                    teacher.getUsername(),
-                    teacher.getActivationCode()
-            );
-
-            mailSender.send(teacher.getEmail(), "Activation code", message);
-        }
-    }
 
 
 
