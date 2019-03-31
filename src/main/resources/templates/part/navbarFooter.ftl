@@ -8,18 +8,19 @@
                 <#if currentUserId!=-1>
                     <a href="/mypage#C2" id="C2">My Page</a>
                 </#if>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
+                <a href="/#contact" id="contact">Contact</a>
+                <a href="#about" id="about">About</a>
                 <#if isAdmin==true>
-                    <a  href="/user">Admin</a>
+                    <a  href="/user#C3" id="C3">Admin</a>
                 </#if>
 
                 <#--      <a href="/logout" class="sign_out"  type="submit">Sign Out </a>-->
-                <form  <#if currentUserId!=-1> action="/logout" method="post" </#if>    >
+                <form  <#if currentUserId!=-1> action="/logout" method="post"</#if>   >
                     <#-- don't forget _csrf.token  otherwise yo uwill se this message
                         "This application has no explicit mapping for /error, so you are seeing this as a fallback."-->
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <button class="sign_out"   type="submit"><i class="fas fa-user-tie" style='font-size:25px;color:#000000'></i>
+                    <#if currentUserId!=-1> <input id="token" type="hidden" name="_csrf" value="${_csrf.token}"></#if>
+                    <button class="sign_out"  onclick=<#if currentUserId==-1>"signIn()" <#else>"false"</#if>  type="submit">
+                        <i class="fas fa-user-tie" style='font-size:25px;color:#000000'></i>
                         <#if currentUserId==-1>
                             Sign In
                         <#else>
@@ -68,4 +69,7 @@
             <!--<div class="footer-bottom">&#169 2018-2019 "Dnevnik-online.com"</div>-->
         </div>
     </div>
+
+
+    <script src="/templates/css/js/navbarFooter.js"></script>
 </#macro>

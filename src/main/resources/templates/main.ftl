@@ -17,11 +17,11 @@
 <#--<h1>Welcome <#if name??>${name}!</#if></h1>-->
     <h1>Kek</h1>
 
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+    <#--<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>-->
 
     <div id="id01" class="modal">
 
-        <form class="modal-content animate" action="/login" method="post">
+        <form class="modal-content animate" action="/" method="post">
             <div class="imgcontainer ">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
@@ -41,7 +41,7 @@
 
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" id="cancelBtn"  class="cancelbtn fa fa-close"> Cancel</button>
-                <span class="psw"><a href="#">Registration</a></span>
+                <span class="psw"><a href="/registration">Registration</a></span>
             </div>
         </form>
 
@@ -59,4 +59,7 @@
 <script src="/templates/css/js/topnav.js" type="text/javascript"></script>
 <script src="/templates/css/js/footer.js" type="text/javascript"></script>
 <script src="/templates/css/js/main.js"></script>
+
+    <#--Maybe you need to delete it-->
+<script src="/templates/css/js/navbarFooter.js"></script>
 </body>
