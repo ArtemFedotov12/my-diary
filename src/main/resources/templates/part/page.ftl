@@ -93,6 +93,6 @@
 <script src="/templates/css/js/footer.js" type="text/javascript"></script>
 <script src="/templates/css/js/resetAllFieldsRegistration.js" type="text/javascript"></script>
 <script src="/templates/css/js/myPageAjax.js" type="text/javascript"></script>
-<script src="/templates/css/js/login.js" ></script>
+<script src="/templates/css/js/main.js" ></script>
 </body>
 </html>

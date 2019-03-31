@@ -35,10 +35,10 @@
 
 }
 button.sign_out{
-    padding: 10px 17px;
+    padding: 8px 9px;
     position: absolute;
-    top:2px;
-    right:5px;
+    top: 3px;
+    right: 3px;
     background-color: #2081ee;
     color:#FFFFFF;
     border-radius: 5px;
@@ -54,6 +54,7 @@ button.sign_out{
     cursor: pointer;
     white-space: nowrap;
     width: auto;
+    font-size: 17px;
 
 }
 button.sign_out:hover{

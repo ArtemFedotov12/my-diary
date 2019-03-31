@@ -5,18 +5,28 @@
         <div class="topnav" id="myTopnav">
             <div class="nav-bar">
                 <a  href="/#C1" id="C1">Home</a>
-    <#if Session.SPRING_SECURITY_LAST_EXCEPTION??>
-        </#if>
-                <a href="/mypage#C2" id="C2">My Page</a>
+                <#if currentUserId!=-1>
+                    <a href="/mypage#C2" id="C2">My Page</a>
+                </#if>
                 <a href="#contact">Contact</a>
                 <a href="#about">About</a>
-                <a  href="/user">Admin</a>
+                <#if isAdmin==true>
+                    <a  href="/user">Admin</a>
+                </#if>
+
                 <#--      <a href="/logout" class="sign_out"  type="submit">Sign Out </a>-->
-                <form  action="/logout" method="post">
+                <form  <#if currentUserId!=-1> action="/logout" method="post" </#if>    >
                     <#-- don't forget _csrf.token  otherwise yo uwill se this message
                         "This application has no explicit mapping for /error, so you are seeing this as a fallback."-->
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <button class="sign_out"  type="submit">Sign Out </button>
+                    <button class="sign_out"   type="submit"><i class="fas fa-user-tie" style='font-size:25px;color:#000000'></i>
+                        <#if currentUserId==-1>
+                            Sign In
+                        <#else>
+                            Sign Out
+                        </#if>
+
+                    </button>
                 </form>
             </div>
             <div><a href="javascript:void(0);" class="icon" onclick="myFunction()">
