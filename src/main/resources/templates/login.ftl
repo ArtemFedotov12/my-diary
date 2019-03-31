@@ -44,7 +44,7 @@
             <div><input type="submit" class="btn-login" <#--id="BtnLoginRequest"-->  value="Submit"></div>
             <div class="forgot-password-registration">
                 <a href="" style="padding-right: 14px">Forget password?</a>
-                <a href="/registration">Registration</a>
+               <a  href="/registration" style="float: right;padding-top: 16px;">Registration</a>
             </div>
         </form>
     </div>

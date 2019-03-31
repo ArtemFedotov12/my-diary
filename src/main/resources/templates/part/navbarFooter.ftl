@@ -5,6 +5,8 @@
         <div class="topnav" id="myTopnav">
             <div class="nav-bar">
                 <a  href="/#C1" id="C1">Home</a>
+    <#if Session.SPRING_SECURITY_LAST_EXCEPTION??>
+        </#if>
                 <a href="/mypage#C2" id="C2">My Page</a>
                 <a href="#contact">Contact</a>
                 <a href="#about">About</a>

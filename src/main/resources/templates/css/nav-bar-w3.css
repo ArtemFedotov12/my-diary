@@ -53,6 +53,7 @@ button.sign_out{
     text-align: center;
     cursor: pointer;
     white-space: nowrap;
+    width: auto;
 
 }
 button.sign_out:hover{
