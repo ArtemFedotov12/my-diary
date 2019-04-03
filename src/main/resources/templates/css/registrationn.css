@@ -18,7 +18,6 @@ div.registration{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 100px;
     }
 
 }
@@ -55,7 +54,7 @@ div.registration{
 
 }
 .btn-width{
-    width: 33% !important;
+    width: 33.33% !important;
     background-color: #3be62a !important;
 }
 
