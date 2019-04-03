@@ -26,16 +26,12 @@ public class Teacher implements UserDetails, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @NotBlank(message = "Please fill the name")
+    @NotBlank(message = "Please fill the login")
     @Length(max = 60, message = "Message too long (more than 60symbols)")
-    private String name;
+    private String login;
 
     @NotBlank(message = "Please fill the password")
     private String password;
-
-  /*  @NotBlank(message = "Please confirm the password")
-    @Transient
-    private String passwordConfirm;*/
 
     @Email(message = "Email isn't correct")
     @NotBlank(message = "Please fill the email")
@@ -50,9 +46,17 @@ public class Teacher implements UserDetails, Serializable {
     @NotBlank(message = "Please fill the number of school")
     private String schoolnumber;
 
+    //@NotBlank(message = "Please fill the number of school")
+    //i think it will be added automatic, Pupil won't write this, because teacher will give accessKey
+    private String classNumber;
+
     private String filename;
-    private String activationCode;
-    private boolean active;
+    private String activationCodeEmail;
+    private boolean activeEmail;
+    //If DIRECTOR pay for product he will get this code
+    private String activationCodeForProduct;
+    //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
+    private String accessKeyForTeacher;
 
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     //This field exist in separate table
@@ -68,7 +72,7 @@ public class Teacher implements UserDetails, Serializable {
 
     @Override
     public String getUsername() {
-        return name;
+        return login;
     }
     @Override
     public boolean isAccountNonExpired() {
@@ -94,4 +98,5 @@ public class Teacher implements UserDetails, Serializable {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
+
 }

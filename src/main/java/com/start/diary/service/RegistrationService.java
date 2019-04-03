@@ -1,6 +1,5 @@
 package com.start.diary.service;
 
-import com.start.diary.controllers.ControllerUtils;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.Teacher;
 import com.start.diary.entities.dto.CaptchaResponseDto;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -69,7 +67,7 @@ public class RegistrationService {
 
 
     public void addTeacherRegistration(Teacher teacher,Map<String,String> map, String passwordConfirm, Errors errors){
-        Teacher teacherFromDatabaseByName=teacherRepo.findByName(teacher.getName());
+        Teacher teacherFromDatabaseByName=teacherRepo.findByLogin(teacher.getLogin());
         Teacher teacherFromDatabaseByEmail=teacherRepo.findByEmail(teacher.getEmail());
 
 
@@ -104,8 +102,8 @@ public class RegistrationService {
             teacher.setRoles(Collections.singleton(Role.USER));
 
             //Email
-            teacher.setActivationCode(UUID.randomUUID().toString());
-            teacher.setActive(false);
+            teacher.setActivationCodeEmail(UUID.randomUUID().toString());
+            teacher.setActiveEmail(false);
             sendMessage(teacher);
 
             teacherRepo.save(teacher);
@@ -120,7 +118,7 @@ public class RegistrationService {
                     "Hello, %s! \n" +
                             "Welcome to Electronic diary. Please, visit next link: http://localhost:8080/activate/%s",
                     teacher.getUsername(),
-                    teacher.getActivationCode()
+                    teacher.getActivationCodeEmail()
             );
 
             mailSender.send(teacher.getEmail(), "Activation code", message);

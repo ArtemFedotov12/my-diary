@@ -3,7 +3,7 @@ $(document).ready(function(){
     $("#registerSubmit").click(function(event){
 
   /*      var formData = {
-            name : $("#name").val(),
+            login : $("#login").val(),
             email : $("#email").val(),
             country : $( "#country option:selected" ).val(),
             town : $("#town").val(),
@@ -13,9 +13,8 @@ $(document).ready(function(){
             filename:$("#filename").val()
         };*/
 
-        //console.log("Form Data:");
-        //console.log(formData);
-        //var token = $("meta[name='_csrf']").attr("content");
+
+        //var token = $("meta[login='_csrf']").attr("content");
         var form = $('#formRegistration')[0];
         var data = new FormData(form);
         console.log(data);
@@ -53,18 +52,18 @@ $(document).ready(function(){
                 var data=e.responseJSON.data;
                 console.log(data);
                 if(data["nameError"]!=null){
-                    $("#name").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#login").removeClass("is-valid").addClass("form-control is-invalid");
                     $("#nameLabel").css("display", "block").text(data["nameError"]);
                 }else if (data["nameUniqueError"]==null) {
-                    $("#name").removeClass("is-invalid").addClass("is-valid");
+                    $("#login").removeClass("is-invalid").addClass("is-valid");
                     $("#nameLabel").css("display", "none");
                 }
 
                 if(data["nameUniqueError"]!=null){
-                    $("#name").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#login").removeClass("is-valid").addClass("form-control is-invalid");
                     $("#nameLabel").css("display", "block").text(data["nameUniqueError"]);
                 }else if(data["nameError"]==null){
-                    $("#name").removeClass("is-invalid").addClass("is-valid");
+                    $("#login").removeClass("is-invalid").addClass("is-valid");
                     $("#nameLabel").css("display", "none");
                 }
 

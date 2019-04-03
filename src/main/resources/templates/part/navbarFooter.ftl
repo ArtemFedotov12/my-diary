@@ -35,7 +35,7 @@
                 </a>
             </div>
         </div>
-        <div class="user_name">${name}</div>
+        <div class="user_name">${login}</div>
 
         <div id="id01" class="modal">
 
@@ -47,6 +47,7 @@
 
                 <div class="container">
                     <label for="uname"><b>Username</b></label>
+                   <#-- name="username" because of @Override public String getUsername() { return login;}-->
                     <input type="text" placeholder="Enter Username" name="username" required>
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" required>

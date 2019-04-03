@@ -9,8 +9,8 @@ public interface TeacherRepo extends CrudRepository<Teacher, Integer> {
     //deal with this topic
     //https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE
     //    /reference/html/jpa.repositories.html#jpa.query-methods.query-creation
-    Teacher findByName(String name);
-    Teacher findByEmail(String name);
-    Teacher findByActivationCode(String code);
+    Teacher findByLogin(String login);
+    Teacher findByEmail(String email);
+    Teacher findByActivationCodeEmail(String code);
 
 }

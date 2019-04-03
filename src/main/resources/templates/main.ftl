@@ -1,6 +1,6 @@
 <#--to add Freemarker add to application.pro-->
 <#--spring.freemarker.expose-request-attributes=true
-<input type="hidden" name="_csrf" value="${_csrf.token}">
+<input type="hidden" login="_csrf" value="${_csrf.token}">
 -->
 <#import "part/navbarFooter.ftl" as navFoot>
 <#import "part/head.ftl" as h>
@@ -14,7 +14,7 @@
 <body class="body">
 <@navFoot.navbarFooter>
 <div>
-<#--<h1>Welcome <#if name??>${name}!</#if></h1>-->
+<#--<h1>Welcome <#if login??>${login}!</#if></h1>-->
     <h1>Kek</h1>
 
     <#--<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>-->

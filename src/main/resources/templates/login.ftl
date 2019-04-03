@@ -24,8 +24,8 @@
     <h1 id="loginInfo" style="display: none"></h1>
     <div class="login">
         <form id="loginFormName" action="/login" method="post" >
-            <#--  <p> <input type="text" name="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
-               <p><input type="password" name="password" placeholder="Password" autofocus></p>-->
+            <#--  <p> <input type="text" login="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
+               <p><input type="password" login="password" placeholder="Password" autofocus></p>-->
 
             <div>
                 <div class="invalid-feedback" id="userNameLabel" style="display: none">

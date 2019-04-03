@@ -21,7 +21,8 @@
         <tbody>
     <#list users as user>
     <tr>
-        <td>${user.username}</td>
+        <td>${user.login}</td>
+    <#--    <td> <#if user.activationCodeEmail??> ${user.activationCodeEmail} </#if> </td>-->
     <#-- #sep for use coma-->
         <td><#list user.roles as role>${role}<#sep>, </#list></td>
         <td> <#if user.filename??><img src="/img/${user.filename}" style="height: 128px"></#if></td>

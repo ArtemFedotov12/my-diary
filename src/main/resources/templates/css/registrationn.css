@@ -54,5 +54,9 @@ div.registration{
     transition-duration: 0.5s;
 
 }
+.btn-width{
+    width: 33% !important;
+    background-color: #3be62a !important;
+}
 
 

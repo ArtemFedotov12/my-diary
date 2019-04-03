@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="/templates/css/registrationn.css">
 
     <meta name="_csrf" content="${_csrf.token}"/>
-    <!-- default header name is X-CSRF-TOKEN -->
+    <!-- default header login is X-CSRF-TOKEN -->
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </@h.head>
 
@@ -18,6 +19,55 @@
     <h1>Registration</h1>
 
 
+
+
+    <div class="w3-bar w3-black" style="margin: auto;
+  width: 33%;">
+        <button class="w3-bar-item w3-button tablink w3-red btn-width" onclick="openCity(event,'London')">London</button>
+        <button class="w3-bar-item w3-button tablink btn-width" onclick="openCity(event,'Paris')">Paris</button>
+        <button class="w3-bar-item w3-button tablink btn-width" onclick="openCity(event,'Tokyo')">Tokyo</button>
+    </div>
+
+    <div id="London" class="w3-container w3-border city">
+        <h2>London</h2>
+        <p>London is the capital city of England.</p>
+    </div>
+
+    <div id="Paris" class="w3-container w3-border city" style="display:none">
+        <h2>Paris</h2>
+        <p>Paris is the capital of France.</p>
+    </div>
+
+    <div id="Tokyo" class="w3-container w3-border city" style="display:none">
+        <h2>Tokyo</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+    </div>
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " w3-red";
+        }
+    </script>
+
+
+
+
+
+
+
+
+
     <div class="registration">
         <form  id="formRegistration" <#--enctype="multipart/form-data" autocomplete="off"-->>
 
@@ -26,7 +76,7 @@
                 <div class="invalid-feedback" id="nameLabel" style="display: none">
                     <#--Error Message-->
                 </div>
-                <input type="text" class="form-control"  name="name" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
+                <input type="text" class="form-control"  name="login" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
             </div>
 
             <div>
@@ -121,10 +171,10 @@
 
 <#--
 <form id="fileUploadForm" &lt;#&ndash;action="/test" method="post" enctype="multipart/form-data"&ndash;&gt;>
-    <input type="text" name="name" placeholder="name">
-    <input type="password" name="password" placeholder="Password">
-    <input id="filename" name="filename" type="file">
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="text" login="login" placeholder="login">
+    <input type="password" login="password" placeholder="Password">
+    <input id="filename" login="filename" type="file">
+    <input type="hidden" login="_csrf" value="${_csrf.token}">
     <input id="sbtm" type="button" value="Submit">
 </form>
 

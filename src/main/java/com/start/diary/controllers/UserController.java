@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-//it is for you don't need to give name each method
+//it is for you don't need to give login each method
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -47,13 +47,14 @@ public class UserController {
     @PostMapping
     public String userEdit(
             @RequestParam(name="id")Teacher teacher,
-            @RequestParam String username,
+            @RequestParam String login,
             //see UserEdit why it is called form
             @RequestParam Map<String, String> form
     )
 
+
     {
-        teacherService.saveUser(teacher,username,form);
+        teacherService.saveUser(teacher,login,form);
         return "redirect:/user";
     }
 

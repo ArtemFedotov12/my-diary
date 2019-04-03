@@ -11,7 +11,7 @@
 
 User editor
 <form method="post" action="/user">
-    <input type="text" value="${teacher.name}" name="username">
+    <input type="text" value="${teacher.login}" name="login">
     <#list roles as role>
     <div>
     <#-- it is cycle if for example will admin

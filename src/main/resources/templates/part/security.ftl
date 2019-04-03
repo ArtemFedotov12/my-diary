@@ -5,15 +5,15 @@
 <#if known>
     <#assign
         teacher=Session.SPRING_SECURITY_CONTEXT.authentication.principal
-        name=teacher.getName()
-        active=teacher.isActive()
+        login=teacher.getLogin()
+        active=teacher.isActiveEmail()
         isAdmin=teacher.isAdmin()
         currentUserId=teacher.getId()
    <#--     filename=teacher.getFilename()-->
     >
 <#else >
     <#assign
-        name="unknown"
+        login="unknown"
         isAdmin=false
         currentUserId=-1
         <#--filename="unknown"-->
