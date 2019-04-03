@@ -4,6 +4,7 @@
 <@h.head>
 
     <link rel="stylesheet" href="/templates/css/registrationn.css">
+
     <meta name="_csrf" content="${_csrf.token}"/>
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
@@ -110,6 +111,7 @@
 <script src="/templates/css/js/footer.js" ></script>
 <script src="/templates/css/js/regisration.js" ></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="/templates/css/js/navbarFooter.js"></script>
 </body>
 
 

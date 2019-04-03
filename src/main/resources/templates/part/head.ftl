@@ -13,6 +13,7 @@
     <#nested>
     <link rel="stylesheet" href="/templates/css/nav-bar-w3.css">
     <link rel="stylesheet" href="/templates/css/footer.css">
+    <link rel="stylesheet" href="/templates/css/main.css">
     <#--People for login button(Guy with tie)-->
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
           integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
