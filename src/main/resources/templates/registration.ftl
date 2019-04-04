@@ -5,9 +5,9 @@
 
     <link rel="stylesheet" href="/templates/css/registrationn.css">
 
-    <meta name="_csrf" content="${_csrf.token}"/>
-    <!-- default header login is X-CSRF-TOKEN -->
-    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+  <#--  <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header login is X-CSRF-TOKEN &ndash;&gt;
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </@h.head>
@@ -77,6 +77,42 @@
                 </div>
 
 
+
+
+
+
+
+                <div>
+                    <div class="invalid-feedback" id="firstNameLabel" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="FirstName" autocomplete="off" value="Kolya">
+                </div>
+
+                <div>
+                    <div class="invalid-feedback" id="lastNameLabel" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="LastName" autocomplete="off" value="Derkach">
+                </div>
+
+                <div>
+                    <div class="invalid-feedback" id="patronymicLabel" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <input type="text" class="form-control" name="patronymic" id="patronymic" placeholder="Patronymic" autocomplete="off" value="Volodumirovuch">
+                </div>
+
+                <div>
+                    <div class="invalid-feedback" id="activationCodeForProductLabel" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <input type="text" class="form-control" name="activationCodeForProduct" id="activationCodeForProduct" placeholder="Activation Code" autocomplete="off" >
+                </div>
+
+
+
+
                 <div>
                     <div class="invalid-feedback" id="countryLabel" style="display: none">
                         <#--Error Message-->
@@ -132,16 +168,6 @@
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
 
 
 </@navFoot.navbarFooter>

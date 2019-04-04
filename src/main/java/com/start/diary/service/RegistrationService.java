@@ -99,7 +99,7 @@ public class RegistrationService {
         if (map.isEmpty()){
             teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
             //3vid 17.30
-            teacher.setRoles(Collections.singleton(Role.USER));
+            teacher.setRoles(Collections.singleton(Role.SCHOOLKID));
 
             //Email
             teacher.setActivationCodeEmail(UUID.randomUUID().toString());
