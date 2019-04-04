@@ -59,7 +59,8 @@
                 </div>
 
                 <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" id="cancelBtn"  class="cancelbtn fa fa-close"> Cancel</button>
+                    <button type="button" id="cancelBtn"  class="cancelbtn fa fa-close"
+                            onclick="document.getElementById('id01').style.display='none'" > Cancel</button>
                     <span class="psw"><a href="/registration">Registration</a></span>
                 </div>
             </form>

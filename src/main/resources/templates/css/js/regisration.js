@@ -1,6 +1,8 @@
-$(document).ready(function(){
+//$(document).ready(function(){
     //$("#registerSubmit").on('click', function(){
-    $("#registerSubmit").click(function(event){
+    /*$("#registerSubmit").click(function(event)*/function userRegistration(event) {
+
+
 
   /*      var formData = {
             login : $("#login").val(),
@@ -15,7 +17,7 @@ $(document).ready(function(){
 
 
         //var token = $("meta[login='_csrf']").attr("content");
-        var form = $('#formRegistration')[0];
+        var form = $('#formRegistrationDirector')[0];
         var data = new FormData(form);
         console.log(data);
         $.ajax({
@@ -28,7 +30,7 @@ $(document).ready(function(){
             processData: false, //prevent jQuery from automatically transforming the data into a query string
             contentType: false,
             cache: false,
-            timeout: 600000,
+            timeout: 60000000,
             success: function (result) {
                 //console.log(result["status"]);
                 if(result["status"]=="success"){
@@ -42,6 +44,26 @@ $(document).ready(function(){
                     });
                     $("#reCaptchaLabel").css("display", "none");
                     location.href = "http://localhost:8080/login";
+                    $.ajax({
+                            type: "POST",
+                            enctype: 'multipart/form-data',
+                            url: "/registration/email",
+                            data: data,
+                            //http://api.jquery.com/jQuery.ajax/
+                            //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+                            processData: false, //prevent jQuery from automatically transforming the data into a query string
+                            contentType: false,
+                            cache: false,
+                            timeout: 60000000,
+                        success: function (result) {
+                            console.log("suc22222");
+                        },
+                        errorr: function () {
+                            console.log("error22222");
+                        }
+                    });
+
+
                 }
                 //if(result === "no_errors")
 
@@ -51,6 +73,7 @@ $(document).ready(function(){
             error: function(e) {
                 var data=e.responseJSON.data;
                 console.log(data);
+                console.log("FirstError");
                 if(data["nameError"]!=null){
                     $("#login").removeClass("is-valid").addClass("form-control is-invalid");
                     $("#nameLabel").css("display", "block").text(data["nameError"]);
@@ -137,5 +160,6 @@ $(document).ready(function(){
             }
         });
 
-    });
-});
+    }
+
+//});

@@ -41,12 +41,12 @@ public class RegistrationService {
 
 
     public void handlingCaptchaAndFile(String captchaResponse, MultipartFile file, Map<String,String> map, Teacher teacher) throws IOException {
-        System.out.println("Ppcccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
-        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
+        //System.out.println("Ppcccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+       /* String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
         if (response != null && !response.isSuccess()) {
             map.put("captchaError", "Fill captcha");
-        }
+        }*/
         //reCaptcha
 
         if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
@@ -104,7 +104,7 @@ public class RegistrationService {
             //Email
             teacher.setActivationCodeEmail(UUID.randomUUID().toString());
             teacher.setActiveEmail(false);
-            sendMessage(teacher);
+            //sendMessage(teacher);
 
             teacherRepo.save(teacher);
         }
@@ -112,7 +112,7 @@ public class RegistrationService {
     }
 
     //Email send Message
-    private void sendMessage(Teacher teacher) {
+   /* private void sendMessage(Teacher teacher) {
         if (!StringUtils.isEmpty(teacher.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
@@ -123,6 +123,6 @@ public class RegistrationService {
 
             mailSender.send(teacher.getEmail(), "Activation code", message);
         }
-    }
+    }*/
 
 }

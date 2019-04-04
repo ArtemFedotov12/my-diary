@@ -3,12 +3,14 @@ package com.start.diary.controllers;
 import com.start.diary.entities.Teacher;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.TeacherRepo;
+import com.start.diary.service.MailSender;
 import com.start.diary.service.RegistrationService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +32,9 @@ public class LoginRegistrationRest {
     TeacherService teacherService;
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private MailSender mailSender;
 
     //its value from properties see
     @Value("${upload.path}")
@@ -69,6 +74,23 @@ public class LoginRegistrationRest {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/registration/email")
+    public ResponseEntity<Object> email(Teacher teacher){
+        System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+
+        if (!StringUtils.isEmpty(teacher.getEmail())) {
+            String message = String.format(
+                    "Hello, %s! \n" +
+                            "Welcome to Electronic diary. Please, visit next link: http://localhost:8080/activate/%s",
+                    teacher.getUsername(),
+                    teacher.getActivationCodeEmail()
+            );
+
+            mailSender.send(teacher.getEmail(), "Activation code", message);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

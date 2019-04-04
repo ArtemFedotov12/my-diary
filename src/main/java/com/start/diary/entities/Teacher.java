@@ -57,6 +57,8 @@ public class Teacher implements UserDetails, Serializable {
     private String activationCodeForProduct;
     //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
     private String accessKeyForTeacher;
+    //it is located on Teacher Home Page(on page classroom teacher)
+    private String accessKeyForSchoolKid;
 
     //@OneToMany
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
