@@ -11,6 +11,7 @@ $.ajax({
     cache: false,
     success: function (result) {
         console.log(result);
+        $("#"+idUser).css("display", "none");
     },
     error: function (e) {
         console.log(e);

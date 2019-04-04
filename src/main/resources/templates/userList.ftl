@@ -20,14 +20,14 @@
         </thead>
         <tbody>
     <#list users as user>
-    <tr>
+    <tr id="${user.id}">
         <td>${user.login}</td>
     <#--    <td> <#if user.activationCodeEmail??> ${user.activationCodeEmail} </#if> </td>-->
     <#-- #sep for use coma-->
         <td> <#list user.roles as role>${role}<#sep>, </#list></td>
         <td> <#if user.filename??><img alt="img" src = "/img/${user.filename}" style = "height: 128px"></#if></td>
         <td> <a href = "/user/${user.id}"> edit </a></td>
-        <td> <#--<a href = "/delete/${user.id}"> delete </a>-->
+        <td > <#--<a href = "/delete/${user.id}"> delete </a>-->
             <input type="button" onclick="deleteUser(${user.id})" value="DELETE">
         </td>
     </tr>

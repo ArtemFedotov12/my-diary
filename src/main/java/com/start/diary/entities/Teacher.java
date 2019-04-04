@@ -58,6 +58,7 @@ public class Teacher implements UserDetails, Serializable {
     //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
     private String accessKeyForTeacher;
 
+    //@OneToMany
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     //This field exist in separate table
     //3 vid 9.04
