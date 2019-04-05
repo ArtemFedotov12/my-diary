@@ -23,28 +23,14 @@
     <div class="w3-container">
 
         <div class="w3-bar" style="margin: auto;width: 350px;">
-            <#--<button class="w3-bar-item w3-button tablink w3-red btn-width" onclick="openCity(event,'teacher')">User</button>-->
+            <#--<button class="w3-bar-item w3-button tablink w3-red btn-width" onclick="openCity(event,'user')">User</button>-->
             <button class="w3-bar-item w3-button tablink  btn-width" onclick="openCity(event,'director')">Register a School</button>
         </div>
 
-        <#--    <div id="London" class="w3-container w3-border city">
-                <h2>London</h2>
-                <p>London is the capital city of England.</p>
-            </div>
-
-            <div id="Paris" class="w3-container w3-border city" style="display:none">
-                <h2>Paris</h2>
-                <p>Paris is the capital of France.</p>
-            </div>
-
-            <div id="Tokyo" class="w3-container w3-border city" style="display:none">
-                <h2>Tokyo</h2>
-                <p>Tokyo is the capital of Japan.</p>
-            </div>-->
 
         <div class="registration">
 
-          <#--  <div id="teacher" class="school" >
+          <#--  <div id="user" class="school" >
                 <@t.registrationTeacher></@t.registrationTeacher>
             </div>-->
 

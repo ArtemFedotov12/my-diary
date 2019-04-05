@@ -20,8 +20,8 @@ import java.util.Set;
 @ToString
 //Hibernate
 @Entity
-@Table(name = "teacher")
-public class Teacher implements UserDetails, Serializable {
+@Table(name = "user")
+public class User implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -54,13 +54,15 @@ public class Teacher implements UserDetails, Serializable {
     private String activationCodeEmail;
     private boolean activeEmail;
     //If DIRECTOR pay for product he will get this code
-    private String activationCodeForProduct;
+    //@OneToMany(cascade = CascadeType.ALL)
+   // @CollectionTable(joinColumns = @JoinColumn(name = "user_id"))
+   // private ActivationCodeForProduct activationCodeForProduct;
     //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
     private String accessKeyForTeacher;
-    //it is located on Teacher Home Page(on page classroom teacher)
+    //it is located on User Home Page(on page classroom teacher)
     private String accessKeyForSchoolKid;
 
-    //@OneToMany
+    //@OneToMany(cascade = { CascadeType.ALL })
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     //This field exist in separate table
     //3 vid 9.04

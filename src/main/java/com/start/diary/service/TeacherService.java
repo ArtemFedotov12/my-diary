@@ -1,7 +1,7 @@
 package com.start.diary.service;
 
 import com.start.diary.entities.Role;
-import com.start.diary.entities.Teacher;
+import com.start.diary.entities.User;
 import com.start.diary.repos.TeacherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,13 +23,13 @@ public class TeacherService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Teacher teacher = teacherRepo.findByLogin(login);
-        if(teacher==null || !teacher.isActiveEmail()){
+        User user = teacherRepo.findByLogin(login);
+        if(user ==null || !user.isActiveEmail()){
             throw  new UsernameNotFoundException("User not find");
         }
 
         //TO DO check unique registration login(login)
-        return teacher;
+        return user;
     }
 
 
@@ -40,23 +40,23 @@ public class TeacherService implements UserDetailsService {
 
 
 
-    public void saveUser(Teacher teacher, String login, Map<String, String> form) {
-        teacher.setLogin(login);
+    public void saveUser(User user, String login, Map<String, String> form) {
+        user.setLogin(login);
 //https://annimon.com/article/2778---------Stream guide
         //Map<String, String> form key=User value=checked
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
                 .collect(Collectors.toSet());
 
-        teacher.getRoles().clear();
+        user.getRoles().clear();
 
         for (String key : form.keySet()) {
             if (roles.contains(key)) {
-                teacher.getRoles().add(Role.valueOf(key));
+                user.getRoles().add(Role.valueOf(key));
             }
         }
 
-        teacherRepo.save(teacher);
+        teacherRepo.save(user);
     }
 
 
@@ -64,15 +64,15 @@ public class TeacherService implements UserDetailsService {
 
 
     public boolean activateTeacher(String code) {
-        Teacher teacher = teacherRepo.findByActivationCodeEmail(code);
+        User user = teacherRepo.findByActivationCodeEmail(code);
 
-        if (teacher == null) {
+        if (user == null) {
             return false;
         }
 
-        teacher.setActivationCodeEmail(null);
-        teacher.setActiveEmail(true);
-        teacherRepo.save(teacher);
+        user.setActivationCodeEmail(null);
+        user.setActiveEmail(true);
+        teacherRepo.save(user);
 
         return true;
     }

@@ -1,7 +1,7 @@
 package com.start.diary.controllers;
 
 import com.start.diary.entities.Role;
-import com.start.diary.entities.Teacher;
+import com.start.diary.entities.User;
 import com.start.diary.repos.TeacherRepo;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +33,9 @@ public class UserController {
 
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("{teacher}")
-    public String userEditForm(@PathVariable Teacher teacher, Model model) {
-        model.addAttribute("teacher", teacher);
+    @GetMapping("{user}")
+    public String userEditForm(@PathVariable User user, Model model) {
+        model.addAttribute("teacher", user);
         model.addAttribute("roles", Role.values());
 
         return "userEdit";
@@ -46,7 +46,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String userEdit(
-            @RequestParam(name="id")Teacher teacher,
+            @RequestParam(name="id") User user,
             @RequestParam String login,
             //see UserEdit why it is called form
             @RequestParam Map<String, String> form
@@ -54,7 +54,7 @@ public class UserController {
 
 
     {
-        teacherService.saveUser(teacher,login,form);
+        teacherService.saveUser(user,login,form);
         return "redirect:/user";
     }
 

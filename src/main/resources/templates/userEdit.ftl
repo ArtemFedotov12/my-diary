@@ -11,7 +11,7 @@
 
 User editor
 <form method="post" action="/user">
-    <input type="text" value="${teacher.login}" name="login">
+    <input type="text" value="${user.login}" name="login">
     <#list roles as role>
     <div>
     <#-- it is cycle if for example will admin
@@ -26,10 +26,10 @@ User editor
      "checked"(with check mark) clause
      and it will write to variable !!!!!form!!!!
      if you put 2 check mark it will retrun 2-->
-        <label><input type="checkbox" name="${role}" ${teacher.roles?seq_contains(role)?string("checked", "")}>${role}</label>
+        <label><input type="checkbox" name="${role}" ${user.roles?seq_contains(role)?string("checked", "")}>${role}</label>
     </div>
     </#list>
-    <input type="hidden" value="${teacher.id}" name="id">
+    <input type="hidden" value="${user.id}" name="id">
     <input type="hidden" value="${_csrf.token}" name="_csrf">
     <button type="submit">Save</button>
 </form>

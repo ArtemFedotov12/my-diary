@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //Bean for form "Login". We can get user from our DB
+    //public UserDetails loadUserByUsername
     @Autowired
     TeacherService teacherService;
 
@@ -44,7 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //For Add Css "/templates/css/**"
                     .authorizeRequests()
                     .antMatchers( "/","/test","/registration","/templates/css/**","/activate/*","/registration/email").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest()
+                    .authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/")
@@ -62,6 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //For get user from DB
     //We created TeacherService implements UserDetailsService
     //Via TeacherService we get user from DB
+    //public UserDetails loadUserByUsername
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(teacherService)

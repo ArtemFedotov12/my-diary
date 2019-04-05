@@ -9,7 +9,7 @@
 <@navFoot.navbarFooter>
 
     <div class="main clearfix">
-        <div class="name"><#if teacher.name??><h1>${teacher.name}</h1></#if></div>
+        <div class="name"><#if user.name??><h1>${user.name}</h1></#if></div>
 
         <div class="image column">
             <#if teacherPage.filename??><img src="/img/${teacherPage.filename}" style="width: 100%"></#if>
@@ -28,7 +28,7 @@
             <div>
                 <select class="fields" name="country" style="width: 60%" disabled>
                     <option value="au">Ukraine</option>
-                    <option value="ca" <#if teacher.country=="ca">selected</#if>>Russia</option>
+                    <option value="ca" <#if user.country=="ca">selected</#if>>Russia</option>
                     <option value="usa">USA</option>
                 </select>
             </div>

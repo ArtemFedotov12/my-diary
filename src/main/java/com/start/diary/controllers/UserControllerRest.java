@@ -1,6 +1,6 @@
 package com.start.diary.controllers;
 
-import com.start.diary.entities.Teacher;
+import com.start.diary.entities.User;
 import com.start.diary.repos.TeacherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,10 @@ public class UserControllerRest {
     TeacherRepo teacherRepo;
 
 
-    @DeleteMapping("/delete/{teacher}")
-    public ResponseEntity<Object> deleteUser(@PathVariable Teacher teacher){
+    @DeleteMapping("/delete/{user}")
+    public ResponseEntity<Object> deleteUser(@PathVariable User user){
         System.out.println("tet");
-        //teacherRepo.delete(teacher);
+        teacherRepo.delete(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

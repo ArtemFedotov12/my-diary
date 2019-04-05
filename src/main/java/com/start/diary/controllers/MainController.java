@@ -1,6 +1,6 @@
 package com.start.diary.controllers;
 
-import com.start.diary.entities.Teacher;
+import com.start.diary.entities.User;
 import com.start.diary.repos.TeacherRepo;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,9 @@ public class MainController {
 
 
     @GetMapping("/mypage")
-    public String bred(@AuthenticationPrincipal Teacher teacher, Model model) {
-        Teacher teacher1=teacherRepo.findByLogin(teacher.getLogin());
-        model.addAttribute("teacherPage",teacher1);
+    public String bred(@AuthenticationPrincipal User user, Model model) {
+        User user1 =teacherRepo.findByLogin(user.getLogin());
+        model.addAttribute("teacherPage", user1);
         return "mypage";
     }
 
