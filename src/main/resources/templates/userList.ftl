@@ -10,6 +10,9 @@
 <@navFoot.navbarFooter>
 
 <h1>sxsd</h1>
+    <input type="button">
+
+
     <table>
         <thead>
         <tr>

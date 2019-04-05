@@ -13,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 //Lombok
 @Data
@@ -54,9 +55,9 @@ public class User implements UserDetails, Serializable {
     private String activationCodeEmail;
     private boolean activeEmail;
     //If DIRECTOR pay for product he will get this code
-    //@OneToMany(cascade = CascadeType.ALL)
-   // @CollectionTable(joinColumns = @JoinColumn(name = "user_id"))
-   // private ActivationCodeForProduct activationCodeForProduct;
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<ActivationCodeForProduct> activationCodeForProduct;
     //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
     private String accessKeyForTeacher;
     //it is located on User Home Page(on page classroom teacher)

@@ -21,4 +21,10 @@ public class UserControllerRest {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping("/generateCode")
+    public ResponseEntity<Object> generate(){
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
