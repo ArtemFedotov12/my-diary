@@ -35,12 +35,12 @@ public class UserControllerRest {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/generateCode/{user}")
     public ResponseEntity<Object> generate(@PathVariable User user){
-        System.out.println("User!!   "+user);
-        Map<Integer, String> map=null;
+
+
        if(user.getActivationCodeForProduct()==null) {
            user.setActivationCodeForProduct(new ArrayList<>());
        }
-            map = user.getActivationCodeForProduct()
+        Map<Integer, String> map = user.getActivationCodeForProduct()
                     .stream()
                     .collect(Collectors.toMap(ActivationCode::getId, ActivationCode::getActivationCodeForProduct));
 
@@ -52,7 +52,6 @@ public class UserControllerRest {
         ActivationCode activationCode =new ActivationCode(UUID.randomUUID().toString());
         user.getActivationCodeForProduct().add(activationCode);
 
-        //activationCodeForProductRepo.save(activationCode);
         userRepo.save(user);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
