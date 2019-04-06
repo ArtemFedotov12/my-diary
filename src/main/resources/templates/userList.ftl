@@ -3,6 +3,8 @@
 <#include "part/security.ftl">
 
 <@h.head>
+    <#--Table style from W3.CSS for activationCodeForProduct-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </@h.head>
@@ -14,7 +16,7 @@
     <input type="button" onclick="putActivationCode(${currentUserId})" value="GenerateCode">
     <div id="here_table"></div>
 
-    <table>
+    <table class="w3-table-all w3-hoverable">
         <thead>
         <tr>
             <th>Name</th>

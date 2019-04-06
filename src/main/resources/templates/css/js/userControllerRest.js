@@ -29,9 +29,18 @@ $.ajax({
             contentType: false,
             cache: false,
             success: function (result) {
+                var data=result.data;
                 console.log("sscccFirst");
                 console.log(result);
-                console.log("sscccSecond");
+
+                var content = "<table class=\"w3-table-all w3-hoverable\">";
+                $.each(data, function(key, value){
+                    content += '<tr> <td>' +key +'</td>';
+                    content += '<td>' +value +'</td> </tr>';
+                });
+                content += "</table>";
+
+                $('#here_table').append(content);
 
 
             },

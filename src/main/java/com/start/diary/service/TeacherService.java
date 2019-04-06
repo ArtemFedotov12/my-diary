@@ -34,12 +34,6 @@ public class TeacherService implements UserDetailsService {
 
 
 
-
-
-
-
-
-
     public void saveUser(User user, String login, Map<String, String> form) {
         user.setLogin(login);
 //https://annimon.com/article/2778---------Stream guide

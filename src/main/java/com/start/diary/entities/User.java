@@ -56,7 +56,7 @@ public class User implements UserDetails, Serializable {
     private String activationCodeEmail;
     private boolean activeEmail;
     //If DIRECTOR pay for product he will get this code
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
     private List<ActivationCode> activationCodeForProduct;
     //it is located on DIRECTOR Home Page(Acces to all Gradebooks)

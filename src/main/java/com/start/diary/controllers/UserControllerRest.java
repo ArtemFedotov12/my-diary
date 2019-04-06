@@ -3,7 +3,7 @@ package com.start.diary.controllers;
 import com.start.diary.entities.ActivationCode;
 import com.start.diary.entities.User;
 import com.start.diary.entities.dto.ServiceResponse;
-import com.start.diary.repos.ActivationCodeRepo;
+import com.start.diary.repos.ActivationCodeForProductRepo;
 import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,9 @@ public class UserControllerRest {
 
     @Autowired
     UserRepo userRepo;
+
     @Autowired
-    ActivationCodeRepo activationCodeRepo;
+    ActivationCodeForProductRepo activationCodeForProductRepo;
 
     @DeleteMapping("/delete/{user}")
     public ResponseEntity<Object> deleteUser(@PathVariable User user){
@@ -32,15 +33,16 @@ public class UserControllerRest {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping("/generateCode/{idUser}")
-    public ResponseEntity<Object> generate(User user){
+    @PutMapping("/generateCode/{user}")
+    public ResponseEntity<Object> generate(@PathVariable User user){
+        System.out.println("User!!   "+user);
         Map<Integer, String> map=null;
-       /*if(user.getActivationCodeForProduct()==null) {
+       if(user.getActivationCodeForProduct()==null) {
            user.setActivationCodeForProduct(new ArrayList<>());
        }
             map = user.getActivationCodeForProduct()
                     .stream()
-                    .collect(Collectors.toMap(ActivationCode::getId, ActivationCode::getActivationCodeForProduct));*/
+                    .collect(Collectors.toMap(ActivationCode::getId, ActivationCode::getActivationCodeForProduct));
 
 
 
@@ -50,8 +52,8 @@ public class UserControllerRest {
         ActivationCode activationCode =new ActivationCode(UUID.randomUUID().toString());
         user.getActivationCodeForProduct().add(activationCode);
 
-
-       userRepo.save(user);
+        //activationCodeForProductRepo.save(activationCode);
+        userRepo.save(user);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
