@@ -2,7 +2,7 @@ package com.start.diary.service;
 
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
-import com.start.diary.repos.TeacherRepo;
+import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 @Service
 public class TeacherService implements UserDetailsService {
     @Autowired
-    TeacherRepo teacherRepo;
+    UserRepo userRepo;
 
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = teacherRepo.findByLogin(login);
+        User user = userRepo.findByLogin(login);
         if(user ==null || !user.isActiveEmail()){
             throw  new UsernameNotFoundException("User not find");
         }
@@ -48,6 +48,8 @@ public class TeacherService implements UserDetailsService {
                 .map(Role::name)
                 .collect(Collectors.toSet());
 
+        System.out.println(user.getRoles().toString());
+
         user.getRoles().clear();
 
         for (String key : form.keySet()) {
@@ -55,8 +57,9 @@ public class TeacherService implements UserDetailsService {
                 user.getRoles().add(Role.valueOf(key));
             }
         }
+        System.out.println(user.getRoles().toString());
 
-        teacherRepo.save(user);
+        userRepo.save(user);
     }
 
 
@@ -64,7 +67,7 @@ public class TeacherService implements UserDetailsService {
 
 
     public boolean activateTeacher(String code) {
-        User user = teacherRepo.findByActivationCodeEmail(code);
+        User user = userRepo.findByActivationCodeEmail(code);
 
         if (user == null) {
             return false;
@@ -72,7 +75,7 @@ public class TeacherService implements UserDetailsService {
 
         user.setActivationCodeEmail(null);
         user.setActiveEmail(true);
-        teacherRepo.save(user);
+        userRepo.save(user);
 
         return true;
     }

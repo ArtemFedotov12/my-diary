@@ -64,7 +64,7 @@
         <div class="invalid-feedback" id="activationCodeForProductLabel" style="display: none">
             <#--Error Message-->
         </div>
-        <input type="text" class="form-control" name="activationCodeForProduct" id="activationCodeForProduct" placeholder="Activation Code" autocomplete="off" >
+        <input type="text" class="form-control" name="activationCode" id="activationCode" placeholder="Activation Code" autocomplete="off" >
     </div>
 
 

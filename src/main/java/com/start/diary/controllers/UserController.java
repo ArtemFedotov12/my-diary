@@ -2,7 +2,7 @@ package com.start.diary.controllers;
 
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
-import com.start.diary.repos.TeacherRepo;
+import com.start.diary.repos.UserRepo;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    TeacherRepo teacherRepo;
+    UserRepo userRepo;
     @Autowired
     TeacherService teacherService;
 
@@ -26,7 +26,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
-        model.addAttribute("users", teacherRepo.findAll());
+        model.addAttribute("users", userRepo.findAll());
         return "userList";
     }
 

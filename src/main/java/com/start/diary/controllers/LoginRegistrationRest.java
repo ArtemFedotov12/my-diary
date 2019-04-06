@@ -2,7 +2,7 @@ package com.start.diary.controllers;
 
 import com.start.diary.entities.User;
 import com.start.diary.entities.dto.ServiceResponse;
-import com.start.diary.repos.TeacherRepo;
+import com.start.diary.repos.UserRepo;
 import com.start.diary.service.MailSender;
 import com.start.diary.service.RegistrationService;
 import com.start.diary.service.TeacherService;
@@ -37,7 +37,7 @@ public class LoginRegistrationRest {
     @Value("${recaptcha.secret}")
     private String secret;
     @Autowired
-    TeacherRepo teacherRepo;
+    UserRepo userRepo;
 
     @Autowired
     RegistrationService registrationService;

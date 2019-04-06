@@ -1,8 +1,9 @@
 package com.start.diary.service;
 
+import com.start.diary.entities.ActivationCode;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
-import com.start.diary.repos.TeacherRepo;
+import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,10 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class RegistrationService {
     private static String CAPTCHA_URL="https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
@@ -24,7 +22,7 @@ public class RegistrationService {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
-    TeacherRepo teacherRepo;
+    UserRepo userRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -65,8 +63,8 @@ public class RegistrationService {
 
 
     public void addTeacherRegistration(User user, Map<String,String> map, String passwordConfirm, Errors errors){
-        User userFromDatabaseByName =teacherRepo.findByLogin(user.getLogin());
-        User userFromDatabaseByEmail =teacherRepo.findByEmail(user.getEmail());
+        User userFromDatabaseByName = userRepo.findByLogin(user.getLogin());
+        User userFromDatabaseByEmail = userRepo.findByEmail(user.getEmail());
 
 
 
@@ -98,12 +96,15 @@ public class RegistrationService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             //3vid 17.30
             user.setRoles(Collections.singleton(Role.SCHOOLKID));
+          // user.setActivationCodeForProduct(new ArrayList<>());
+
+
 
             //Email
             user.setActivationCodeEmail(UUID.randomUUID().toString());
             user.setActiveEmail(false);
 
-            teacherRepo.save(user);
+            userRepo.save(user);
         }
 
     }

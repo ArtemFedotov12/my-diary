@@ -1,5 +1,6 @@
 <#import "part/navbarFooter.ftl" as navFoot>
 <#import "part/head.ftl" as h>
+<#include "part/security.ftl">
 
 <@h.head>
     <meta name="_csrf" content="${_csrf.token}"/>
@@ -10,8 +11,8 @@
 <@navFoot.navbarFooter>
 
 <h1>sxsd</h1>
-    <input type="button">
-
+    <input type="button" onclick="putActivationCode(${currentUserId})" value="GenerateCode">
+    <div id="here_table"></div>
 
     <table>
         <thead>
