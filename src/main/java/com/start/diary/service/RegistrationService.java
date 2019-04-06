@@ -1,25 +1,19 @@
 package com.start.diary.service;
 
-import com.start.diary.controllers.ControllerUtils;
+import com.start.diary.entities.ActivationCode;
 import com.start.diary.entities.Role;
-import com.start.diary.entities.Teacher;
-import com.start.diary.entities.dto.CaptchaResponseDto;
-import com.start.diary.repos.TeacherRepo;
+import com.start.diary.entities.User;
+import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class RegistrationService {
     private static String CAPTCHA_URL="https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
@@ -28,7 +22,7 @@ public class RegistrationService {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
-    TeacherRepo teacherRepo;
+    UserRepo userRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -42,13 +36,13 @@ public class RegistrationService {
     private String secret;
 
 
-    public void handlingCaptchaAndFile(String captchaResponse, MultipartFile file, Map<String,String> map, Teacher teacher) throws IOException {
-        System.out.println("Ppcccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
-        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
+    public void handlingCaptchaAndFile(String captchaResponse, MultipartFile file, Map<String,String> map, User user) throws IOException {
+        //System.out.println("Ppcccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+       /* String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
         if (response != null && !response.isSuccess()) {
             map.put("captchaError", "Fill captcha");
-        }
+        }*/
         //reCaptcha
 
         if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
@@ -63,22 +57,22 @@ public class RegistrationService {
 
             file.transferTo(new File(uploadPath + "/" + resultFilename));
 
-            teacher.setFilename(resultFilename);
+            user.setFilename(resultFilename);
         }
     }
 
 
-    public void addTeacherRegistration(Teacher teacher,Map<String,String> map, String passwordConfirm, Errors errors){
-        Teacher teacherFromDatabaseByName=teacherRepo.findByName(teacher.getName());
-        Teacher teacherFromDatabaseByEmail=teacherRepo.findByEmail(teacher.getEmail());
+    public void addTeacherRegistration(User user, Map<String,String> map, String passwordConfirm, Errors errors){
+        User userFromDatabaseByName = userRepo.findByLogin(user.getLogin());
+        User userFromDatabaseByEmail = userRepo.findByEmail(user.getEmail());
 
 
 
-        if (teacherFromDatabaseByName!=null){
+        if (userFromDatabaseByName !=null){
             map.put("nameUniqueError", "User already exists!");
         }
 
-        if (teacherFromDatabaseByEmail!=null){
+        if (userFromDatabaseByEmail !=null){
             map.put("emailUniqueError", "Email has already been registered");
 
         }
@@ -88,7 +82,7 @@ public class RegistrationService {
             map.put("passwordConfirmError", "Please confirm the password");
 
         }else {
-            if (teacher.getPassword().compareTo(passwordConfirm)!= 0) {
+            if (user.getPassword().compareTo(passwordConfirm)!= 0) {
                 map.put("passwordConfirmEqualError", "Passwords are not equal");
             }
         }
@@ -99,32 +93,21 @@ public class RegistrationService {
 
 //End!!!!!! if we don't have any errors(Error errors), we save our user
         if (map.isEmpty()){
-            teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             //3vid 17.30
-            teacher.setRoles(Collections.singleton(Role.USER));
+            user.setRoles(Collections.singleton(Role.SCHOOLKID));
+          // user.setActivationCodeForProduct(new ArrayList<>());
+
+
 
             //Email
-            teacher.setActivationCode(UUID.randomUUID().toString());
-            teacher.setActive(false);
-            sendMessage(teacher);
+            user.setActivationCodeEmail(UUID.randomUUID().toString());
+            user.setActiveEmail(false);
 
-            teacherRepo.save(teacher);
+            userRepo.save(user);
         }
 
     }
 
-    //Email send Message
-    private void sendMessage(Teacher teacher) {
-        if (!StringUtils.isEmpty(teacher.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to Electronic diary. Please, visit next link: http://localhost:8080/activate/%s",
-                    teacher.getUsername(),
-                    teacher.getActivationCode()
-            );
-
-            mailSender.send(teacher.getEmail(), "Activation code", message);
-        }
-    }
 
 }

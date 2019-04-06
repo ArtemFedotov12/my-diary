@@ -12,7 +12,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 //Lombok
 @Data
@@ -20,22 +22,18 @@ import java.util.Set;
 @ToString
 //Hibernate
 @Entity
-@Table(name = "teacher")
-public class Teacher implements UserDetails, Serializable {
+@Table(name = "user")
+public class User implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @NotBlank(message = "Please fill the name")
+    @NotBlank(message = "Please fill the login")
     @Length(max = 60, message = "Message too long (more than 60symbols)")
-    private String name;
+    private String login;
 
     @NotBlank(message = "Please fill the password")
     private String password;
-
-  /*  @NotBlank(message = "Please confirm the password")
-    @Transient
-    private String passwordConfirm;*/
 
     @Email(message = "Email isn't correct")
     @NotBlank(message = "Please fill the email")
@@ -50,10 +48,23 @@ public class Teacher implements UserDetails, Serializable {
     @NotBlank(message = "Please fill the number of school")
     private String schoolnumber;
 
-    private String filename;
-    private String activationCode;
-    private boolean active;
+    //@NotBlank(message = "Please fill the number of school")
+    //i think it will be added automatic, Pupil won't write this, because teacher will give accessKey
+    private String classNumber;
 
+    private String filename;
+    private String activationCodeEmail;
+    private boolean activeEmail;
+    //If DIRECTOR pay for product he will get this code
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "user_id")
+    private List<ActivationCode> activationCodeForProduct;
+    //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
+    private String accessKeyForTeacher;
+    //it is located on User Home Page(on page classroom teacher)
+    private String accessKeyForSchoolKid;
+
+    //@OneToMany(cascade = { CascadeType.ALL })
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     //This field exist in separate table
     //3 vid 9.04
@@ -66,9 +77,10 @@ public class Teacher implements UserDetails, Serializable {
         return  roles.contains(Role.ADMIN);
     }
 
+
     @Override
     public String getUsername() {
-        return name;
+        return login;
     }
     @Override
     public boolean isAccountNonExpired() {
@@ -94,4 +106,5 @@ public class Teacher implements UserDetails, Serializable {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
+
 }

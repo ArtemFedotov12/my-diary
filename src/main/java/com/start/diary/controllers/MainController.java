@@ -1,28 +1,18 @@
 package com.start.diary.controllers;
 
-import com.start.diary.entities.Teacher;
-import com.start.diary.entities.dto.ServiceResponse;
-import com.start.diary.repos.TeacherRepo;
+import com.start.diary.entities.User;
+import com.start.diary.repos.UserRepo;
 import com.start.diary.service.TeacherService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 @Controller
 public class MainController {
     @Autowired
-    TeacherRepo teacherRepo;
+    UserRepo userRepo;
     @Autowired
     TeacherService teacherService;
 
@@ -35,9 +25,9 @@ public class MainController {
 
 
     @GetMapping("/mypage")
-    public String bred(@AuthenticationPrincipal Teacher teacher, Model model) {
-        Teacher teacher1=teacherRepo.findByName(teacher.getName());
-        model.addAttribute("teacherPage",teacher1);
+    public String bred(@AuthenticationPrincipal User user, Model model) {
+        User user1 = userRepo.findByLogin(user.getLogin());
+        model.addAttribute("teacherPage", user1);
         return "mypage";
     }
 

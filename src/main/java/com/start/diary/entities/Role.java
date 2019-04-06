@@ -5,7 +5,10 @@ import org.springframework.security.core.GrantedAuthority;
 //we implements because in clas User we implements UserDetails
 // and implements methods see 4 video -1.10
 public enum Role implements GrantedAuthority {
-   USER,ADMIN;
+    SCHOOLKID,
+    ADMIN,
+    DIRECTOR,
+    TEACHER;
 
     @Override
     public String getAuthority() {

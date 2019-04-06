@@ -5,16 +5,30 @@
         <div class="topnav" id="myTopnav">
             <div class="nav-bar">
                 <a  href="/#C1" id="C1">Home</a>
-                <a href="/mypage#C2" id="C2">My Page</a>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
-                <a  href="/user">Admin</a>
+                <#if currentUserId!=-1>
+                    <a href="/mypage#C2" id="C2">My Page</a>
+                </#if>
+                <a href="/#contact" id="contact">Contact</a>
+                <a href="#about" id="about">About</a>
+                <#if isAdmin==true>
+                    <a  href="/user#C3" id="C3">Admin</a>
+                </#if>
+
                 <#--      <a href="/logout" class="sign_out"  type="submit">Sign Out </a>-->
-                <form  action="/logout" method="post">
+                <form  <#if currentUserId!=-1> action="/logout" method="post"</#if>   >
                     <#-- don't forget _csrf.token  otherwise yo uwill se this message
                         "This application has no explicit mapping for /error, so you are seeing this as a fallback."-->
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <button class="sign_out"  type="submit">Sign Out </button>
+
+                    <#if currentUserId!=-1> <input id="token" type="hidden" name="_csrf" value="${_csrf.token}"></#if>
+                    <button class="sign_out"  onclick=<#if currentUserId==-1>"signIn()" <#else>"false"</#if>  type="submit">
+                        <i class="fas fa-user-tie" style='font-size:25px;color:#000000'></i>
+                        <#if currentUserId==-1>
+                            Sign In
+                        <#else>
+                            Sign Out
+                        </#if>
+
+                    </button>
                 </form>
             </div>
             <div><a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -22,8 +36,36 @@
                 </a>
             </div>
         </div>
-        <div class="user_name">${name}</div>
+        <div class="user_name">${login}</div>
 
+        <div id="id01" class="modal">
+
+            <form class="modal-content animate" action="/" method="post">
+                <div class="imgcontainer ">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label for="uname"><b>Username</b></label>
+                   <#-- name="username" because of @Override public String getUsername() { return login;}-->
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <input  type="hidden" name="_csrf" value="${_csrf.token}">
+                    <button type="submit" class="btn-login">Login</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" id="cancelBtn"  class="cancelbtn fa fa-close"
+                            onclick="document.getElementById('id01').style.display='none'" > Cancel</button>
+                    <span class="psw"><a href="/registration">Registration</a></span>
+                </div>
+            </form>
+        </div>
 
         <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
         <#nested>
@@ -56,4 +98,7 @@
             <!--<div class="footer-bottom">&#169 2018-2019 "Dnevnik-online.com"</div>-->
         </div>
     </div>
+
+
+    <script src="/templates/css/js/navbarFooter.js"></script>
 </#macro>

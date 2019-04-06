@@ -24,8 +24,8 @@
     <h1 id="loginInfo" style="display: none"></h1>
     <div class="login">
         <form id="loginFormName" action="/login" method="post" >
-            <#--  <p> <input type="text" name="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
-               <p><input type="password" name="password" placeholder="Password" autofocus></p>-->
+            <#--  <p> <input type="text" login="text" placeholder="Name" maxlength="10" autocomplete="off"></p>
+               <p><input type="password" login="password" placeholder="Password" autofocus></p>-->
 
             <div>
                 <div class="invalid-feedback" id="userNameLabel" style="display: none">
@@ -44,7 +44,7 @@
             <div><input type="submit" class="btn-login" <#--id="BtnLoginRequest"-->  value="Submit"></div>
             <div class="forgot-password-registration">
                 <a href="" style="padding-right: 14px">Forget password?</a>
-                <a href="/registration">Registration</a>
+               <a  href="/registration" style="float: right;padding-top: 16px;">Registration</a>
             </div>
         </form>
     </div>
@@ -52,7 +52,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/templates/css/js/topnav.js" type="text/javascript"></script>
 <script src="/templates/css/js/footer.js" type="text/javascript"></script>
-<script src="/templates/css/js/login.js" ></script>
+<script src="/templates/css/js/main.js" ></script>
 
 </body>
 

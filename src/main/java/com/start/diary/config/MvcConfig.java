@@ -22,7 +22,7 @@ public class MvcConfig implements WebMvcConfigurer {
     }
     //Login from Spring Framework
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/").setViewName("main");
     }
     //For Add Css or Security will not let us
     //Also see WebSecurityConfig
@@ -30,7 +30,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/templates/css/**")
                 // classpath: means----- search will be inside the our project from the root
-                //Spring will be find folder with name "/template/static"
+                //Spring will be find folder with login "/template/static"
                 //without this css-style willn't work
                 .addResourceLocations("classpath:/templates/css/");
 
