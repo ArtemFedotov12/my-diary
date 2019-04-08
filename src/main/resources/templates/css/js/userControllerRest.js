@@ -22,7 +22,7 @@ $.ajax({
 
     function putActivationCode(idUser){
         $.ajax({
-            type : "PUT",
+            method : "PUT",
             url : "/generateCode/" + idUser,
             headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},
             processData: false, //prevent jQuery from automatically transforming the data into a query string
@@ -40,7 +40,7 @@ $.ajax({
                 });
                 content += "</table>";
 
-                $('#here_table').append(content);
+                $('#here_table').html(content);
 
 
             },

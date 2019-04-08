@@ -24,14 +24,14 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("main");
     }
-    //For Add Css or Security will not let us
+    //For Add Css or Security will not let us use it
     //Also see WebSecurityConfig
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/templates/css/**")
                 // classpath: means----- search will be inside the our project from the root
-                //Spring will be find folder with login "/template/static"
-                //without this css-style willn't work
+                //Spring will find folder  "/template/static"
+                //without this css-style won't work
                 .addResourceLocations("classpath:/templates/css/");
 
         //File

@@ -58,7 +58,6 @@ public class LoginRegistrationRest {
         registrationService.handlingCaptchaAndFile(captchaResponse, file, map, user);
         registrationService.addTeacherRegistration(user, map, passwordConfirm, errors);
 
-        //passwordConfirmEqualError we added manually, so we write this "user.getPassword().compareTo(user.getPasswordConfirm())!=0"
         if (errors.hasErrors() || !map.isEmpty()) {
             response.setStatus("badRequest");
             map.putAll(ControllerUtils.getErrors(errors));

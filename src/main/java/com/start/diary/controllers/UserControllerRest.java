@@ -40,19 +40,18 @@ public class UserControllerRest {
        if(user.getActivationCodeForProduct()==null) {
            user.setActivationCodeForProduct(new ArrayList<>());
        }
-        Map<Integer, String> map = user.getActivationCodeForProduct()
-                    .stream()
-                    .collect(Collectors.toMap(ActivationCode::getId, ActivationCode::getActivationCodeForProduct));
-
-
-
-        ServiceResponse<Map<Integer, String>> response = new ServiceResponse<>("success", map);
 
 
         ActivationCode activationCode =new ActivationCode(UUID.randomUUID().toString());
         user.getActivationCodeForProduct().add(activationCode);
-
         userRepo.save(user);
+
+
+        Map<Integer, String> map = user.getActivationCodeForProduct()
+                .stream()
+                .collect(Collectors.toMap(ActivationCode::getId, ActivationCode::getActivationCodeForProduct));
+        ServiceResponse<Map<Integer, String>> response = new ServiceResponse<>("success", map);
+
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 

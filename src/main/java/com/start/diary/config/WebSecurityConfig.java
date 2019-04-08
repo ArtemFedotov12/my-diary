@@ -21,7 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //Bean for form "Login". We can get user from our DB
+    //We can get user from our DB
     //public UserDetails loadUserByUsername
     @Autowired
     TeacherService teacherService;
