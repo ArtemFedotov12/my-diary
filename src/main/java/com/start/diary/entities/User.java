@@ -35,6 +35,15 @@ public class User implements UserDetails, Serializable {
     @NotBlank(message = "Please fill the password")
     private String password;
 
+    @NotBlank(message = "Please fill the First Name")
+    private String firstName;
+
+    @NotBlank(message = "Please fill the Last Name")
+    private String lastName;
+
+    @NotBlank(message = "Please fill the Patronymic")
+    private String patronymic ;
+
     @Email(message = "Email isn't correct")
     @NotBlank(message = "Please fill the email")
     private String email;
@@ -48,17 +57,18 @@ public class User implements UserDetails, Serializable {
     @NotBlank(message = "Please fill the number of school")
     private String schoolnumber;
 
+    private String activationCodeEmail;
     //@NotBlank(message = "Please fill the number of school")
     //i think it will be added automatic, Pupil won't write this, because teacher will give accessKey
     private String classNumber;
 
     private String filename;
-    private String activationCodeEmail;
+
     private boolean activeEmail;
     //If DIRECTOR pay for product he will get this code
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
-    private List<ActivationCode> activationCodeForProduct;
+    private List<ActivationCode> activationCodeForProductList;
     //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
     private String accessKeyForTeacher;
     //it is located on User Home Page(on page classroom teacher)

@@ -21,6 +21,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class LoginRegistrationRest {
@@ -47,6 +48,7 @@ public class LoginRegistrationRest {
     public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,
                                        @RequestParam String passwordConfirm,
                                        @RequestParam(name = "g-recaptcha-response", required = false) String captchaResponse,
+                                       @RequestParam String activationCodeForProduct,
                                        @Valid User user,
                                        Errors errors
     ) throws IOException {
@@ -56,7 +58,7 @@ public class LoginRegistrationRest {
 
 
         registrationService.handlingCaptchaAndFile(captchaResponse, file, map, user);
-        registrationService.addTeacherRegistration(user, map, passwordConfirm, errors);
+        registrationService.addTeacherRegistration(user, activationCodeForProduct,map, passwordConfirm, errors);
 
         if (errors.hasErrors() || !map.isEmpty()) {
             response.setStatus("badRequest");
@@ -68,11 +70,13 @@ public class LoginRegistrationRest {
 
     @PostMapping("/registration/email")
     public ResponseEntity<Object> email(User user) {
-
+        user=userRepo.findByLogin(user.getLogin());
+        System.out.println("String:22222222   "+ user.getActivationCodeEmail());
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
                             "Welcome to Electronic diary. Please, visit next link: http://localhost:8080/activate/%s",
+                    //user.getUsername() implements UserDetails  equal to login
                     user.getUsername(),
                     user.getActivationCodeEmail()
             );

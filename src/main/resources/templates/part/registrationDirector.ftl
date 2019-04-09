@@ -4,10 +4,10 @@
 <form  id="formRegistrationDirector" <#--enctype="multipart/form-data" autocomplete="off"-->>
 
     <div>
-        <div class="invalid-feedback" id="nameLabel" style="display: none">
+        <div class="invalid-feedback" id="loginLabel" style="display: none">
             <#--Error Message-->
         </div>
-        <input type="text" class="form-control"  name="login" id="name" placeholder="Name" autocomplete="off" value="BWW"/>
+        <input type="text" class="form-control"  name="login" id="login" placeholder="Login" autocomplete="off" value="Dir"/>
     </div>
 
     <div>
@@ -32,10 +32,6 @@
         </div>
         <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm" autocomplete="off" value="1">
     </div>
-
-
-
-
 
 
 
@@ -64,7 +60,7 @@
         <div class="invalid-feedback" id="activationCodeForProductLabel" style="display: none">
             <#--Error Message-->
         </div>
-        <input type="text" class="form-control" name="activationCode" id="activationCode" placeholder="Activation Code" autocomplete="off" >
+        <input type="text" class="form-control" name="activationCodeForProduct" id="activationCodeForProduct" placeholder="Activation Code" autocomplete="off" value="4126420a-cde8-4902-ade3-95a8e8627f4a" >
     </div>
 
 
@@ -88,7 +84,7 @@
         <div class="invalid-feedback" id="townLabel" style="display: none">
             <#--Error Message-->
         </div>
-        <input type="text" class="form-control"  name="town" id="town" placeholder="Town" value="b"/>
+        <input type="text" class="form-control"  name="town" id="town" placeholder="Town" value="Chernihiv"/>
     </div>
 
 
@@ -97,7 +93,7 @@
         <div class="invalid-feedback" id="schoolnumberLabel" style="display: none">
             <#--Error Message-->
         </div>
-        <input type="text" class="form-control" name="schoolnumber" id="schoolnumber" placeholder="The number of school" value="b"/>
+        <input type="text" class="form-control" name="schoolnumber" id="schoolnumber" placeholder="The number of school" value="12"/>
     </div>
 
     <#-- <div class="custom-file">

@@ -37,22 +37,39 @@ public class UserControllerRest {
     public ResponseEntity<Object> generate(@PathVariable User user){
 
 
-       if(user.getActivationCodeForProduct()==null) {
-           user.setActivationCodeForProduct(new ArrayList<>());
+       if(user.getActivationCodeForProductList()==null) {
+           user.setActivationCodeForProductList(new ArrayList<>());
        }
 
 
         ActivationCode activationCode =new ActivationCode(UUID.randomUUID().toString());
-        user.getActivationCodeForProduct().add(activationCode);
+        user.getActivationCodeForProductList().add(activationCode);
         userRepo.save(user);
 
 
-        Map<Integer, String> map = user.getActivationCodeForProduct()
+        Map<Integer, String> map = user.getActivationCodeForProductList()
                 .stream()
                 .collect(Collectors.toMap(ActivationCode::getId, ActivationCode::getActivationCodeForProduct));
         ServiceResponse<Map<Integer, String>> response = new ServiceResponse<>("success", map);
 
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/generateCode/{user}")
+    public ResponseEntity<Object> tableCodeGeneration(@PathVariable User user){
+        if(user.getActivationCodeForProductList()==null) {
+            user.setActivationCodeForProductList(new ArrayList<>());
+        }
+
+
+        Map<Integer, String> map = user.getActivationCodeForProductList()
+                .stream()
+                .collect(Collectors.toMap(ActivationCode::getId, ActivationCode::getActivationCodeForProduct));
+        ServiceResponse<Map<Integer, String>> response = new ServiceResponse<>("success", map);
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
 
 }

@@ -3,6 +3,7 @@ package com.start.diary.service;
 import com.start.diary.entities.ActivationCode;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
+import com.start.diary.repos.ActivationCodeForProductRepo;
 import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,9 @@ public class RegistrationService {
     UserRepo userRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    ActivationCodeForProductRepo activationCodeForProductRepo;
 
     @Autowired
     private MailSender mailSender;
@@ -62,14 +66,22 @@ public class RegistrationService {
     }
 
 
-    public void addTeacherRegistration(User user, Map<String,String> map, String passwordConfirm, Errors errors){
+    public void addTeacherRegistration(User user,String activationCodeForProduct, Map<String,String> map, String passwordConfirm, Errors errors){
         User userFromDatabaseByName = userRepo.findByLogin(user.getLogin());
         User userFromDatabaseByEmail = userRepo.findByEmail(user.getEmail());
 
+        if(activationCodeForProduct.isEmpty()){
+            map.put("activationCodeForProductError", "Please fill the Activation Code");
+        }else {
+            ActivationCode activationCode=activationCodeForProductRepo.findByActivationCodeForProduct(activationCodeForProduct);
+            if (activationCode==null){
+                map.put("activationCodeForProductError", "Activation code is not valid");
+            }
+        }
 
 
         if (userFromDatabaseByName !=null){
-            map.put("nameUniqueError", "User already exists!");
+            map.put("loginUniqueError", "User already exists!");
         }
 
         if (userFromDatabaseByEmail !=null){
@@ -96,14 +108,11 @@ public class RegistrationService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             //3vid 17.30
             user.setRoles(Collections.singleton(Role.SCHOOLKID));
-          // user.setActivationCodeForProduct(new ArrayList<>());
-
-
 
             //Email
             user.setActivationCodeEmail(UUID.randomUUID().toString());
             user.setActiveEmail(false);
-
+            System.out.println("String:1111111   "+ user.getActivationCodeEmail());
             userRepo.save(user);
         }
 

@@ -42,6 +42,7 @@ public class MainController {
     public String activate(Model model, @PathVariable String code) {
         boolean isActivated = teacherService.activateTeacher(code);
 
+
         if (isActivated) {
             model.addAttribute("message", "User successfully activated");
         } else {

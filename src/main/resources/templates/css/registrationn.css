@@ -27,12 +27,10 @@ div.registration{
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
     border-radius: 20px;
     box-sizing: border-box;
     outline: 0;
     color: black;
-    background: white;
 }
 /*div.input[type=text]:focus, div.input[type=password]:focus,input[type=email]:focus,select:focus{
     border: 1px solid #3be62a !important;
