@@ -9,20 +9,26 @@
 <@navFoot.navbarFooter>
 
     <div class="main clearfix">
-        <div class="name"><#if user.name??><h1>${user.name}</h1></#if></div>
+        <div class="name"><#if user.name??><h1>${user.firstName}</h1></#if></div>
 
         <div class="image column">
-            <#if teacherPage.filename??><img src="/img/${teacherPage.filename}" style="width: 100%"></#if>
+            <#if user.filename??><img src="/img/${user.filename}" style="width: 100%">
+                <#else>
+                    <input  name="file" type="file" value="Change image">
+            </#if>
+
+
+
         </div>
 
 
         <div class="information column">
 
             <input type="email" class="fields" name="email" placeholder="vasya@gmail.com"
-                   value="<#if teacherPage.email??>${teacherPage.email}</#if>" disabled/>
+                   value="<#if user.email??>${user.email}</#if>" disabled/>
 
             <input type="text" class="fields" name="town" placeholder="Kyiv"
-                   value="<#if teacherPage.town??>${teacherPage.town}</#if>" disabled/>
+                   value="<#if user.town??>${user.town}</#if>" disabled/>
 
 
             <div>

@@ -27,7 +27,7 @@ public class MainController {
     @GetMapping("/mypage")
     public String bred(@AuthenticationPrincipal User user, Model model) {
         User user1 = userRepo.findByLogin(user.getLogin());
-        model.addAttribute("teacherPage", user1);
+        model.addAttribute("user", user1);
         return "mypage";
     }
 
@@ -49,7 +49,7 @@ public class MainController {
             model.addAttribute("message", "Activation code is not found!");
         }
 
-        return "login";
+        return "main";
     }
 
 
