@@ -47,10 +47,10 @@
                 </div>
 
                 <div class="container">
-                    <label for="uname"><b>Username</b></label>
+                    <label><b>Username</b></label>
                    <#-- name="username" because of @Override public String getUsername() { return login;}-->
                     <input type="text" placeholder="Enter Username" name="username" required>
-                    <label for="psw"><b>Password</b></label>
+                    <label><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" required>
                     <input  type="hidden" name="_csrf" value="${_csrf.token}">
                     <button type="submit" class="btn-login">Login</button>

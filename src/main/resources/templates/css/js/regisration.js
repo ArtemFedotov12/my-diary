@@ -181,6 +181,14 @@ function userRegistration(event) {
                 $("#activationCodeForProductLabel").css("display", "none");
             }
 
+            if(data["accessKeyForTeacherError"]!=null){
+                $("#accessKeyForTeacher").removeClass("is-valid").addClass("form-control is-invalid");
+                $("#accessKeyForTeacherLabel").css("display", "block").text(data["accessKeyForTeacherError"]);
+            }else {
+                $("#accessKeyForTeacher").removeClass("is-invalid").addClass("is-valid");
+                $("#accessKeyForTeacherLabel").css("display", "none");
+            }
+
         }
     });
 

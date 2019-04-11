@@ -9,35 +9,46 @@
 <@navFoot.navbarFooter>
 
     <div class="main clearfix">
-        <div class="name"><#if user.name??><h1>${user.firstName}</h1></#if></div>
 
         <div class="image column">
             <#if user.filename??><img src="/img/${user.filename}" style="width: 100%">
-                <#else>
-                    <input  name="file" type="file" value="Change image">
+            <#else>
+                <input  name="file" type="file" value="Change image">
             </#if>
-
-
 
         </div>
 
-
         <div class="information column">
 
-            <input type="email" class="fields" name="email" placeholder="vasya@gmail.com"
+            <input type="text" class="fields" name="login"
+                   value="<#if user.login??>${user.login}</#if>" disabled/>
+
+            <input type="email" class="fields" name="email"
                    value="<#if user.email??>${user.email}</#if>" disabled/>
 
-            <input type="text" class="fields" name="town" placeholder="Kyiv"
-                   value="<#if user.town??>${user.town}</#if>" disabled/>
+            <#if user.firstName??>
+                <input type="text" class="fields" name="login"
+                       value="${user.firstName}" disabled/>
+            </#if>
+
+            <#if user.lastName??>
+                <input type="text" class="fields" name="login"
+                       value="${user.lastName}" disabled/>
+            </#if>
+
+            <#if user.patronymic??>
+                <input type="text" class="fields" name="login"
+                       value="${user.patronymic}" disabled/>
+            </#if>
+
+            <#--    <#if isDirector??>
+                    <input type="text" class="fields" name="login"
+                           value="<#if user.accessKeyForTeacher??>${user.accessKeyForTeacher}</#if>" disabled/>
+                </#if>-->
 
 
-            <div>
-                <select class="fields" name="country" style="width: 60%" disabled>
-                    <option value="au">Ukraine</option>
-                    <option value="ca" <#if user.country=="ca">selected</#if>>Russia</option>
-                    <option value="usa">USA</option>
-                </select>
-            </div>
+
+
             <div id="sendBtn" style="display: none">
                 <button onclick="handleRequest()">Send</button>
             </div>

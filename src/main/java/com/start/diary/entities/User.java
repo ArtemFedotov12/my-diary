@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +24,8 @@ import java.util.Set;
 //Hibernate
 @Entity
 @Table(name = "user")
-public class User implements UserDetails, Serializable {
+public class User implements UserDetails{
+    //private static final long serialVersionUID =-1239304182;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -57,6 +59,9 @@ public class User implements UserDetails, Serializable {
     @NotBlank(message = "Please fill the number of school")
     private String schoolnumber;
 
+    @NotBlank(message = "Please fill Access Key for teacher")
+    private String accessKeyForTeacher;
+
     private String activationCodeEmail;
     //@NotBlank(message = "Please fill the number of school")
     //i think it will be added automatic, Pupil won't write this, because teacher will give accessKey
@@ -70,7 +75,7 @@ public class User implements UserDetails, Serializable {
     @JoinColumn(name = "user_id")
     private List<ActivationCode> activationCodeForProductList;
     //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
-    private String accessKeyForTeacher;
+
     //it is located on User Home Page(on page classroom teacher)
     private String accessKeyForSchoolKid;
 
@@ -83,8 +88,11 @@ public class User implements UserDetails, Serializable {
     private Set<Role> roles;
 
         //security.ftl it is used
-    public boolean isAdmin(){
+    public boolean isAdmin() {
         return  roles.contains(Role.ADMIN);
+    }
+    public boolean isDirector() {
+        return  roles.contains(Role.DIRECTOR);
     }
 
 
