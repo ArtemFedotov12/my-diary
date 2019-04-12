@@ -17,7 +17,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-public class UserControllerRest {
+public class AdminControllerRest {
 
     @Autowired
     UserRepo userRepo;
@@ -25,6 +25,7 @@ public class UserControllerRest {
     @Autowired
     ActivationCodeForProductRepo activationCodeForProductRepo;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{user}")
     public ResponseEntity<Object> deleteUser(@PathVariable User user){
         System.out.println("tet");
