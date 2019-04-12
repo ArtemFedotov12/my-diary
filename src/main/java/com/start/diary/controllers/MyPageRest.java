@@ -13,8 +13,13 @@ import java.io.IOException;
 @RestController
 public class MyPageRest {
 
-    @PostMapping("/registration")
-    public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file, User user) throws IOException {
+    @PostMapping("/mypage/edit")
+    public ResponseEntity<Object> myPageEdit(@RequestParam("file") MultipartFile file,
+                                             User user
+    ) throws IOException {
+        System.out.println("Rest Go");
+        System.out.println(user);
+        System.out.println(file.getOriginalFilename());
 
 
 

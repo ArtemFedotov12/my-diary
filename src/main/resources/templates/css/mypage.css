@@ -3,7 +3,7 @@ div.main{
     position: relative;
     background-color: #dad6d5;
     color:black;
-    width: 53.33%;
+    width: 50%;
     min-width: 350px;
     margin:auto;
     margin-top: 70px;
@@ -12,7 +12,7 @@ div.name{
     text-align: center;
 }
 div.image{
-    width: 25%;
+    width: 30%;
 }
 .clearfix::after {
     content: "";
@@ -20,11 +20,12 @@ div.image{
     display: table;
 }
 div.information{
-    width: 75%;
+    width: 70%;
 }
 div.column{
     float: left;
     padding: 15px;
+    min-width: 250px;
 }
 .main label b{
     color: green;
