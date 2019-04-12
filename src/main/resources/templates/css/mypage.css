@@ -4,8 +4,9 @@ div.main{
     background-color: #dad6d5;
     color:black;
     width: 53.33%;
+    min-width: 350px;
     margin:auto;
-    margin-top: 165px;
+    margin-top: 70px;
 }
 div.name{
     text-align: center;
@@ -24,4 +25,7 @@ div.information{
 div.column{
     float: left;
     padding: 15px;
+}
+.main label b{
+    color: green;
 }

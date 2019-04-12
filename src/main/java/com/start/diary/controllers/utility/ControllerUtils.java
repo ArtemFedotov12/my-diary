@@ -1,4 +1,4 @@
-package com.start.diary.controllers;
+package com.start.diary.controllers.utility;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;

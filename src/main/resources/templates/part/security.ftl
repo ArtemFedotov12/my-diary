@@ -8,7 +8,7 @@
         login=user.getLogin()
         active=user.isActiveEmail()
         isAdmin=user.isAdmin()
-        <#--isDirector=user.isDirector()-->
+        isDirector=user.isDirector()
         currentUserId=user.getId()
    <#--     filename=user.getFilename()-->
     >
@@ -16,7 +16,7 @@
     <#assign
         login="unknown"
         isAdmin=false
-       <#-- isDirector=false-->
+        isDirector=false
         currentUserId=-1
         <#--filename="unknown"-->
     >

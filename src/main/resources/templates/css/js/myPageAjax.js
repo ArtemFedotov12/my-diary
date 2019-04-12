@@ -44,6 +44,4 @@ function handleRequest() {
     for (var i = 0; i < arrayOfFields.length; i++) {
         arrayOfFields[i].disabled=true;
     }
-
-
 }

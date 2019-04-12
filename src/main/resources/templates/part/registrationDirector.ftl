@@ -88,7 +88,7 @@
         </div>
         <label><b>Country</b></label>
         <div class="input-group mb-3">
-            <select class="form-control" name="country" id="country"  <#--id="inputGroupSelect02" -->style="border-radius: 20px; margin:8px 0px -8px 0px;">
+            <select class="form-control" name="country" id="country"  <#--id="inputGroupSelect02" -->style="border-radius: 20px; margin:8px 0px -8px 0px;padding: 0px 20px;">
                 <option  value="">Choose...</option>
                 <option selected value="au">Ukraine</option>
                 <option value="ca">Russia</option>
@@ -123,13 +123,13 @@
     <input  name="file" type="file">
 
 
-    <#--<div>
+    <div>
         <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
-        &lt;#&ndash;Error Message&ndash;&gt;
+        <#--Error Message-->
         <div id="reCaptchaLabel" class="alert alert-danger" role="alert" style="display: none; margin: 0px">
             Please fill reCaptcha
         </div>
-    </div>-->
+    </div>
 
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <#--registration.js on click run the function-->

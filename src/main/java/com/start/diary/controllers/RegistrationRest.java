@@ -1,5 +1,6 @@
 package com.start.diary.controllers;
 
+import com.start.diary.controllers.utility.ControllerUtils;
 import com.start.diary.entities.User;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.UserRepo;
@@ -21,10 +22,9 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
-public class LoginRegistrationRest {
+public class RegistrationRest {
 
     @Autowired
     TeacherService teacherService;

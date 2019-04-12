@@ -15,7 +15,7 @@ import java.util.Map;
 @Controller
 //it is for you don't need to give login each method
 @RequestMapping("/user")
-public class UserController {
+public class AdminController {
     @Autowired
     UserRepo userRepo;
     @Autowired
