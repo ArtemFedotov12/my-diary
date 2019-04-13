@@ -22,8 +22,11 @@
 <#--user.filename==null || user.filename==""-->
     <form id="formMyPage">
         <div class="main clearfix">
+
+
             <div class="content">
                 <div class="image column">
+
                     <#if user.filename?? && user.filename!="">
                         <img src="/img/${user.filename}" alt="photo" style="width: 100%">
                         <div id="uploadPhoto" style="display: none">
@@ -37,6 +40,8 @@
                                 </svg> <span>Upload Photo</span>
                             </label>
                         </div>
+
+
                     <#else>
                         <div class="box">
                             <input type="file" name="file" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
@@ -50,8 +55,14 @@
                                 </figure> <span>Upload Photo</span></label>
                         </div>
                     </#if>
+
+
                 </div>
             </div>
+
+
+
+
             <div class="information column">
 
                 <label><b>Login</b></label>
@@ -82,20 +93,26 @@
 
                 <#if isDirector==true>
                     <label><b>Access Key for Teacher</b></label>
-                    <input type="text" class="fields" name="login"
+                    <input type="text" class="fields" name="accessKeyForTeacher"
                            value="<#if user.accessKeyForTeacher??>${user.accessKeyForTeacher}</#if>" required disabled/>
                 </#if>
 
 
-                <div id="sendBtn" style="display: none">
-                    <button onclick="handleRequest()">Send</button>
-                </div>
-                <button onclick="changeEmail()" id="editBtn">Edit</button>
+
+                <#--<button onclick="handleRequest()" id="sendBtnMyPage" style="display: none">Send</button>-->
+                <#--<button onclick="changeEmail()" id="editBtnMyPage">Edit</button>-->
+
+                <input type="button" onclick="changeEmail()" id="editBtnMyPage" value="Edit">
+                <input type="button" onclick="handleRequest()" id="sendBtnMyPage" value="Send" style="display: none">
             </div>
+
+
         </div>
+
         <input type="hidden" name="id" value="${user.id}">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
     </form>
+
 </@navFoot.navbarFooter>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/templates/css/js/topnav.js"></script>

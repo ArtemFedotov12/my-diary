@@ -8,4 +8,3 @@ function myFunction() {
     }
 
 }
-console.log("Petro");

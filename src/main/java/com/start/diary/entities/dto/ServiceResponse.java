@@ -5,6 +5,7 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@ToString
 public class ServiceResponse<T> {
 
     private String status;

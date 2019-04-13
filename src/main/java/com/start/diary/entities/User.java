@@ -11,9 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -67,6 +64,8 @@ public class User implements UserDetails{
     //i think it will be added automatic, Pupil won't write this, because teacher will give accessKey
     private String classNumber;
 
+    //in html(ftl) we don't use filename to pass file
+    //in html we write  type="file" name="file" and get MultipartFile file
     private String filename;
 
     private boolean activeEmail;

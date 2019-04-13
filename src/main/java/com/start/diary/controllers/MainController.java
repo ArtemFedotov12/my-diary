@@ -28,6 +28,7 @@ public class MainController {
     public String bred(@AuthenticationPrincipal User user, Model model) {
         User user1 = userRepo.findByLogin(user.getLogin());
         model.addAttribute("user", user1);
+        System.out.println("Myupage Bred");
         return "mypage";
     }
 

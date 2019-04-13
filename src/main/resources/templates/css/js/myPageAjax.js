@@ -1,17 +1,18 @@
 function changeEmail() {
-    $('#sendBtn').css("display","block");
+    $('#sendBtnMyPage').css("display","block");
     $('#uploadPhoto').css("display","block");
-    $('#editBtn').css("display","none");
+    $('#editBtnMyPage').css("display","none");
 
     var arrayOfFields=document.getElementsByClassName("fields");
     for (var i = 0; i < arrayOfFields.length; i++) {
         arrayOfFields[i].disabled=false;
     }
+    console.log("r1")
 
 }
 
 function handleRequest() {
-
+    console.log("r2")
     var form = $('#formMyPage')[0];
     var data = new FormData(form);
 
@@ -27,15 +28,29 @@ function handleRequest() {
         cache: false,
         timeout: 60000000,
         success: function (result) {
-            console.log("Success123");
+            var dataMap=result.data;
+            console.log(dataMap);
+
+            var arrayOfClassFields=document.getElementsByClassName("fields");
+            for (var i = 0; i < arrayOfClassFields.length; i++) {
+                        $.each(dataMap, function(key, value) {
+                            if(arrayOfClassFields[i].getAttribute("name")==key){
+                            arrayOfClassFields[i].value=value;
+                            console.log("Compare: " + arrayOfClassFields[i].value + " To: " + value);
+                            }
+                        });
+            }
+
+
         },
         error: function (e) {
             console.log("Error123");
             console.log(e);
         },
         complete: function () {
-            document.getElementById("sendBtn").style.display = "none";
-            document.getElementById("editBtn").style.display = "block";
+            $('#sendBtnMyPage').css("display","none");
+            $('#uploadPhoto').css("display","none");
+            $('#editBtnMyPage').css("display","block");
             var arrayOfFields=document.getElementsByClassName("fields");
             for (var i = 0; i < arrayOfFields.length; i++) {
                 arrayOfFields[i].disabled=true;
