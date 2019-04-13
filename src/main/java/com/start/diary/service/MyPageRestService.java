@@ -27,15 +27,20 @@ public class MyPageRestService {
     @Autowired
     UserRepo userRepo;
 
-    public ServiceResponse<Map<String, String>>  userEdit(MultipartFile file, User user) throws IOException, InvocationTargetException, IllegalAccessException {
-        Map<String, String> map = new HashMap<>();
+    public ServiceResponse<Map<String, String>>  userEdit(MultipartFile file,
+                                                          User user) throws IOException, InvocationTargetException, IllegalAccessException {
+        Map<String, String> map;
         ServiceResponse<Map<String, String>> response;
         //Convert Object to Map
         ObjectMapper oMapper = new ObjectMapper();
 
         User userDb=userRepo.findById(user.getId());
+        System.out.println("UserFromDbFirst: " + userDb);
         BeanUtilsBean copyWithoutNullFields=new NullAwareBeanUtilsBean();
         copyWithoutNullFields.copyProperties(userDb, user);
+
+        System.out.println("UserJust: " + user);
+        System.out.println("UserFromDb: " + userDb);
 
 
         if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
@@ -53,11 +58,14 @@ public class MyPageRestService {
             userDb.setFilename(resultFilename);
         }
 
-
+        //NullAwareBeanUtilsBean copy false, but
+        //without activeEmail==true User even cann't log in the system
+        //Therefore he don't have access to MyPage
+        // so we can just write this setActiveEmail(true)
+        userDb.setActiveEmail(true);
         userRepo.save(userDb);
         //Convert Object to Map
          map = oMapper.convertValue(userDb, Map.class);
-         System.out.println("Map: " + map);
         response = new ServiceResponse<>("success", map);
 
         return response;

@@ -3,6 +3,7 @@ package com.start.diary.controllers;
 import com.start.diary.entities.User;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.service.MyPageRestService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,26 @@ public class MyPageRest {
     //with fields in User class
     @PostMapping("/mypage/edit")
     public ResponseEntity<Object> myPageEdit(MultipartFile file,
+                                             MultipartFile file2,
                                              User user
     ) throws IOException, InvocationTargetException, IllegalAccessException {
+
+        System.out.println("Before");
+        System.out.println("File1: " + file);
+        System.out.println("File2: " + file2);
+        if (file2!=null) {
+            file = file2;
+            System.out.println("Names");
+            System.out.println("File1: " + file.getOriginalFilename());
+            System.out.println("File2: " + file2.getOriginalFilename());
+        }
+
+
+
+        System.out.println("After");
+        System.out.println("File1: " + file);
+        System.out.println("File2: " + file2);
+        System.out.println(file.getOriginalFilename());
 
         ServiceResponse<Map<String, String>> response=myPageRestService.userEdit(file,user);
         System.out.println("Response Rest: " + response);

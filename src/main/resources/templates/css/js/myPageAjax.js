@@ -7,7 +7,6 @@ function changeEmail() {
     for (var i = 0; i < arrayOfFields.length; i++) {
         arrayOfFields[i].disabled=false;
     }
-    console.log("r1")
 
 }
 
@@ -40,6 +39,8 @@ function handleRequest() {
                             }
                         });
             }
+            console.log(dataMap["filename"]);
+            $('#imgMyPage').attr("src", "/img/" + dataMap["filename"]);
 
 
         },
@@ -51,10 +52,15 @@ function handleRequest() {
             $('#sendBtnMyPage').css("display","none");
             $('#uploadPhoto').css("display","none");
             $('#editBtnMyPage').css("display","block");
+            $('#photoNotExistMyPage').css("display","none");
+            $('#blockPhotoMyPage').css("display","block");
             var arrayOfFields=document.getElementsByClassName("fields");
             for (var i = 0; i < arrayOfFields.length; i++) {
                 arrayOfFields[i].disabled=true;
             }
+            //Under photo Upload Photo
+            $("#spanMyPage").text('Upload Photo'); //versions newer than 1.6
+            $("#spanMyPage2").text('Upload Photo');
         }
     });
 

@@ -40,10 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return  new RegistrationService();
     }
 
-    @Bean
-    MyPageRestService getMyPageRestService(){
-        return new MyPageRestService();
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

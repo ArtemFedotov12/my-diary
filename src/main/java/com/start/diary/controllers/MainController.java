@@ -25,10 +25,9 @@ public class MainController {
 
 
     @GetMapping("/mypage")
-    public String bred(@AuthenticationPrincipal User user, Model model) {
-        User user1 = userRepo.findByLogin(user.getLogin());
-        model.addAttribute("user", user1);
-        System.out.println("Myupage Bred");
+    public String bred(@AuthenticationPrincipal User userAuth, Model model) {
+        User userMyPage = userRepo.findById(userAuth.getId());
+        model.addAttribute("userMyPage", userMyPage);
         return "mypage";
     }
 

@@ -101,13 +101,19 @@
 
 .inputfile-4 + label {
     color: #d3394c;
+
 }
 
 .inputfile-4:focus + label,
 .inputfile-4.has-focus + label,
 .inputfile-4 + label:hover {
     color: #722040;
+    outline: 0px;
 }
+/*.inputfile-4:hover {
+    color: #722040;
+    outline: 0px;
+}*/
 
 .inputfile-4 + label figure {
     width: 100px;
@@ -119,8 +125,13 @@
     margin: 0 auto 10px;
 }
 
-.inputfile-4:focus + label figure,
+/*.inputfile-4:focus + label figure,
 .inputfile-4.has-focus + label figure,
+.inputfile-4 + label:hover figure {
+    background-color: #722040;
+}*/
+
+
 .inputfile-4 + label:hover figure {
     background-color: #722040;
 }
