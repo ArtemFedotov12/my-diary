@@ -28,11 +28,20 @@ public class MyPageRestService {
     UserRepo userRepo;
 
     public ServiceResponse<Map<String, String>>  userEdit(MultipartFile file,
+                                                          MultipartFile file2,
                                                           User user) throws IOException, InvocationTargetException, IllegalAccessException {
         Map<String, String> map;
         ServiceResponse<Map<String, String>> response;
         //Convert Object to Map
         ObjectMapper oMapper = new ObjectMapper();
+
+        //mapage.ftl see if else
+        //else for   if user don't have photo
+        if (file2!=null && !Objects.requireNonNull(file2.getOriginalFilename()).isEmpty()) {
+            file = file2;
+        }
+
+
 
         User userDb=userRepo.findById(user.getId());
         System.out.println("UserFromDbFirst: " + userDb);
