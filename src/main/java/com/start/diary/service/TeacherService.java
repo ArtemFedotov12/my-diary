@@ -34,45 +34,13 @@ public class TeacherService implements UserDetailsService {
 
 
 
-    public void saveUser(User user, String login, Map<String, String> form) {
-        user.setLogin(login);
-//https://annimon.com/article/2778---------Stream guide
-        //Map<String, String> form key=User value=checked
-        Set<String> roles = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toSet());
-
-        System.out.println(user.getRoles().toString());
-
-        user.getRoles().clear();
-
-        for (String key : form.keySet()) {
-            if (roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
-        System.out.println(user.getRoles().toString());
-
-        userRepo.save(user);
-    }
 
 
 
 
 
-    public boolean activateTeacher(String code) {
-        User user = userRepo.findByActivationCodeEmail(code);
 
-        if (user == null) {
-            return false;
-        }
 
-        user.setActivationCodeEmail(null);
-        user.setActiveEmail(true);
-        userRepo.save(user);
-
-        return true;
-    }
 
 
 }

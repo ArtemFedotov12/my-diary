@@ -5,7 +5,7 @@ import com.start.diary.entities.User;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.UserRepo;
 import com.start.diary.service.MailSender;
-import com.start.diary.service.RegistrationService;
+import com.start.diary.service.RegistrationRestService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +41,7 @@ public class RegistrationRest {
     UserRepo userRepo;
 
     @Autowired
-    RegistrationService registrationService;
+    RegistrationRestService registrationRestService;
 
 
     @PostMapping("/registration")
@@ -56,13 +56,11 @@ public class RegistrationRest {
         Map<String, String> map = new HashMap<>(ControllerUtils.getErrors(errors));
         ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
 
+        registrationRestService.handlingCaptchaAndFile(captchaResponse, file, map, user);
+        registrationRestService.addTeacherRegistration(user, activationCodeForProduct,map, passwordConfirm, errors);
 
-        registrationService.handlingCaptchaAndFile(captchaResponse, file, map, user);
-        registrationService.addTeacherRegistration(user, activationCodeForProduct,map, passwordConfirm, errors);
-
-        if (errors.hasErrors() || !map.isEmpty()) {
-            response.setStatus("badRequest");
-            map.putAll(ControllerUtils.getErrors(errors));
+       boolean checkErrors=registrationRestService.checkErrors(errors,map);
+        if (checkErrors) {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -70,19 +68,9 @@ public class RegistrationRest {
 
     @PostMapping("/registration/email")
     public ResponseEntity<Object> email(User user) {
-        user=userRepo.findByLogin(user.getLogin());
-        System.out.println("String:22222222   "+ user.getActivationCodeEmail());
-        if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to Electronic diary. Please, visit next link: http://localhost:8080/activate/%s",
-                    //user.getUsername() implements UserDetails  equal to login
-                    user.getUsername(),
-                    user.getActivationCodeEmail()
-            );
 
-            mailSender.send(user.getEmail(), "Activation code", message);
-        }
+        registrationRestService.sendEmail(user);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

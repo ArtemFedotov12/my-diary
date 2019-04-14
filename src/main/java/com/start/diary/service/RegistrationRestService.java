@@ -1,5 +1,6 @@
 package com.start.diary.service;
 
+import com.start.diary.controllers.utility.ControllerUtils;
 import com.start.diary.entities.ActivationCode;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
@@ -7,8 +8,11 @@ import com.start.diary.repos.ActivationCodeForProductRepo;
 import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,10 +22,9 @@ import java.io.IOException;
 import java.util.*;
 
 @Service
-public class RegistrationService {
+public class RegistrationRestService {
     private static String CAPTCHA_URL="https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
-    @Autowired
-    TeacherService teacherService;
+
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
@@ -102,9 +105,6 @@ public class RegistrationService {
         }
 
 
-
-
-
 //End!!!!!! if we don't have any errors(Error errors), we save our user
         if (map.isEmpty()){
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -121,4 +121,27 @@ public class RegistrationService {
     }
 
 
+    public boolean checkErrors(Errors errors, Map<String, String> map) {
+
+        if (errors.hasErrors() || !map.isEmpty()) {
+            map.putAll(ControllerUtils.getErrors(errors));
+            return true;
+        }
+        return false;
+    }
+
+    public void sendEmail(User user) {
+        user=userRepo.findByLogin(user.getLogin());
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format(
+                    "Hello, %s! \n" +
+                            "Welcome to Electronic diary. Please, visit next link: http://localhost:8080/activate/%s",
+                    //user.getUsername() implements UserDetails  equal to login
+                    user.getUsername(),
+                    user.getActivationCodeEmail()
+            );
+
+            mailSender.send(user.getEmail(), "Activation code", message);
+        }
+    }
 }

@@ -19,17 +19,22 @@
 
     <div id="here_table"></div>
 
+
     <table class="w3-table-all w3-hoverable">
         <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Role</th>
+            <th>Photo</th>
+            <th></th>
             <th></th>
         </tr>
         </thead>
         <tbody>
     <#list users as user>
     <tr id="${user.id}">
+        <td>${user.id}</td>
         <td>${user.login}</td>
     <#--    <td> <#if user.activationCodeEmail??> ${user.activationCodeEmail} </#if> </td>-->
     <#-- #sep for use coma-->

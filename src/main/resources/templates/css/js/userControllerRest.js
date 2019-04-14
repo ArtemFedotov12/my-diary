@@ -16,7 +16,6 @@ console.log(currentUserId);
             $.each(data, function(key, value){
                 content += '<tr > <td>' +key +'</td>';
                 content += '<td>' +value +'</td> </tr>';
-                $('tr').attr('id',key);
                 console.log()
             });
             content += "</table>";
@@ -46,7 +45,9 @@ $.ajax({
     cache: false,
     success: function (result) {
         console.log(result);
+        console.log(idUser);
         $("#"+idUser).css("display", "none");
+
     },
     error: function (e) {
         console.log(e);

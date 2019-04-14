@@ -1,8 +1,6 @@
 package com.start.diary.config;
 
 
-import com.start.diary.service.MyPageRestService;
-import com.start.diary.service.RegistrationService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

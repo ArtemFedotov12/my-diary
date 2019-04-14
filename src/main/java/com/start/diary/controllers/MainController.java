@@ -32,25 +32,7 @@ public class MainController {
     }
 
 
-    @GetMapping("/registration")
-    public String registrationGet() {
-        return "registration";
-    }
 
-
-    @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code) {
-        boolean isActivated = teacherService.activateTeacher(code);
-
-
-        if (isActivated) {
-            model.addAttribute("message", "User successfully activated");
-        } else {
-            model.addAttribute("message", "Activation code is not found!");
-        }
-
-        return "main";
-    }
 
 
 

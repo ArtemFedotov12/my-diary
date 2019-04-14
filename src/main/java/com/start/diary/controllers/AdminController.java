@@ -3,6 +3,7 @@ package com.start.diary.controllers;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
 import com.start.diary.repos.UserRepo;
+import com.start.diary.service.AdminControllerService;
 import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +20,7 @@ public class AdminController {
     @Autowired
     UserRepo userRepo;
     @Autowired
-    TeacherService teacherService;
+    AdminControllerService adminControllerService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
@@ -49,10 +50,8 @@ public class AdminController {
             //see UserEdit why it is called form
             @RequestParam Map<String, String> form
     )
-
-
     {
-        teacherService.saveUser(user,login,form);
+        adminControllerService.saveUser(user,login,form);
         return "redirect:/user";
     }
 
