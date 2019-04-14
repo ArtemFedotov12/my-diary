@@ -11,9 +11,10 @@ function changeEmail() {
 }
 
 function handleRequest() {
-    console.log("r2")
     var form = $('#formMyPage')[0];
     var data = new FormData(form);
+    console.log("Ajax Data: ");
+    console.log(data);
 
     $.ajax({
         type: "POST",
@@ -40,7 +41,7 @@ function handleRequest() {
                         });
             }
             console.log(dataMap["filename"]);
-            $('#imgMyPage').attr("src", "/img/" + dataMap["filename"]);
+            $('#imgMyPage2').attr("src", "/img/" + dataMap["filename"]);
 
 
         },

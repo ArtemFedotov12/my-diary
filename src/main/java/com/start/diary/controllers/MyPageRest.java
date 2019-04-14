@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 public class MyPageRest {
@@ -26,17 +27,24 @@ public class MyPageRest {
     @PostMapping("/mypage/edit")
     public ResponseEntity<Object> myPageEdit(MultipartFile file,
                                              MultipartFile file2,
+                                             MultipartFile file3,
                                              User user
     ) throws IOException, InvocationTargetException, IllegalAccessException {
 
         System.out.println("Before");
         System.out.println("File1: " + file);
         System.out.println("File2: " + file2);
-        if (file2!=null) {
+        if (file2!=null && !Objects.requireNonNull(file2.getOriginalFilename()).isEmpty()) {
             file = file2;
             System.out.println("Names");
             System.out.println("File1: " + file.getOriginalFilename());
             System.out.println("File2: " + file2.getOriginalFilename());
+        }
+        if(file3!=null && !Objects.requireNonNull(file3.getOriginalFilename()).isEmpty()){
+            file = file3;
+            System.out.println("Names");
+            System.out.println("File1: " + file.getOriginalFilename());
+            System.out.println("File3: " + file3.getOriginalFilename());
         }
 
 
@@ -44,6 +52,7 @@ public class MyPageRest {
         System.out.println("After");
         System.out.println("File1: " + file);
         System.out.println("File2: " + file2);
+        System.out.println("Final Name");
         System.out.println(file.getOriginalFilename());
 
         ServiceResponse<Map<String, String>> response=myPageRestService.userEdit(file,user);
