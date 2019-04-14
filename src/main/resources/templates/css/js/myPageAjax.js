@@ -41,7 +41,8 @@ function handleRequest() {
                         });
             }
             console.log(dataMap["filename"]);
-            $('#imgMyPage2').attr("src", "/img/" + dataMap["filename"]);
+            $('#imgMyPage').attr("src", "/img/" + dataMap["filename"]);
+
 
 
         },

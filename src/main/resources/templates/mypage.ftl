@@ -44,7 +44,7 @@
 
                     <#else>
                         <div class="box" id="photoNotExistMyPage">
-                            <input type="file" name="file2" id="fileMyPage2" class="inputfile inputfile-4 fields" data-multiple-caption="{count} files selected" disabled/>
+                            <input type="file" name="file" id="fileMyPage2" class="inputfile inputfile-4 fields" data-multiple-caption="{count} files selected" disabled/>
                             <label for="fileMyPage2">
                                 <figure>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 20 17">
@@ -56,9 +56,9 @@
                         </div>
 
                         <div id="blockPhotoMyPage" style="display: none">
-                            <img id="imgMyPage2" src="/img/${userMyPage.filename}" alt="photo" style="width: 100%">
+                            <img id="imgMyPage" src="/img/${userMyPage.filename}" alt="photo" style="width: 100%">
                             <div id="uploadPhoto" style="display: none">
-                                <input type="file" name="file3" id="fileMyPage3" class="inputfile"/>
+                                <input type="file" name="file2" id="fileMyPage3" class="inputfile"/>
                                 <label for="fileMyPage3" <#--style="color: #2b9fff; font-size: 14px"--> class="labelForPhoto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
                                         <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4

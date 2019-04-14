@@ -27,7 +27,6 @@ public class MyPageRest {
     @PostMapping("/mypage/edit")
     public ResponseEntity<Object> myPageEdit(MultipartFile file,
                                              MultipartFile file2,
-                                             MultipartFile file3,
                                              User user
     ) throws IOException, InvocationTargetException, IllegalAccessException {
 
@@ -40,12 +39,7 @@ public class MyPageRest {
             System.out.println("File1: " + file.getOriginalFilename());
             System.out.println("File2: " + file2.getOriginalFilename());
         }
-        if(file3!=null && !Objects.requireNonNull(file3.getOriginalFilename()).isEmpty()){
-            file = file3;
-            System.out.println("Names");
-            System.out.println("File1: " + file.getOriginalFilename());
-            System.out.println("File3: " + file3.getOriginalFilename());
-        }
+
 
 
 
