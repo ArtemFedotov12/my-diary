@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-//it is for you don't need to give login each method
+//each method has path started with "/user"
 @RequestMapping("/user")
 public class AdminController {
     @Autowired
     UserRepo userRepo;
     @Autowired
     TeacherService teacherService;
-
-
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping

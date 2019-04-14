@@ -6,10 +6,23 @@
 
     <link rel="stylesheet" href="/templates/css/registrationn.css">
 
+    <link rel="stylesheet" type="text/css" href="/templates/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="/templates/css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="/templates/css/component.css"/>
+
 <#--  <meta name="_csrf" content="${_csrf.token}"/>
   <!-- default header login is X-CSRF-TOKEN &ndash;&gt;
   <meta name="_csrf_header" content="${_csrf.headerName}"/>-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <script>
+        (function(e,t,n){
+                var r=e.querySelectorAll("html")[0];
+                r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")
+            }
+        )(document,window,0);
+    </script>
 
 </@h.head>
 
@@ -54,6 +67,8 @@
 <script src="/templates/css/js/regisration.js" ></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="/templates/css/js/navbarFooter.js"></script>
+<#--Choose file-->
+<script src="/templates/css/js/custom-file-input.js"></script>
 
 <script>
     function openCity(evt, positionOfPerson) {

@@ -118,8 +118,8 @@
                 <#--<button onclick="handleRequest()" id="sendBtnMyPage" style="display: none">Send</button>-->
                 <#--<button onclick="changeEmail()" id="editBtnMyPage">Edit</button>-->
 
-                <input type="button" onclick="changeEmail()" id="editBtnMyPage" value="Edit">
-                <input type="button" onclick="handleRequest()" id="sendBtnMyPage" value="Send" style="display: none">
+                <input type="button" class="btn-myPage" onclick="changeEmail()" id="editBtnMyPage" value="Edit">
+                <input type="button" class="btn-myPage" onclick="handleRequest()" id="sendBtnMyPage" value="Send" style="display: none">
             </div>
 
 

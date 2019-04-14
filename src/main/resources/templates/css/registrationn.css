@@ -62,5 +62,20 @@ input[disabled],input[type=button],input[type=file], div.registration select{
 .registration label b{
     color: green;
 }
+.inputfile-registration + label {
+    color: #f1e5e6;
+    background-color: #d3394c;
+    width: 100%;
+    font-size: 11px;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 14px 4px;
+    border-radius: 27px;
 
+}
 

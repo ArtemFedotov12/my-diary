@@ -30,3 +30,20 @@ div.column{
 .main label b{
     color: green;
 }
+
+.btn-myPage {
+    width: 100%;
+    background-color: #3e9612;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 41px;
+    cursor: pointer;
+    text-decoration-color: #2081ee;
+}
+.btn-myPage:hover{
+    background-color: #7056af;
+    transition-duration: 0.5s;
+
+}

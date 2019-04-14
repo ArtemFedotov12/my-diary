@@ -8,8 +8,10 @@
 }
 
 .inputfile + label {
-    max-width: 80%;
-    font-size: 9px;
+   /* max-width: 80%;*/
+    width: 100%;
+    /*font-size: 9px;*/
+    font-size: 14px;
     /* 20px */
     font-weight: 700;
     text-overflow: ellipsis;
@@ -17,7 +19,11 @@
     cursor: pointer;
     display: inline-block;
     overflow: hidden;
-    padding: 0.625rem 1.25rem;
+    /*padding: 0.625rem 1.25rem;*/
+    padding: 14px 4px;
+    border-radius: 27px;
+    margin-top: 4px;
+
     /* 10px 20px */
 }
 
@@ -27,8 +33,7 @@
 
 .inputfile:focus + label,
 .inputfile.has-focus + label {
-    outline: 1px dotted #000;
-    outline: -webkit-focus-ring-color auto 5px;
+    outline: 0px;
 }
 
 .inputfile + label * {
@@ -62,10 +67,11 @@
     background-color: #d3394c;
 }
 
-.inputfile-1:focus + label,
-.inputfile-1.has-focus + label,
+/*.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,*/
 .inputfile-1 + label:hover {
     background-color: #722040;
+    outline: 0px;
 }
 
 

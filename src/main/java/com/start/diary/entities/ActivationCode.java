@@ -12,7 +12,7 @@ import java.io.Serializable;
 @ToString
 //Hibernate
 @Entity
-@Table(name = "activeProductCode")
+@Table(name = "activationCodeForProduct")
 public class ActivationCode {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
