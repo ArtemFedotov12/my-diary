@@ -10,9 +10,11 @@ public interface UserRepo extends CrudRepository<User, Integer> {
     //https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE
     //    /reference/html/jpa.repositories.html#jpa.query-methods.query-creation
     User findById(int id);
+    User findByIdOrderByIdDesc(int id);
     User findByLogin(String login);
     User findByEmail(String email);
     User findByActivationCodeEmail(String code);
+    User findByAccessKeyForTeacher(String accessKeyForTeacher);
 
 
 }

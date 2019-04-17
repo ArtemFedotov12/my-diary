@@ -4,6 +4,8 @@ package com.start.diary.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
@@ -48,16 +50,16 @@ public class User implements UserDetails{
     @NotBlank(message = "Please fill the email")
     private String email;
 
-    @NotBlank(message = "Please fill the town")
+
     private String town;
 
-    @NotBlank(message = "Please select the country")
+
     private String country;
 
-    @NotBlank(message = "Please fill the number of school")
+
     private String schoolnumber;
 
-    @NotBlank(message = "Please fill Access Key for teacher")
+
     private String accessKeyForTeacher;
 
     private String activationCodeEmail;
@@ -74,7 +76,12 @@ public class User implements UserDetails{
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
     private List<ActivationCode> activationCodeForProductList;
-    //it is located on DIRECTOR Home Page(Acces to all Gradebooks)
+
+    //For Classroom Teacher
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "user_id")
+    private List<ListOfClasses> listOfClasses;
+
 
     //it is located on User Home Page(on page classroom teacher)
     private String accessKeyForSchoolKid;
@@ -87,12 +94,19 @@ public class User implements UserDetails{
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-        //security.ftl it is used
+  /*  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<ListOfSubjectForCertainClass> listOfSubjectForCertainClasses;*/
+
+    //security.ftl it is used
     public boolean isAdmin() {
         return  roles.contains(Role.ADMIN);
     }
+    //security.ftl it is used
     public boolean isDirector() {
         return  roles.contains(Role.DIRECTOR);
+    }
+    public boolean isTeacher() {
+        return  roles.contains(Role.TEACHER);
     }
 
 

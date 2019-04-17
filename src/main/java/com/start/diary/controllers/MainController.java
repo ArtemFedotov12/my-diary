@@ -26,7 +26,7 @@ public class MainController {
 
     @GetMapping("/mypage")
     public String bred(@AuthenticationPrincipal User userAuth, Model model) {
-        User userMyPage = userRepo.findById(userAuth.getId());
+        User userMyPage = userRepo.findByIdOrderByIdDesc(userAuth.getId());
         model.addAttribute("userMyPage", userMyPage);
         return "mypage";
     }

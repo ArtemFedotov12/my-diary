@@ -48,16 +48,18 @@ public class RegistrationRest {
     public ResponseEntity<Object> test(@RequestParam("file") MultipartFile file,
                                        @RequestParam String passwordConfirm,
                                        @RequestParam(name = "g-recaptcha-response", required = false) String captchaResponse,
-                                       @RequestParam String activationCodeForProduct,
+                                       String activationCodeForProduct,
+                                       @RequestParam String role,
                                        @Valid User user,
                                        Errors errors
     ) throws IOException {
+        System.out.println("RegistrationRest");
 
         Map<String, String> map = new HashMap<>(ControllerUtils.getErrors(errors));
         ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
 
         registrationRestService.handlingCaptchaAndFile(captchaResponse, file, map, user);
-        registrationRestService.addTeacherRegistration(user, activationCodeForProduct,map, passwordConfirm, errors);
+        registrationRestService.addTeacherRegistration(user, activationCodeForProduct,map, passwordConfirm, errors,role);
 
        boolean checkErrors=registrationRestService.checkErrors(errors,map);
         if (checkErrors) {

@@ -8,8 +8,6 @@ import com.start.diary.repos.ActivationCodeForProductRepo;
 import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -71,9 +69,59 @@ public class RegistrationRestService {
     }
 
 
-    public void addTeacherRegistration(User user,String activationCodeForProduct, Map<String,String> map, String passwordConfirm, Errors errors){
+    public void addTeacherRegistration(User user,String activationCodeForProduct, Map<String,String> map, String passwordConfirm, Errors errors,String role){
         User userFromDatabaseByName = userRepo.findByLogin(user.getLogin());
         User userFromDatabaseByEmail = userRepo.findByEmail(user.getEmail());
+
+
+
+
+        if (userFromDatabaseByName !=null) {
+            map.put("loginUniqueError", "User already exists!");
+        }
+
+        if (userFromDatabaseByEmail !=null) {
+            map.put("emailUniqueError", "Email has already been registered");
+
+        }
+
+
+        if (passwordConfirm.isEmpty()) {
+            map.put("passwordConfirmError", "Please confirm the password");
+
+        }else {
+            if (user.getPassword().compareTo(passwordConfirm)!= 0) {
+                map.put("passwordConfirmEqualError", "Passwords are not equal");
+            }
+        }
+
+        //I indicated this field as hidden registrationDirector.ftl registrationTeacher.ftl
+       if(role.compareTo("DIRECTOR")==0) {
+           checkAdditionalFieldsForDirector(user, map, activationCodeForProduct);
+           user.setRoles(Collections.singleton(Role.DIRECTOR));
+       }
+        if(role.compareTo("TEACHER")==0) {
+            checkAdditionalFieldsForTeacher(user, map);
+            //Only director have it
+            user.setAccessKeyForTeacher(null);
+            user.setRoles(Collections.singleton(Role.TEACHER));
+        }
+
+
+//End!!!!!! if we don't have any errors(Error errors), we save our user
+        if (map.isEmpty()){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            //3vid 17.30
+            //Email
+            user.setActivationCodeEmail(UUID.randomUUID().toString());
+            user.setActiveEmail(false);
+            System.out.println("String:1111111   "+ user.getActivationCodeEmail());
+            userRepo.save(user);
+        }
+
+    }
+
+    private void checkAdditionalFieldsForDirector(User user, Map<String, String> map, String activationCodeForProduct) {
 
         if(activationCodeForProduct.isEmpty()){
             map.put("activationCodeForProductError", "Please fill the Activation Code");
@@ -84,41 +132,35 @@ public class RegistrationRestService {
             }
         }
 
-
-        if (userFromDatabaseByName !=null){
-            map.put("loginUniqueError", "User already exists!");
+        if(user.getTown().isEmpty()){
+            map.put("townError", "Please fill the town");
+        }
+        if(user.getCountry().isEmpty()){
+            map.put("countryError", "Please select the country");
+        }
+        if(user.getCountry().isEmpty()){
+            map.put("countryError", "Please select the country");
         }
 
-        if (userFromDatabaseByEmail !=null){
-            map.put("emailUniqueError", "Email has already been registered");
-
+        if(user.getSchoolnumber().isEmpty()){
+            map.put("schoolnumberError", "Please fill the number of school");
         }
 
-
-        if (passwordConfirm.isEmpty()){
-            map.put("passwordConfirmError", "Please confirm the password");
-
-        }else {
-            if (user.getPassword().compareTo(passwordConfirm)!= 0) {
-                map.put("passwordConfirmEqualError", "Passwords are not equal");
-            }
-        }
-
-
-//End!!!!!! if we don't have any errors(Error errors), we save our user
-        if (map.isEmpty()){
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            //3vid 17.30
-            user.setRoles(Collections.singleton(Role.SCHOOLKID));
-
-            //Email
-            user.setActivationCodeEmail(UUID.randomUUID().toString());
-            user.setActiveEmail(false);
-            System.out.println("String:1111111   "+ user.getActivationCodeEmail());
-            userRepo.save(user);
-        }
 
     }
+
+    private void checkAdditionalFieldsForTeacher(User user, Map<String, String> map) {
+        if(user.getAccessKeyForTeacher().isEmpty()){
+            map.put("accessKeyForTeacherError", "Please fill Access Key for teacher");
+        }
+        User userDb=userRepo.findByAccessKeyForTeacher(user.getAccessKeyForTeacher());
+        System.out.println(userDb);
+        if (userDb==null && !user.getAccessKeyForTeacher().isEmpty()){
+            System.out.println("Oshubka dobavlena");
+            map.put("accessKeyForTeacherError", "Access Key isn't correct");
+        }
+    }
+
 
 
     public boolean checkErrors(Errors errors, Map<String, String> map) {

@@ -1,5 +1,6 @@
 <#import "part/navbarFooter.ftl" as navFoot>
 <#import "part/head.ftl" as h>
+<#import "part/createGradebook.ftl" as createGradebook>
 <#include "part/security.ftl">
 <@h.head>
     <link rel="stylesheet" href="/templates/css/mypage.css">
@@ -19,6 +20,11 @@
 </@h.head>
 <body class="body">
 <@navFoot.navbarFooter>
+
+    <div>
+        <@createGradebook.createGradeBook></@createGradebook.createGradeBook>
+    </div>
+
 <#--user.filename==null || user.filename==""-->
     <form id="formMyPage">
         <div class="main clearfix">
@@ -28,6 +34,7 @@
                 <div class="image column">
 
                     <#if userMyPage.filename?? && userMyPage.filename!="">
+                        <div>Block1</div>
                         <img id="imgMyPage" src="/img/${userMyPage.filename}" alt="photo" style="width: 100%">
                         <div id="uploadPhoto" style="display: none">
                             <input type="file" name="file" id="fileMyPage" class="inputfile" data-multiple-caption="{count} files selected"/>
@@ -43,6 +50,7 @@
 
 
                     <#else>
+                        <div>Block2</div>
                         <div class="box" id="photoNotExistMyPage">
                             <input type="file" name="file" id="fileMyPage2" class="inputfile inputfile-4 fields" data-multiple-caption="{count} files selected" disabled/>
                             <label for="fileMyPage2">
@@ -55,8 +63,14 @@
                                 </figure> <span >Upload Photo</span></label>
                         </div>
 
+
+
                         <div id="blockPhotoMyPage" style="display: none">
+                        <#if userMyPage.filename??>
                             <img id="imgMyPage" src="/img/${userMyPage.filename}" alt="photo" style="width: 100%">
+                        </#if>
+
+
                             <div id="uploadPhoto" style="display: none">
                                 <input type="file" name="file2" id="fileMyPage3" class="inputfile"/>
                                 <label for="fileMyPage3" <#--style="color: #2b9fff; font-size: 14px"--> class="labelForPhoto">
@@ -70,9 +84,13 @@
                             </div>
                         </div>
 
+
                     </#if>
 
-
+                    <#if isTeacher==true>
+                        <input class="btn-create" type="button" value="Create class">
+                        <input class="btn-create" type="button" onclick=" document.getElementById('createGradeBookId').style.display='block';" value="Create GradeBook">
+                    </#if>
                 </div>
             </div>
 
@@ -98,7 +116,7 @@
                 <#if user.lastName??>
                     <label><b>Last Name</b></label>
                     <input type="text" class="fields" name="lastName"
-                           value="${user.lastName}" required disabled/>
+                           value="${userMyPage.lastName}" required disabled/>
                 </#if>
 
                 <#if userMyPage.patronymic??>
@@ -133,7 +151,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/templates/css/js/topnav.js"></script>
 <script src="/templates/css/js/footer.js"></script>
-<script src="/templates/css/js/myPageAjax.js"></script>
+<script src="/templates/css/js/mypageEditData.js"></script>
+<script src="/templates/css/js/mypageCreateGradeBookAndClass.js"></script>
 <#--Choose file-->
 <script src="/templates/css/js/custom-file-input.js"></script>
 </body>

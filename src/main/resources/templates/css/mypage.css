@@ -47,3 +47,14 @@ div.column{
     transition-duration: 0.5s;
 
 }
+.btn-create{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.btn-create:hover{
+    background-color: #ff1919;
+}

@@ -1,6 +1,6 @@
 
-function userRegistration(event) {
-    var form = $('#formRegistrationDirector')[0];
+function userRegistration(formRegistrationId,role) {
+    var form = $('#'+formRegistrationId)[0];
     var data = new FormData(form);
     console.log(data);
     $.ajax({
@@ -40,10 +40,8 @@ function userRegistration(event) {
                     timeout: 60000000,
                     success: function (result) {
                         console.log("suc22222");
-                    },
-                    errorr: function () {
-                        console.log("error22222");
                     }
+
                 });
 
 
@@ -56,137 +54,137 @@ function userRegistration(event) {
             console.log(data);
             console.log("FirstError");
             if(data["loginError"]!=null){
-                $("#login").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#loginLabel").css("display", "block").text(data["loginError"]);
+                $("#login"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#loginLabel"+role).css("display", "block").text(data["loginError"]);
             }else if (data["loginUniqueError"]==null) {
-                $("#login").removeClass("is-invalid").addClass("is-valid");
-                $("#loginLabel").css("display", "none");
+                $("#login"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#loginLabel"+role).css("display", "none");
             }
 
             if(data["loginUniqueError"]!=null){
-                $("#login").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#loginLabel").css("display", "block").text(data["loginUniqueError"]);
+                $("#login"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#loginLabel"+role).css("display", "block").text(data["loginUniqueError"]);
             }else if(data["loginError"]==null){
-                $("#login").removeClass("is-invalid").addClass("is-valid");
-                $("#loginLabel").css("display", "none");
+                $("#login"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#loginLabel"+role).css("display", "none");
             }
 
             if(data["emailError"]!=null){
-                $("#email").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#emailLabel").css("display", "block").text(data["emailError"]);
+                $("#email"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#emailLabel"+role).css("display", "block").text(data["emailError"]);
             }else if(data["emailUniqueError"]==null){
-                $("#email").removeClass("is-invalid").addClass("is-valid");
-                $("#emailLabel").css("display", "none");
+                $("#email"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#emailLabel"+role).css("display", "none");
             }
             if(data["emailUniqueError"]!=null){
-                $("#email").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#emailLabel").css("display", "block").text(data["emailUniqueError"]);
+                $("#email"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#emailLabel"+role).css("display", "block").text(data["emailUniqueError"]);
             }else if(data["emailError"]==null) {
-                $("#email").removeClass("is-invalid").addClass("is-valid");
-                $("#emailLabel").css("display", "none");
+                $("#email"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#emailLabel"+role).css("display", "none");
             }
 
 
             if(data["passwordError"]!=null){
-                $("#password").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#passwordLabel").css("display", "block").text(data["passwordError"]);
+                $("#password"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#passwordLabel"+role).css("display", "block").text(data["passwordError"]);
             }else {
-                $("#password").removeClass("is-invalid").addClass("is-valid");
-                $("#passwordLabel").css("display", "none");
+                $("#password"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#passwordLabel"+role).css("display", "none");
             }
 
             if(data["passwordConfirmError"]!=null){
-                $("#passwordConfirm").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#passwordConfirmLabel").css("display", "block").text(data["passwordConfirmError"]);
+                $("#passwordConfirm"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#passwordConfirmLabel"+role).css("display", "block").text(data["passwordConfirmError"]);
             }else {
-                $("#passwordConfirm").removeClass("is-invalid").addClass("is-valid");
-                $("#passwordConfirmLabel").css("display", "none");
+                $("#passwordConfirm"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#passwordConfirmLabel"+role).css("display", "none");
             }
 
             //Only if fields as: password and ConfirmPassword aren't empty, the we add manually error "passwordConfirmEqualError"
             if(data["passwordError"]==null && data["passwordConfirmError"]==null ){
                 if(data["passwordConfirmEqualError"]!=null){
-                    $("#passwordConfirm").removeClass("is-valid").addClass("form-control is-invalid");
-                    $("#passwordConfirmLabel").css("display", "block").text(data["passwordConfirmEqualError"]);
+                    $("#passwordConfirm"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#passwordConfirmLabel"+role).css("display", "block").text(data["passwordConfirmEqualError"]);
                 }else {
-                    $("#passwordConfirm").removeClass("is-invalid").addClass("is-valid");
-                    $("#passwordConfirmLabel").css("display", "none");
+                    $("#passwordConfirm"+role).removeClass("is-invalid").addClass("is-valid");
+                    $("#passwordConfirmLabel"+role).css("display", "none");
                 }
             }
 
             if(data["firstNameError"]!=null){
-                $("#firstName").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#firstNameLabel").css("display", "block").text(data["firstNameError"]);
+                $("#firstName"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#firstNameLabel"+role).css("display", "block").text(data["firstNameError"]);
             }else {
-                $("#firstName").removeClass("is-invalid").addClass("is-valid");
-                $("#firstNameLabel").css("display", "none");
+                $("#firstName"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#firstNameLabel"+role).css("display", "none");
             }
 
 
             if(data["lastNameError"]!=null){
-                $("#lastName").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#lastNameLabel").css("display", "block").text(data["lastNameError"]);
+                $("#lastName"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#lastNameLabel"+role).css("display", "block").text(data["lastNameError"]);
             }else {
-                $("#lastName").removeClass("is-invalid").addClass("is-valid");
-                $("#lastNameLabel").css("display", "none");
+                $("#lastName"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#lastNameLabel"+role).css("display", "none");
             }
 
             if(data["patronymicError"]!=null){
-                $("#patronymic").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#patronymicLabel").css("display", "block").text(data["patronymicError"]);
+                $("#patronymic"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#patronymicLabel"+role).css("display", "block").text(data["patronymicError"]);
             }else {
-                $("#patronymic").removeClass("is-invalid").addClass("is-valid");
-                $("#patronymicLabel").css("display", "none");
+                $("#patronymic"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#patronymicLabel"+role).css("display", "none");
             }
 
 
             if(data["countryError"]!=null){
-                $("#country").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#countryLabel").css("display", "block").text(data["countryError"]);
+                $("#country"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#countryLabel"+role).css("display", "block").text(data["countryError"]);
             }else {
-                $("#country").removeClass("is-invalid").addClass("is-valid");
-                $("#countryLabel").css("display", "none");
+                $("#country"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#countryLabel"+role).css("display", "none");
             }
 
             if(data["townError"]!=null){
-                $("#town").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#townLabel").css("display", "block").text(data["townError"]);
+                $("#town"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#townLabel"+role).css("display", "block").text(data["townError"]);
             }else {
-                $("#town").removeClass("is-invalid").addClass("is-valid");
-                $("#townLabel").css("display", "none");
+                $("#town"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#townLabel"+role).css("display", "none");
             }
 
             if(data["schoolnumberError"]!=null){
-                $("#schoolnumber").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#schoolnumberLabel").css("display", "block").text(data["schoolnumberError"]);
+                $("#schoolnumber"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#schoolnumberLabel"+role).css("display", "block").text(data["schoolnumberError"]);
             }else {
-                $("#schoolnumber").removeClass("is-invalid").addClass("is-valid");
-                $("#schoolnumberLabel").css("display", "none");
+                $("#schoolnumber"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#schoolnumberLabel"+role).css("display", "none");
             }
 
 
             if(data["captchaError"]!=null){
                 // $("#reCaptcha").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#reCaptchaLabel").css("display", "block");
+                $("#reCaptchaLabel"+role).css("display", "block");
             }else {
                 // $("#reCaptcha").removeClass("is-invalid").addClass("is-valid");
-                $("#reCaptchaLabel").css("display", "none");
+                $("#reCaptchaLabel"+role).css("display", "none");
             }
 
             if(data["activationCodeForProductError"]!=null){
-                $("#activationCodeForProduct").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#activationCodeForProductLabel").css("display", "block").text(data["activationCodeForProductError"]);
+                $("#activationCodeForProduct"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#activationCodeForProductLabel"+role).css("display", "block").text(data["activationCodeForProductError"]);
             }else {
-                $("#activationCodeForProduct").removeClass("is-invalid").addClass("is-valid");
-                $("#activationCodeForProductLabel").css("display", "none");
+                $("#activationCodeForProduct"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#activationCodeForProductLabel"+role).css("display", "none");
             }
 
             if(data["accessKeyForTeacherError"]!=null){
-                $("#accessKeyForTeacher").removeClass("is-valid").addClass("form-control is-invalid");
-                $("#accessKeyForTeacherLabel").css("display", "block").text(data["accessKeyForTeacherError"]);
+                $("#accessKeyForTeacher"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#accessKeyForTeacherLabel"+role).css("display", "block").text(data["accessKeyForTeacherError"]);
             }else {
-                $("#accessKeyForTeacher").removeClass("is-invalid").addClass("is-valid");
-                $("#accessKeyForTeacherLabel").css("display", "none");
+                $("#accessKeyForTeacher"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#accessKeyForTeacherLabel"+role).css("display", "none");
             }
 
         }

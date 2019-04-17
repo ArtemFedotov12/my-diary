@@ -38,8 +38,8 @@
         </div>
         <div class="user_name">${login}</div>
 
-        <div id="id01" class="modal">
 
+        <div id="id01" class="modal">
             <form class="modal-content animate" action="/" method="post">
                 <div class="imgcontainer ">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -53,7 +53,7 @@
                     <label><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" required>
                     <input  type="hidden" name="_csrf" value="${_csrf.token}">
-                    <button type="submit" class="btn-login">Login</button>
+                    <button type="submit" class="btn-login">Sign in</button>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
@@ -66,6 +66,7 @@
                 </div>
             </form>
         </div>
+
 
         <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
         <#nested>

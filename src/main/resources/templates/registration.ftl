@@ -15,7 +15,7 @@
   <meta name="_csrf_header" content="${_csrf.headerName}"/>-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
+<#--Script for Choose file. Never mind-->
     <script>
         (function(e,t,n){
                 var r=e.querySelectorAll("html")[0];
@@ -37,21 +37,28 @@
 
         <div class="w3-bar" style="margin: auto;width: 350px;">
             <#--<button class="w3-bar-item w3-button tablink w3-red btn-width" onclick="openCity(event,'user')">User</button>-->
-            <button class="w3-bar-item w3-button tablink  btn-width" onclick="openCity(event,'director')">Register a School</button>
+
+<#--
+            <button class="tablinks" onclick="openCity(event, 'Director')" id="defaultOpen">Register School</button>
+            <button class="tablinks" onclick="openCity(event, 'Teacher')">Teacher</button>-->
+
         </div>
 
 
         <div class="registration">
+            <button class="tablinks" onclick="openCity(event, 'Director')" id="defaultOpen">Register School</button>
+            <button class="tablinks" onclick="openCity(event, 'Teacher')">Teacher</button>
+            <button class="tablinks" onclick="openCity(event, 'Teacher')">Pupil</button>
 
-          <#--  <div id="user" class="school" >
-                <@t.registrationTeacher></@t.registrationTeacher>
-            </div>-->
-
-            <div id="director" class="school" <#--style="display: none"-->>
+            <div id="Director" class="tabcontent">
                 <@d.registrationDirector></@d.registrationDirector>
             </div>
 
+            <div id="Teacher" class="tabcontent">
+                <@t.registrationTeacher></@t.registrationTeacher>
+            </div>
 
+        </div>
 
 
         </div>
@@ -71,19 +78,22 @@
 <script src="/templates/css/js/custom-file-input.js"></script>
 
 <script>
-    function openCity(evt, positionOfPerson) {
-        var i, x, tablinks;
-        x = document.getElementsByClassName("school");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < x.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
-        document.getElementById(positionOfPerson).style.display = "block";
-        evt.currentTarget.className += " w3-red";
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
     }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 </script>
 </body>
 
