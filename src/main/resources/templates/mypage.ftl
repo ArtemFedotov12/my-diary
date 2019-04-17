@@ -1,6 +1,7 @@
 <#import "part/navbarFooter.ftl" as navFoot>
 <#import "part/head.ftl" as h>
 <#import "part/createGradebook.ftl" as createGradebook>
+<#import "part/createClass.ftl" as createClass>
 <#include "part/security.ftl">
 <@h.head>
     <link rel="stylesheet" href="/templates/css/mypage.css">
@@ -23,6 +24,7 @@
 
     <div>
         <@createGradebook.createGradeBook></@createGradebook.createGradeBook>
+        <@createClass.createClass></@createClass.createClass>
     </div>
 
 <#--user.filename==null || user.filename==""-->
@@ -88,8 +90,8 @@
                     </#if>
 
                     <#if isTeacher==true>
-                        <input class="btn-create" type="button" value="Create class">
-                        <input class="btn-create" type="button" onclick=" document.getElementById('createGradeBookId').style.display='block';" value="Create GradeBook">
+                        <input class="btn-create" type="button" onclick="document.getElementById('createClassId').style.display='block';" value="Create class">
+                        <input class="btn-create" type="button" onclick="document.getElementById('createGradeBookId').style.display='block';" value="Create GradeBook">
                     </#if>
                 </div>
             </div>

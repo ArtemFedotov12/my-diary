@@ -9,22 +9,47 @@
             </div>
 
             <div class="container">
-                <label><b>Class Number</b></label>
-                <#-- name="username" because of @Override public String getUsername() { return login;}-->
-                <input type="text" placeholder="6" name="classNumber" value="6" required>
-                <label><b>Class Letter</b></label>
-                <input type="text" placeholder="A" name="classLetter" value="A" required>
-                <label><b>Access Key for School Kids</b></label>
-                <input type="text" placeholder="Physics" name="accessKeyForSchoolKid" value="robot" required>
+
+                <div class="valid-feedback" id="classCreateSuccessId" style="display: block; opacity: 0">
+                    <#--Error Message-->
+                </div>
+
+                <div>
+                    <div class="invalid-feedback" id="classNumberLabelCreateClassId" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <label><b>Class Number</b></label>
+                    <#-- name="username" because of @Override public String getUsername() { return login;}-->
+                    <input type="text" id="classNumberCreateClassId" class="create-class form-control"  placeholder="6" name="classNumber" value="6" required>
+                </div>
+
+                <div>
+                    <div class="invalid-feedback" id="classLetterLabelCreateClassId" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <label><b>Class Letter</b></label>
+                    <input type="text" id="classLetterCreateClassId" class="create-class form-control" placeholder="A" name="classLetter" value="A" required>
+                </div>
+
+                <div>
+                    <div class="invalid-feedback" id="accessKeyForSchoolKidLabelClassId" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <label><b>Access Key for School Kids</b></label>
+                    <input type="text" id="accessKeyForSchoolKidClassId" class="create-class form-control" placeholder="Physics" name="accessKeyForSchoolKid" value="robot" required>
+                </div>
+
                 <input  type="hidden" name="user" value="${currentUserId}">
                 <input  type="hidden" name="_csrf" value="${_csrf.token}">
                 <#--  <button type="submit" class="btn-login" onclick="createGradebook()">Create</button>-->
                 <input type="button" class="btn-login" onclick="createClass()" value="Create">
             </div>
+
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" id="cancelBtn"  class="cancelbtn fa fa-close"
                         onclick="document.getElementById('createClassId').style.display='none'"> Cancel</button>
             </div>
+
         </form>
     </div>
 

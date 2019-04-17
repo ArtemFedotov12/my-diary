@@ -77,11 +77,6 @@ public class User implements UserDetails{
     @JoinColumn(name = "user_id")
     private List<ActivationCode> activationCodeForProductList;
 
-    //For Classroom Teacher
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "user_id")
-    private List<ListOfClasses> listOfClasses;
-
 
     //it is located on User Home Page(on page classroom teacher)
     private String accessKeyForSchoolKid;

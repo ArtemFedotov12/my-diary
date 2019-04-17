@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class ServiceResponse<T> {
-
+    //success or failure
     private String status;
     private T data;
 }

@@ -21,8 +21,8 @@ public class ListOfClasses {
     private int classNumber;
     private String classLetter;
     private String accessKeyForSchoolKid;
-   /* @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;*/
+    private User user;
 }

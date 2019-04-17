@@ -54,7 +54,11 @@ div.column{
     border: none;
     cursor: pointer;
     width: 100%;
+    outline: 0px;
 }
 .btn-create:hover{
     background-color: #ff1919;
+}
+.create-class{
+    height: auto !important;
 }
