@@ -187,6 +187,14 @@ function userRegistration(formRegistrationId,role) {
                 $("#accessKeyForTeacherLabel"+role).css("display", "none");
             }
 
+            if(data["accessKeyForSchoolKidError"]!=null){
+                $("#accessKeyForSchoolKid"+role).removeClass("is-valid").addClass("form-control is-invalid");
+                $("#accessKeyForSchoolKidLabel"+role).css("display", "block").text(data["accessKeyForSchoolKidError"]);
+            }else {
+                $("#accessKeyForSchoolKid"+role).removeClass("is-invalid").addClass("is-valid");
+                $("#accessKeyForSchoolKidLabel"+role).css("display", "none");
+            }
+
         }
     });
 

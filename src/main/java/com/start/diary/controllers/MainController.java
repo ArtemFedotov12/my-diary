@@ -16,7 +16,6 @@ public class MainController {
     @Autowired
     TeacherService teacherService;
 
-
     @GetMapping("/")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
@@ -25,10 +24,17 @@ public class MainController {
 
 
     @GetMapping("/mypage")
-    public String bred(@AuthenticationPrincipal User userAuth, Model model) {
+    public String mypage(@AuthenticationPrincipal User userAuth, Model model) {
         User userMyPage = userRepo.findByIdOrderByIdDesc(userAuth.getId());
         model.addAttribute("userMyPage", userMyPage);
         return "mypage";
+    }
+
+    @GetMapping("/gradeBook")
+    public String gradeBook(@AuthenticationPrincipal User userAuth, Model model) {
+        User userMyPage = userRepo.findByIdOrderByIdDesc(userAuth.getId());
+        model.addAttribute("userMyPage", userMyPage);
+        return "gradeBook";
     }
 
 

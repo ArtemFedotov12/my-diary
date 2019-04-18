@@ -2,9 +2,11 @@ package com.start.diary.service;
 
 import com.start.diary.controllers.utility.ControllerUtils;
 import com.start.diary.entities.ActivationCode;
+import com.start.diary.entities.ListOfClasses;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
 import com.start.diary.repos.ActivationCodeForProductRepo;
+import com.start.diary.repos.ListOfClassesRepo;
 import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +29,8 @@ public class RegistrationRestService {
     private RestTemplate restTemplate;
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    ListOfClassesRepo listOfClassesRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -69,7 +73,7 @@ public class RegistrationRestService {
     }
 
 
-    public void addTeacherRegistration(User user,String activationCodeForProduct, Map<String,String> map, String passwordConfirm, Errors errors,String role){
+    public void addUserRegistration(User user, String activationCodeForProduct, Map<String,String> map, String passwordConfirm, Errors errors, String role){
         User userFromDatabaseByName = userRepo.findByLogin(user.getLogin());
         User userFromDatabaseByEmail = userRepo.findByEmail(user.getEmail());
 
@@ -107,6 +111,12 @@ public class RegistrationRestService {
             user.setRoles(Collections.singleton(Role.TEACHER));
         }
 
+        if(role.compareTo("SCHOOLKID")==0) {
+            checkAdditionalFieldsForSchoolKid(user, map);
+            user.setAccessKeyForSchoolKid(null);
+            user.setRoles(Collections.singleton(Role.SCHOOLKID));
+        }
+
 
 //End!!!!!! if we don't have any errors(Error errors), we save our user
         if (map.isEmpty()){
@@ -115,11 +125,12 @@ public class RegistrationRestService {
             //Email
             user.setActivationCodeEmail(UUID.randomUUID().toString());
             user.setActiveEmail(false);
-            System.out.println("String:1111111   "+ user.getActivationCodeEmail());
             userRepo.save(user);
         }
 
     }
+
+
 
     private void checkAdditionalFieldsForDirector(User user, Map<String, String> map, String activationCodeForProduct) {
 
@@ -156,11 +167,20 @@ public class RegistrationRestService {
         User userDb=userRepo.findByAccessKeyForTeacher(user.getAccessKeyForTeacher());
         System.out.println(userDb);
         if (userDb==null && !user.getAccessKeyForTeacher().isEmpty()){
-            System.out.println("Oshubka dobavlena");
             map.put("accessKeyForTeacherError", "Access Key isn't correct");
         }
     }
 
+    private void checkAdditionalFieldsForSchoolKid(User user, Map<String, String> map) {
+        if(user.getAccessKeyForSchoolKid().isEmpty()){
+            map.put("accessKeyForSchoolKidError", "Please fill Access Key");
+        }
+        ListOfClasses listOfClassesDb=listOfClassesRepo.findByAccessKeyForSchoolKid(user.getAccessKeyForSchoolKid());
+        System.out.println(listOfClassesDb);
+        if(listOfClassesDb==null && !user.getAccessKeyForSchoolKid().isEmpty()){
+            map.put("accessKeyForSchoolKidError", "Access Key isn't correct");
+        }
+    }
 
 
     public boolean checkErrors(Errors errors, Map<String, String> map) {

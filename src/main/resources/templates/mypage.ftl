@@ -10,6 +10,14 @@
     <link rel="stylesheet" type="text/css" href="/templates/css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="/templates/css/demo.css"/>
     <link rel="stylesheet" type="text/css" href="/templates/css/component.css"/>
+
+
+<#--People for login button(Guy with tie)-->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <#--Choose file End-->
     <script>
         (function(e,t,n){
@@ -52,7 +60,6 @@
 
 
                     <#else>
-                        <div>Block2</div>
                         <div class="box" id="photoNotExistMyPage">
                             <input type="file" name="file" id="fileMyPage2" class="inputfile inputfile-4 fields" data-multiple-caption="{count} files selected" disabled/>
                             <label for="fileMyPage2">
@@ -68,9 +75,8 @@
 
 
                         <div id="blockPhotoMyPage" style="display: none">
-                        <#if userMyPage.filename??>
-                            <img id="imgMyPage" src="/img/${userMyPage.filename}" alt="photo" style="width: 100%">
-                        </#if>
+                            <#--Generate Photo with Js-->
+                            <div id="imageMyPageAddedId"></div>
 
 
                             <div id="uploadPhoto" style="display: none">
@@ -85,7 +91,6 @@
                                 </label>
                             </div>
                         </div>
-
 
                     </#if>
 

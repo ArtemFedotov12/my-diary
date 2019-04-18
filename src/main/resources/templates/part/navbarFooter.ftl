@@ -8,7 +8,7 @@
                 <#if currentUserId!=-1>
                     <a href="/mypage#C2" id="C2">My Page</a>
                 </#if>
-                <a href="/#contact" id="contact">Contact</a>
+                <a href="/gradeBook#C3" id="C3">Gradebook</a>
                 <a href="#about" id="about">About</a>
                 <#if isAdmin==true>
                     <a  href="/user#C3" id="C3">Admin</a>

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,8 +57,11 @@ public class RegistrationRest {
         Map<String, String> map = new HashMap<>(ControllerUtils.getErrors(errors));
         ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
 
+        System.out.println("UserRestNew");
+        System.out.println(user);
+
         registrationRestService.handlingCaptchaAndFile(captchaResponse, file, map, user);
-        registrationRestService.addTeacherRegistration(user, activationCodeForProduct,map, passwordConfirm, errors,role);
+        registrationRestService.addUserRegistration(user, activationCodeForProduct,map, passwordConfirm, errors,role);
 
        boolean checkErrors=registrationRestService.checkErrors(errors,map);
         if (checkErrors) {

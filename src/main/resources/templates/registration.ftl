@@ -1,7 +1,8 @@
 <#import "part/navbarFooter.ftl" as navFoot>
 <#import "part/head.ftl" as h>
-<#import "part/registrationDirector.ftl" as d>
-<#import "part/registrationTeacher.ftl" as t>
+<#import "part/registrationDirector.ftl" as director>
+<#import "part/registrationTeacher.ftl" as teacher>
+<#import "part/registrationSchoolKid.ftl" as schoolKid>
 <@h.head>
 
     <link rel="stylesheet" href="/templates/css/registrationn.css">
@@ -48,14 +49,18 @@
         <div class="registration">
             <button class="tablinks" onclick="openCity(event, 'Director')" id="defaultOpen">Register School</button>
             <button class="tablinks" onclick="openCity(event, 'Teacher')">Teacher</button>
-            <button class="tablinks" onclick="openCity(event, 'Teacher')">Pupil</button>
+            <button class="tablinks" onclick="openCity(event, 'SchoolKid')">School Kid</button>
 
             <div id="Director" class="tabcontent">
-                <@d.registrationDirector></@d.registrationDirector>
+                <@director.registrationDirector></@director.registrationDirector>
             </div>
 
             <div id="Teacher" class="tabcontent">
-                <@t.registrationTeacher></@t.registrationTeacher>
+                <@teacher.registrationTeacher></@teacher.registrationTeacher>
+            </div>
+
+            <div id="SchoolKid" class="tabcontent">
+                <@schoolKid.registrationSchoolKid></@schoolKid.registrationSchoolKid>
             </div>
 
         </div>
@@ -78,7 +83,7 @@
 <script src="/templates/css/js/custom-file-input.js"></script>
 
 <script>
-    function openCity(evt, cityName) {
+    function openCity(evt, role) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -88,7 +93,7 @@
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
-        document.getElementById(cityName).style.display = "block";
+        document.getElementById(role).style.display = "block";
         evt.currentTarget.className += " active";
     }
 
