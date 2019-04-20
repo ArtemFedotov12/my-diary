@@ -8,8 +8,8 @@
 
 <body class="body">
 <@navFoot.navbarFooter>
-    <div class="custom-select" style="width:200px;">
-        <select>
+    <div class="custom-select-new" style="width:200px;">
+        <select  >
             <option value="0">Select Class:</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -24,9 +24,10 @@
             <option value="11">11</option>
             <option value="12">12</option>
         </select>
+
     </div>
 
-    <div class="custom-select" style="width:200px;">
+    <div class="custom-select-new" style="width:200px;">
         <select>
             <option value="0">Select Letter:</option>
             <option value="1">A</option>
