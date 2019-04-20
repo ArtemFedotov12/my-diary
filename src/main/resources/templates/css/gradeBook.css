@@ -1,3 +1,17 @@
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container > div {
+    background-color: #f1f1f1;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+}
+
+
 /*the container must be positioned relative:*/
 .custom-select-new {
     position: relative;

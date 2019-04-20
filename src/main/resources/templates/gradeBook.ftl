@@ -8,7 +8,9 @@
 
 <body class="body">
 <@navFoot.navbarFooter>
-    <div class="custom-select-new" style="width:200px;">
+<div class="flex-container">
+
+    <div class="custom-select-new">
         <select  >
             <option value="0">Select Class:</option>
             <option value="1">1</option>
@@ -24,10 +26,8 @@
             <option value="11">11</option>
             <option value="12">12</option>
         </select>
-
     </div>
-
-    <div class="custom-select-new" style="width:200px;">
+    <div class="custom-select-new">
         <select>
             <option value="0">Select Letter:</option>
             <option value="1">A</option>
@@ -40,6 +40,9 @@
             <option value="8">H</option>
         </select>
     </div>
+</div>
+
+
 
     <div id="hot"></div>
 
