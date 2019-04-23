@@ -11,7 +11,7 @@
 <div class="flex-container">
 
     <div class="custom-select-new">
-        <select  >
+        <select >
             <option value="0">Select Class:</option>
             <option value="1">1</option>
             <option value="2">2</option>

@@ -2,6 +2,7 @@
 <#import "part/head.ftl" as h>
 <#import "part/createGradebook.ftl" as createGradebook>
 <#import "part/createClass.ftl" as createClass>
+<#import "part/createSubject.ftl" as createSubject>
 <#include "part/security.ftl">
 <@h.head>
     <link rel="stylesheet" href="/templates/css/mypage.css">
@@ -19,13 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <#--Choose file End-->
-    <script>
-        (function(e,t,n){
-                var r=e.querySelectorAll("html")[0];
-                r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")
-            }
-        )(document,window,0);
-    </script>
+
 </@h.head>
 <body class="body">
 <@navFoot.navbarFooter>
@@ -33,6 +28,7 @@
     <div>
         <@createGradebook.createGradeBook></@createGradebook.createGradeBook>
         <@createClass.createClass></@createClass.createClass>
+        <@createSubject.createSubject></@createSubject.createSubject>
     </div>
 
 <#--user.filename==null || user.filename==""-->
@@ -96,7 +92,8 @@
 
                     <#if isTeacher==true>
                         <input class="btn-create" type="button" onclick="document.getElementById('createClassId').style.display='block';" value="Create class">
-                        <input class="btn-create" type="button" onclick="document.getElementById('createGradeBookId').style.display='block';" value="Create GradeBook">
+                        <input class="btn-create" type="button" onclick="openCreateGradeBookModel()" value="Create GradeBook">
+                        <input class="btn-create" type="button" onclick="document.getElementById('createSubjectId').style.display='block';" value="Create Subject">
                     </#if>
                 </div>
             </div>
@@ -159,7 +156,8 @@
 <script src="/templates/css/js/topnav.js"></script>
 <script src="/templates/css/js/footer.js"></script>
 <script src="/templates/css/js/mypageEditData.js"></script>
-<script src="/templates/css/js/mypageCreateGradeBookAndClass.js"></script>
+<script src="/templates/css/js/mypageCreate_GradeBook_Class_Subject.js"></script>
+<script src="/templates/css/js/mypageCreateModel.js"></script>
 <#--Choose file-->
 <script src="/templates/css/js/custom-file-input.js"></script>
 </body>

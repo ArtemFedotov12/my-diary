@@ -20,7 +20,7 @@
                     </div>
                     <label><b>Class Number</b></label>
                     <#-- name="username" because of @Override public String getUsername() { return login;}-->
-                    <input type="text" id="classNumberCreateClassId" class="create-class form-control"  placeholder="6" name="classNumber" value="6" required>
+                    <input type="number" id="classNumberCreateClassId" class="create-class form-control"  placeholder="6" name="classNumber" value="6" required>
                 </div>
 
                 <div>
@@ -36,7 +36,7 @@
                         <#--Error Message-->
                     </div>
                     <label><b>Access Key for School Kids</b></label>
-                    <input type="text" id="accessKeyForSchoolKidClassId" class="create-class form-control" placeholder="Physics" name="accessKeyForSchoolKid" value="robot" required>
+                    <input type="text" id="accessKeyForSchoolKidClassId" class="create-class form-control" placeholder="robot" name="accessKeyForSchoolKid" value="robot" required>
                 </div>
 
                 <input  type="hidden" name="user" value="${currentUserId}">

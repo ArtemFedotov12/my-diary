@@ -90,7 +90,7 @@ public class User implements UserDetails{
     private Set<Role> roles;
 
   /*  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<ListOfSubjectForCertainClass> listOfSubjectForCertainClasses;*/
+    private Set<GradeBook> listOfSubjectForCertainClasses;*/
 
     //security.ftl it is used
     public boolean isAdmin() {

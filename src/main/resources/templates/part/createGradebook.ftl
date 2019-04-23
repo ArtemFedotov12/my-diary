@@ -9,21 +9,53 @@
             </div>
 
             <div class="container">
-                <label><b>Class Number</b></label>
-                <#-- name="username" because of @Override public String getUsername() { return login;}-->
-                <input type="text" placeholder="6" name="classNumber" value="6" required>
-                <label><b>Class Letter</b></label>
-                <input type="text" placeholder="A" name="classLetter" value="A" required>
-                <label><b>Name of Subject</b></label>
-                <input type="text" placeholder="Physics" name="subject" value="Physics" required>
+
+                <div class="valid-feedback" id="gradeBookCreateSuccessId" style="display: block; opacity: 0">
+                    <#--Error Message-->
+                </div>
+
+
+                <div>
+                    <div class="invalid-feedback" id="classNumberLabelCreateGradeBookId" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <label><b>Class Number</b></label>
+                    <#-- name="username" because of @Override public String getUsername() { return login;}-->
+                    <#-- <input type="number" id="classNumberCreateGradeBookId" class="create-class form-control"  placeholder="6" name="classNumber" value="6" required>-->
+                    <div class="custom-select-new">
+                        <select id="selectClassNumberCreateGradebookId">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="invalid-feedback" id="classLetterLabelCreateGradeBookId" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <label><b>Class Letter</b></label>
+                    <input type="text" id="classLetterCreateGradeBookId" class="create-class form-control" placeholder="A" name="classLetter" value="A" required>
+                </div>
+
+
+                <div>
+                    <div class="invalid-feedback" id="nameOfSubjectLabelCreateGradeBookId" style="display: none">
+                        <#--Error Message-->
+                    </div>
+                    <label><b>Name of Subject</b></label>
+                    <input type="text" id="nameOfSubjectCreateGradeBookId" class="create-class form-control" placeholder="Physics" name="nameOfSubject" value="Physics" required>
+                </div>
+
                 <input  type="hidden" name="user" value="${currentUserId}">
                 <input  type="hidden" name="_csrf" value="${_csrf.token}">
-              <#--  <button type="submit" class="btn-login" onclick="createGradebook()">Create</button>-->
+                <#--  <button type="submit" class="btn-login" onclick="createGradebook()">Create</button>-->
                 <input type="button" class="btn-login" onclick="createGradebook()" value="Create">
             </div>
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" id="cancelBtn"  class="cancelbtn fa fa-close"
-                        onclick="document.getElementById('createGradeBookId').style.display='none'"> Cancel</button>
+                        onclick="document.getElementById('createGradeBookId').style.display='none'">Cancel</button>
             </div>
         </form>
     </div>

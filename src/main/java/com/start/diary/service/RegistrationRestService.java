@@ -2,11 +2,11 @@ package com.start.diary.service;
 
 import com.start.diary.controllers.utility.ControllerUtils;
 import com.start.diary.entities.ActivationCode;
-import com.start.diary.entities.ListOfClasses;
+import com.start.diary.entities.ClassRoom;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
 import com.start.diary.repos.ActivationCodeForProductRepo;
-import com.start.diary.repos.ListOfClassesRepo;
+import com.start.diary.repos.ClassRoomRepo;
 import com.start.diary.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +30,7 @@ public class RegistrationRestService {
     @Autowired
     UserRepo userRepo;
     @Autowired
-    ListOfClassesRepo listOfClassesRepo;
+    ClassRoomRepo classRoomRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -175,9 +175,9 @@ public class RegistrationRestService {
         if(user.getAccessKeyForSchoolKid().isEmpty()){
             map.put("accessKeyForSchoolKidError", "Please fill Access Key");
         }
-        ListOfClasses listOfClassesDb=listOfClassesRepo.findByAccessKeyForSchoolKid(user.getAccessKeyForSchoolKid());
-        System.out.println(listOfClassesDb);
-        if(listOfClassesDb==null && !user.getAccessKeyForSchoolKid().isEmpty()){
+        ClassRoom classRoomDb = classRoomRepo.findByAccessKeyForSchoolKid(user.getAccessKeyForSchoolKid());
+        System.out.println(classRoomDb);
+        if(classRoomDb ==null && !user.getAccessKeyForSchoolKid().isEmpty()){
             map.put("accessKeyForSchoolKidError", "Access Key isn't correct");
         }
     }

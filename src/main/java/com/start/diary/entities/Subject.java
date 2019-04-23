@@ -13,18 +13,14 @@ import javax.persistence.*;
 @ToString
 //Hibernate
 @Entity
-@Table(name = "listOfSubject")
-public class ListOfSubjectForCertainClass {
+@Table(name = "subject")
+public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int classNumber;
-    private String classLetter;
-    private String subject;
+    private String nameOfSubject;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
-
-
 }
