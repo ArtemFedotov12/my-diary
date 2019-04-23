@@ -20,13 +20,9 @@
                         <#--Error Message-->
                     </div>
                     <label><b>Class Number</b></label>
-                    <#-- name="username" because of @Override public String getUsername() { return login;}-->
-                    <#-- <input type="number" id="classNumberCreateGradeBookId" class="create-class form-control"  placeholder="6" name="classNumber" value="6" required>-->
                     <div class="custom-select-new">
                         <select id="selectClassNumberCreateGradebookId">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
+
                         </select>
                     </div>
                 </div>

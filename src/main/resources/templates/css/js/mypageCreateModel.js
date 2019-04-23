@@ -1,6 +1,6 @@
 function openCreateGradeBookModel() {
 
-
+    //Delete evertything from tag <select>
     $('#selectClassNumberCreateGradebookId option').each(function() {
             $(this).remove();
     });
@@ -37,9 +37,21 @@ function openCreateGradeBookModel() {
                 for(i;i<result.data.length;i++){
                     var option = document.createElement("option");
                     option.text = result.data[i];
+                    if(i===0)
+                    option.selected='selected';
                     x.add(option);
                     console.log("add"+i)
                 }
+
+
+
+
+
+
+
+
+
+
             }
 
 
