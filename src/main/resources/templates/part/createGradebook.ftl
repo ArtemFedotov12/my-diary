@@ -32,7 +32,12 @@
                         <#--Error Message-->
                     </div>
                     <label><b>Class Letter</b></label>
-                    <input type="text" id="classLetterCreateGradeBookId" class="create-class form-control" placeholder="A" name="classLetter" value="A" required>
+                   <#-- <input type="text" id="classLetterCreateGradeBookId" class="create-class form-control" placeholder="A" name="classLetter" value="A" required>-->
+                    <div class="custom-select-new">
+                        <select id="selectClassLetterCreateGradebookId">
+
+                        </select>
+                    </div>
                 </div>
 
 

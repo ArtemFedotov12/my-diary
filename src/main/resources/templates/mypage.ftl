@@ -157,7 +157,7 @@
 <script src="/templates/css/js/footer.js"></script>
 <script src="/templates/css/js/mypageEditData.js"></script>
 <script src="/templates/css/js/mypageCreate_GradeBook_Class_Subject.js"></script>
-<script src="/templates/css/js/mypageCreateModel.js"></script>
+<script src="/templates/css/js/My_Page_Create_Grade_Book.js"></script>
 <#--Choose file-->
 <script src="/templates/css/js/custom-file-input.js"></script>
 </body>
