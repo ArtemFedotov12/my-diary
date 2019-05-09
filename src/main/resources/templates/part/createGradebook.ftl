@@ -11,7 +11,7 @@
             <div class="container">
 
                 <div class="valid-feedback" id="gradeBookCreateSuccessId" style="display: block; opacity: 0">
-                    <#--Error Message-->
+                    Gradebook was created
                 </div>
 
 
@@ -32,7 +32,6 @@
                         <#--Error Message-->
                     </div>
                     <label><b>Class Letter</b></label>
-                   <#-- <input type="text" id="classLetterCreateGradeBookId" class="create-class form-control" placeholder="A" name="classLetter" value="A" required>-->
                     <div class="custom-select-new">
                         <select id="selectClassLetterCreateGradebookId">
 
@@ -46,7 +45,12 @@
                         <#--Error Message-->
                     </div>
                     <label><b>Name of Subject</b></label>
-                    <input type="text" id="nameOfSubjectCreateGradeBookId" class="create-class form-control" placeholder="Physics" name="nameOfSubject" value="Physics" required>
+                    <div class="custom-select-new">
+                        <select id="selectSubjectsCreateGradebookId" name="nameOfSubject">
+
+                        </select>
+                    </div>
+             <#--       <input type="text" id="nameOfSubjectCreateGradeBookId" class="create-class form-control" placeholder="Physics" name="nameOfSubject" value="Physics" required>-->
                 </div>
 
                 <input  type="hidden" name="user" value="${currentUserId}">

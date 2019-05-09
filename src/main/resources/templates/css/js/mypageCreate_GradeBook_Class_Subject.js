@@ -4,10 +4,7 @@
 // When the user clicks anywhere outside of the modal, close it
 //Modal for Create Gradebook
 window.onclick = function(event) {
-    var createGradeBook = document.getElementById('createGradeBookId');
-    if (event.target == createGradeBook) {
-        createGradeBook.style.display = "none";
-    }
+
     var createClass = document.getElementById('createClassId');
     if (event.target == createClass) {
         createClass.style.display = "none";
@@ -19,71 +16,7 @@ window.onclick = function(event) {
     }
 };
 
-function createGradebook() {
-    var form = $('#createGradebookFormId')[0];
-    var data = new FormData(form);
 
-    $.ajax({
-        type: "POST",
-        url: "/createGradebook",
-        data: data,
-        //http://api.jquery.com/jQuery.ajax/
-        //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-        processData: false, //prevent jQuery from automatically transforming the data into a query string
-        contentType: false,
-        cache: false,
-        timeout: 60000000,
-        success: function (result) {
-            var data=result.data;
-            if (result.status==="failure"){
-                console.log("failure");
-                if(data["classNumberClassLetterError"]!=null){
-                    $("#classNumberCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
-                    $("#classNumberLabelCreateGradeBookId").css("display", "block").text(data["classNumberClassLetterError"]);
-
-                    $("#classLetterCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
-                    $("#classLetterLabelCreateGradeBookId").css("display", "block").text(data["classNumberClassLetterError"]);
-
-                }else {
-                    $("#classNumberCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
-                    $("#classNumberLabelCreateGradeBookId").css("display", "none");
-
-                    $("#classLetterCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
-                    $("#classLetterLabelCreateGradeBookId").css("display", "none");
-                }
-
-             /*   if(data["nameOfSubjectError"]!=null){
-                    $("#nameOfSubjectCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
-                    $("#nameOfSubjectLabelCreateGradeBookId").css("display", "block").text(data["nameOfSubjectError"]);
-                }else {
-                    $("#nameOfSubjectCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
-                    $("#nameOfSubjectLabelCreateGradeBookId").css("display", "none");
-                }*/
-
-            }
-
-
-            if (result.status==="success"){
-                $( ".form-control" ).each(function() {
-                    $(this).removeClass("is-invalid").addClass("is-valid");
-                });
-                $( ".invalid-feedback" ).each(function() {
-                    $(this).css("display", "none");
-                });
-                //Set opacity 100%
-                $( "#gradeBookCreateSuccessId" ).animate({opacity: 1}, 3 );
-                $("#gradeBookCreateSuccessId").text("Gradebook was created");
-                //Reduce opacity to 0%
-                $( "#gradeBookCreateSuccessId" ).animate({opacity: 0}, 3000 );
-            }
-
-
-        },
-        error: function(e) {
-
-            }
-    });
-}
 
 
 
@@ -95,7 +28,7 @@ function createClass() {
     var data = new FormData(form);
 
     $.ajax({
-        type: "POST",
+        method: "POST",
         url: "/createClass",
         data: data,
         //http://api.jquery.com/jQuery.ajax/
@@ -142,7 +75,7 @@ function createClass() {
                 });
                 //Set opacity 100%
                 $( "#classCreateSuccessId" ).animate({opacity: 1}, 3 );
-                $("#classCreateSuccessId").text("Class was created");
+
                 //Reduce opacity to 0%
                 $( "#classCreateSuccessId" ).animate({opacity: 0}, 3000 );
             }
@@ -167,7 +100,7 @@ function createSubject() {
     var data = new FormData(form);
 
     $.ajax({
-        type: "POST",
+        method: "POST",
         url: "/createSubject",
         data: data,
         //http://api.jquery.com/jQuery.ajax/

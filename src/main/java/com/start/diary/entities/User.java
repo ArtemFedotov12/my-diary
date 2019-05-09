@@ -81,7 +81,7 @@ public class User implements UserDetails{
     //it is located on User Home Page(on page classroom teacher)
     private String accessKeyForSchoolKid;
 
-    //@OneToMany(cascade = { CascadeType.ALL })
+
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     //This field exist in separate table
     //3 vid 9.04

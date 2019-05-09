@@ -5,6 +5,7 @@ import com.start.diary.entities.ActivationCode;
 import com.start.diary.entities.ClassRoom;
 import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
+import com.start.diary.entities.dto.CaptchaResponseDto;
 import com.start.diary.repos.ActivationCodeForProductRepo;
 import com.start.diary.repos.ClassRoomRepo;
 import com.start.diary.repos.UserRepo;
@@ -49,11 +50,11 @@ public class RegistrationRestService {
 
     public void handlingCaptchaAndFile(String captchaResponse, MultipartFile file, Map<String,String> map, User user) throws IOException {
         //System.out.println("Ppcccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
-       /* String url = String.format(CAPTCHA_URL, secret, captchaResponse);
+        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
         if (response != null && !response.isSuccess()) {
             map.put("captchaError", "Fill captcha");
-        }*/
+        }
         //reCaptcha
 
         if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {

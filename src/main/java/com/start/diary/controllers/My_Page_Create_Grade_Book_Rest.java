@@ -34,7 +34,14 @@ public class My_Page_Create_Grade_Book_Rest {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/getListOfSubjects")
+    public ResponseEntity<Object> getListOfSybjects() {
 
+        ServiceResponse<Set<String>> response= myPageCreateGradeBookRestService.getListOfSubjects();
+        System.out.println(response);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 
 

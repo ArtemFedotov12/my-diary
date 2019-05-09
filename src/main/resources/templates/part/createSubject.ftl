@@ -13,7 +13,7 @@
             <div class="container">
 
                 <div class="valid-feedback" id="subjectCreateSuccessId" style="display: block; opacity: 0">
-                    <#--Error Message-->
+                    Subject was created
                 </div>
 
 

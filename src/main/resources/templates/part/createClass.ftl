@@ -11,7 +11,7 @@
             <div class="container">
 
                 <div class="valid-feedback" id="classCreateSuccessId" style="display: block; opacity: 0">
-                    <#--Error Message-->
+                    Class was created
                 </div>
 
                 <div>
