@@ -28,7 +28,7 @@
 }
 
 .no-js .inputfile + label {
-    display: none;
+    display: block;
 }
 
 .inputfile:focus + label,

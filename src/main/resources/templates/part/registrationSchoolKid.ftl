@@ -1,6 +1,10 @@
 <#macro registrationSchoolKid>
+
+   <#-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 <#--    SCHOOLKID at the end of each id as a ROLE, we send it as param
     onclick="userRegistration('formRegistrationSchoolKid','SCHOOLKID')"-->
+
+
     <form  id="formRegistrationSchoolKid">
 
         <div>
@@ -84,7 +88,7 @@
         <div>
             <div class="g-recaptcha" data-sitekey="6Lc7jIcUAAAAAJDybby4pHe_06m8kACP-jdY5CGG"></div>
             <#--Error Message-->
-            <div id="reCaptchaLabelTEACHER" class="alert alert-danger" role="alert" style="display: none; margin: 0px">
+            <div id="reCaptchaLabelSCHOOLKID" class="alert alert-danger" role="alert" style="display: none; margin: 0px">
                 Please fill reCaptcha
             </div>
         </div>

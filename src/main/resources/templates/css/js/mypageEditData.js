@@ -45,10 +45,15 @@ function handleRequest() {
                 console.log("FILE!!!!!!!!!!!");
                 $('#photoNotExistMyPage').css("display","none");
                 $('#blockPhotoMyPage').css("display","block");
-                var content="<img id=\"imgMyPage\" src=\"/img/"+ dataMap["filename"]+"\" alt=\"photo\" style=\"width: 100%\">"
-                $('#imageMyPageAddedId').html(content);
+         /*       var content="<img id=\"imgMyPage\" src=\"/img/"+ dataMap["filename"]+"\" alt=\"photo\" style=\"width: 100%\">"
+                $('#imageMyPageAddedId').html(content);*/
             }
-            /*$('#imgMyPage').attr("src", "/img/" + dataMap["filename"]);*/
+            $('#imgMyPage').attr("src", "/img/" + dataMap["filename"]);
+
+            var content="<img  src=\"/img/"+ dataMap["filename"]+"\" alt=\"photo\" style=\"width: 100%\">"
+            $('#imgMyPageNotExistMyPage').html(content);
+
+
 
 
 

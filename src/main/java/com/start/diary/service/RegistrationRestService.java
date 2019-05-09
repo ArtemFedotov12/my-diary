@@ -52,6 +52,9 @@ public class RegistrationRestService {
         //System.out.println("Ppcccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
         String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+        System.out.println("Recaptcha!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(response);
+        System.out.println(response.isSuccess());
         if (response != null && !response.isSuccess()) {
             map.put("captchaError", "Fill captcha");
         }
