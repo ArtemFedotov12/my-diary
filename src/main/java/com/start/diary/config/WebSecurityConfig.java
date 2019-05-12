@@ -1,7 +1,7 @@
 package com.start.diary.config;
 
 
-import com.start.diary.service.TeacherService;
+import com.start.diary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //We can get user from our DB
     //public UserDetails loadUserByUsername
     @Autowired
-    TeacherService teacherService;
+    UserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //public UserDetails loadUserByUsername
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(teacherService)
+        auth.userDetailsService(userService)
         .passwordEncoder(passwordEncoder);
     }
 }

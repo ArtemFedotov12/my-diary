@@ -157,9 +157,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/templates/css/js/topnav.js"></script>
 <script src="/templates/css/js/footer.js"></script>
-<script src="/templates/css/js/mypageEditData.js"></script>
-<script src="/templates/css/js/mypageCreate_GradeBook_Class_Subject.js"></script>
+<script src="/templates/css/js/My_Page_EditData.js"></script>
+<script src="/templates/css/js/My_Page_Create_Class_Subject.js"></script>
 <script src="/templates/css/js/My_Page_Create_Grade_Book.js"></script>
+<script src="/templates/css/js/My_Page_Close_Model.js"></script>
 <#--Choose file-->
 <script src="/templates/css/js/custom-file-input.js"></script>
 </body>

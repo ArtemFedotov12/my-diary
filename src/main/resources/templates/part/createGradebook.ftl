@@ -21,7 +21,7 @@
                     </div>
                     <label><b>Class Number</b></label>
                     <div class="custom-select-new">
-                        <select id="selectClassNumberCreateGradebookId">
+                        <select id="selectClassNumberCreateGradebookId" name="classNumber">
 
                         </select>
                     </div>
@@ -33,7 +33,7 @@
                     </div>
                     <label><b>Class Letter</b></label>
                     <div class="custom-select-new">
-                        <select id="selectClassLetterCreateGradebookId">
+                        <select id="selectClassLetterCreateGradebookId" name="classLetter">
 
                         </select>
                     </div>

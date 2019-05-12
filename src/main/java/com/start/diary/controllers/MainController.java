@@ -2,7 +2,7 @@ package com.start.diary.controllers;
 
 import com.start.diary.entities.User;
 import com.start.diary.repos.UserRepo;
-import com.start.diary.service.TeacherService;
+import com.start.diary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ public class MainController {
     @Autowired
     UserRepo userRepo;
     @Autowired
-    TeacherService teacherService;
+    UserService userService;
 
     @GetMapping("/")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {

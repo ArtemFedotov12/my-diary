@@ -1,21 +1,37 @@
 package com.start.diary.controllers;
 
+import com.start.diary.entities.ClassRoom;
+import com.start.diary.entities.GradeBook;
+import com.start.diary.entities.Subject;
+import com.start.diary.entities.User;
 import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.service.My_Page_Create_Grade_Book_Rest_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Set;
 
 @RestController
 public class My_Page_Create_Grade_Book_Rest {
     @Autowired
     My_Page_Create_Grade_Book_Rest_Service myPageCreateGradeBookRestService;
+
+
+    @PostMapping("/createGradebook")
+    public ResponseEntity<Object> createGradebook(ClassRoom classRoom,
+                                                  Subject subject,
+                                                  User user) {
+
+        ServiceResponse<Map<String, String>> response= myPageCreateGradeBookRestService.createGradebook(classRoom,subject,user);
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+
+
 
     @GetMapping("/getListOfClassNumbers")
     public ResponseEntity<Object> createGradebook() {
@@ -29,7 +45,6 @@ public class My_Page_Create_Grade_Book_Rest {
     public ResponseEntity<Object> getListOfClassLetters(@PathVariable int classNumber) {
 
         ServiceResponse<Set<String>> response= myPageCreateGradeBookRestService.getListOfClassLetters(classNumber);
-        System.out.println(response);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -38,7 +53,6 @@ public class My_Page_Create_Grade_Book_Rest {
     public ResponseEntity<Object> getListOfSybjects() {
 
         ServiceResponse<Set<String>> response= myPageCreateGradeBookRestService.getListOfSubjects();
-        System.out.println(response);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

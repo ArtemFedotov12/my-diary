@@ -6,7 +6,7 @@ import com.start.diary.entities.dto.ServiceResponse;
 import com.start.diary.repos.UserRepo;
 import com.start.diary.service.MailSender;
 import com.start.diary.service.RegistrationRestService;
-import com.start.diary.service.TeacherService;
+import com.start.diary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ import java.util.Map;
 public class RegistrationRest {
 
     @Autowired
-    TeacherService teacherService;
+    UserService userService;
 
     @Autowired
     private MailSender mailSender;
@@ -57,8 +57,6 @@ public class RegistrationRest {
         Map<String, String> map = new HashMap<>(ControllerUtils.getErrors(errors));
         ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
 
-        System.out.println("UserRestNew");
-        System.out.println(user);
 
         registrationRestService.handlingCaptchaAndFile(captchaResponse, file, map, user);
         registrationRestService.addUserRegistration(user, activationCodeForProduct,map, passwordConfirm, errors,role);

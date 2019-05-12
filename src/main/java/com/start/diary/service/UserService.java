@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 //We created TeacherService implements UserDetailsService
 //Via TeacherService we get user from DB method     !!!!public UserDetails loadUserByUsername!!!! in configure
 @Service
-public class TeacherService implements UserDetailsService {
+public class UserService implements UserDetailsService {
     @Autowired
     UserRepo userRepo;
 

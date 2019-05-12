@@ -23,12 +23,16 @@ public class AdminControllerRest {
     @Autowired
     AdminControllerRestService adminControllerRestService;
 
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{user}")
     public ResponseEntity<Object> deleteUser(@PathVariable User user){
+
         userRepo.delete(user);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/generateCode/{user}")
@@ -38,6 +42,7 @@ public class AdminControllerRest {
 
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
+
 
 
     @PreAuthorize("hasAuthority('ADMIN')")

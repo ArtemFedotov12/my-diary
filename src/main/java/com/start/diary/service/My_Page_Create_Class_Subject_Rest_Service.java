@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class Create_Gradebook_Class_SubjectRestService {
+public class My_Page_Create_Class_Subject_Rest_Service {
     @Autowired
     UserRepo userRepo;
     @Autowired

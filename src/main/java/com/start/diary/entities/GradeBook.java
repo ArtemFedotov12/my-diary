@@ -20,14 +20,17 @@ public class GradeBook {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "classRoom_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ClassRoom classRoom;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "subject_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

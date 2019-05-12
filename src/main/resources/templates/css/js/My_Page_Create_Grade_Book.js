@@ -1,12 +1,8 @@
 
-// When the user clicks anywhere outside of the modal, model will be closed
-window.onclick = function(event) {
-    var createGradeBook = document.getElementById('createGradeBookId');
-    if (event.target == createGradeBook) {
-        createGradeBook.style.display = "none";
-    }
 
-};
+
+
+
 
 //When you choose Class number form select(certain option)
 //event happened and with ajax get list of Letters for this Class number
@@ -19,6 +15,10 @@ activities.addEventListener("change", function() {
 }
 );
 
+
+
+
+
 function openCreateGradeBookModel() {
     //Delete evertything from tag <select>
     $('#selectClassNumberCreateGradebookId option').each(function() {
@@ -27,15 +27,19 @@ function openCreateGradeBookModel() {
     $('#selectClassLetterCreateGradebookId option').each(function() {
         $(this).remove();
     });
+    $('#selectSubjectsCreateGradebookId option').each(function() {
+        $(this).remove();
+    });
     $("#createGradeBookId").css("display", "block");
 
     getListOfClassNumbers();
     getListOfSubjects();
 
-
-
-
 }
+
+
+
+
 
 function getListOfClassLetters(classNumber) {
     $('#selectClassLetterCreateGradebookId option').each(function() {
@@ -65,6 +69,8 @@ function getListOfClassLetters(classNumber) {
         }
     });
 }
+
+
 
 function getListOfClassNumbers(){
 
@@ -114,7 +120,14 @@ function getListOfClassNumbers(){
     });
 
 }
+
+
+
+
 function getListOfSubjects() {
+   /* $('#selectSubjectsCreateGradebookId option').each(function() {
+        $(this).remove();
+    });*/
     $.ajax({
         method: "GET",
         url: "/getListOfSubjects",
@@ -161,29 +174,26 @@ function createGradebook() {
             var data=result.data;
             if (result.status==="failure"){
                 console.log("failure");
-                if(data["classNumberClassLetterError"]!=null){
+                if(data["gradeBookError"]!=null){
                     $("#classNumberCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
-                    $("#classNumberLabelCreateGradeBookId").css("display", "block").text(data["classNumberClassLetterError"]);
+                    $("#classNumberLabelCreateGradeBookId").css("display", "block").text(data["gradeBookError"]);
 
-                    $("#classLetterCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
-                    $("#classLetterLabelCreateGradeBookId").css("display", "block").text(data["classNumberClassLetterError"]);
+                   /* $("#classLetterCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#classLetterLabelCreateGradeBookId").css("display", "block").text(data["gradeBookError"]);
+
+                    $("#nameOfSubjectCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
+                    $("#nameOfSubjectLabelCreateGradeBookId").css("display", "block").text(data["gradeBookError"]);*/
 
                 }else {
                     $("#classNumberCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
                     $("#classNumberLabelCreateGradeBookId").css("display", "none");
 
-                    $("#classLetterCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
+               /*     $("#classLetterCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
                     $("#classLetterLabelCreateGradeBookId").css("display", "none");
+
+                    $("#nameOfSubjectCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
+                    $("#nameOfSubjectLabelCreateGradeBookId").css("display", "none");*/
                 }
-
-                /*   if(data["nameOfSubjectError"]!=null){
-                       $("#nameOfSubjectCreateGradeBookId").removeClass("is-valid").addClass("form-control is-invalid");
-                       $("#nameOfSubjectLabelCreateGradeBookId").css("display", "block").text(data["nameOfSubjectError"]);
-                   }else {
-                       $("#nameOfSubjectCreateGradeBookId").removeClass("is-invalid").addClass("is-valid");
-                       $("#nameOfSubjectLabelCreateGradeBookId").css("display", "none");
-                   }*/
-
             }
 
 

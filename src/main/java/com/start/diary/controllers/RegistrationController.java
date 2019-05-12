@@ -22,7 +22,6 @@ public class RegistrationController {
     public String activate(Model model, @PathVariable String code) {
         boolean isActive = registrationControllerService.activateTeacher(code);
 
-
         if (isActive) {
             model.addAttribute("message", "User successfully activated");
         } else {

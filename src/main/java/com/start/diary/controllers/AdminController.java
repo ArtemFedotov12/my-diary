@@ -4,7 +4,6 @@ import com.start.diary.entities.Role;
 import com.start.diary.entities.User;
 import com.start.diary.repos.UserRepo;
 import com.start.diary.service.AdminControllerService;
-import com.start.diary.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

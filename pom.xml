@@ -69,7 +69,7 @@
             <artifactId>jetty-util</artifactId>
             <version>6.1.25</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <!--JSON-->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>

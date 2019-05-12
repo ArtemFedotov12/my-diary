@@ -1,27 +1,6 @@
 
 
 
-// When the user clicks anywhere outside of the modal, close it
-//Modal for Create Gradebook
-window.onclick = function(event) {
-
-    var createClass = document.getElementById('createClassId');
-    if (event.target == createClass) {
-        createClass.style.display = "none";
-    }
-
-    var createSubject = document.getElementById('createSubjectId');
-    if (event.target == createSubject) {
-        createSubject.style.display = "none";
-    }
-};
-
-
-
-
-
-
-
 function createClass() {
    /* $("#createClassId").css("display", "none");*/
     var form = $('#createClassFormId')[0];
