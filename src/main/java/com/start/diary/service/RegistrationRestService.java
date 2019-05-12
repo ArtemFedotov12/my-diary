@@ -55,6 +55,7 @@ public class RegistrationRestService {
         System.out.println("Recaptcha!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(response);
         System.out.println(response.isSuccess());
+        System.out.println(response.getErrorCodes());
         if (response != null && !response.isSuccess()) {
             map.put("captchaError", "Fill captcha");
         }
