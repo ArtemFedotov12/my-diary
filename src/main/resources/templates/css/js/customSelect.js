@@ -1,3 +1,5 @@
+function customSelectDefault(){
+
 var x, i, j, selElmnt, a, b, c;
 /*look for any elements with the class "custom-select":*/
 x = document.getElementsByClassName("custom-select-new");
@@ -24,6 +26,7 @@ for (i = 0; i < x.length; i++) {
             h = this.parentNode.previousSibling;
             for (i = 0; i < s.length; i++) {
                 if (s.options[i].innerHTML == this.innerHTML) {
+                   /* console.log("here");*/
                     s.selectedIndex = i;
                     h.innerHTML = this.innerHTML;
                     y = this.parentNode.getElementsByClassName("same-as-selected");
@@ -48,12 +51,20 @@ for (i = 0; i < x.length; i++) {
         this.classList.toggle("select-arrow-active");
     });
 }
+
+
+}
+
+
+
 function closeAllSelect(elmnt) {
     /*a function that will close all select boxes in the document,
     except the current select box:*/
     var x, y, i, arrNo = [];
     x = document.getElementsByClassName("select-items");
     y = document.getElementsByClassName("select-selected");
+
+
     for (i = 0; i < y.length; i++) {
         if (elmnt == y[i]) {
             arrNo.push(i)
