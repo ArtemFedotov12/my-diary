@@ -13,7 +13,11 @@ import java.util.Set;
 public class Gradebook_Page_Rest {
 
     @GetMapping("/getListOfSubjectForCertainClassRoom/{classNumber}/{classLetter}")
-    public ResponseEntity<Object> getListOfSubjectForCertainClassRoom(@PathVariable int classNumber) {
+    public ResponseEntity<Object> getListOfSubjectForCertainClassRoom(@PathVariable int classNumber,
+                                                                      @PathVariable int classLetter) {
+        System.out.println("GradeBook_Rest_Seeee");
+        System.out.println(classNumber);
+        System.out.println(classLetter);
 
         /*ServiceResponse<Set<String>> response= myPageCreateGradeBookRestService.getListOfClassLetters(classNumber);*/
 

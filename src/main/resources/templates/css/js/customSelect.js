@@ -48,7 +48,7 @@ for (i = 0; i < x.length; i++) {
         e.stopPropagation();
         closeAllSelect(this);
         this.nextSibling.classList.toggle("select-hide");
-        this.classList.toggle("select-arrow-active");
+        this.classList.toggle("select-arrow-classNumberId");
     });
 }
 
@@ -69,7 +69,7 @@ function closeAllSelect(elmnt) {
         if (elmnt == y[i]) {
             arrNo.push(i)
         } else {
-            y[i].classList.remove("select-arrow-active");
+            y[i].classList.remove("select-arrow-classNumberId");
         }
     }
     for (i = 0; i < x.length; i++) {

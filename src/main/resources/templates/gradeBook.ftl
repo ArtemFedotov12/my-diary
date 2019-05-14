@@ -16,7 +16,7 @@
         </select>
     </div>
 
-    <div class="custom-select-new">
+    <div class="custom-select-new" id="ClassLetterId_gradeBook">
         <select id="select_ClassLetterId_gradeBook">
             <option>Select Letter:</option>
         </select>

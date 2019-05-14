@@ -41,7 +41,7 @@
     border-radius: 30px;
 }
 
-/*point the arrow upwards when the select box is open (active):*/
+/*point the arrow upwards when the select box is open (classNumberId):*/
 .select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
