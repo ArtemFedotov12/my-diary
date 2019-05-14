@@ -8,14 +8,14 @@ import java.util.Set;
 
 public interface ClassRoomRepo extends CrudRepository<ClassRoom, Integer> {
 
-    public static final String FIND_ClASS_NUMBERS =
+    String FIND_ClASS_NUMBERS =
             "SELECT DISTINCT class_number" +
             " FROM class_room" +
             " ORDER BY class_number ASC";
     @Query(value = FIND_ClASS_NUMBERS, nativeQuery = true)
     Set<Integer> findClassNumbers();
 
-    public static final String FIND_ClASS_LETTERS=
+         String FIND_ClASS_LETTERS=
             "SELECT DISTINCT class_letter" +
             "  FROM class_room" +
             " WHERE class_number = ?1";

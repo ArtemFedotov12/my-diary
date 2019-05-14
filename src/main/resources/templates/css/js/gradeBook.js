@@ -5,30 +5,31 @@ var global_classLetter;
 var classNumberId = document.getElementById("ClassNumberId_gradeBook");
 classNumberId.addEventListener("click", function() {
         var classNumber = $("#ClassNumberId_gradeBook .select-selected").text();
-        //  var classNumber = $("#ClassNumberId_gradeBook .select-selected").text();
+        //because letter won't be selected for this class
+        //and   this method      getListOfSubjectsForCertainClassNumberAndClassLetter()
+        //won't be called
+        global_classLetter=undefined;
         getListOfClassLetters(classNumber);
     }
 );
 
 var classLetterId = document.getElementById("ClassLetterId_gradeBook");
 classLetterId.addEventListener("click", function() {
+
         global_classNumber = $("#ClassNumberId_gradeBook .select-selected").text();
         global_classLetter = $("#ClassLetterId_gradeBook .select-selected").text();
-        console.log("Try");
-        console.log(global_classNumber);
-        console.log(global_classLetter);
-        /*getListOfClassLetters(global_classNumber);*/
-        getListOfSubjects();
-        //getListOfClassLetters(classNumber);
+
+
+        if(global_classNumber!==undefined && global_classLetter!==undefined){
+            getListOfSubjectsForCertainClassNumberAndClassLetter();
+        }
+
+
     }
 );
 
 window.addEventListener("load", function(){
     getListOfClassNumbers();
-    console.log("Try22333");
-    console.log(global_classNumber===undefined);
-    console.log(global_classNumber===undefined);
-    console.log(global_classLetter);
 
 });
 
@@ -103,11 +104,10 @@ function getListOfClassLetters(classNumber) {
                 x.add(option);
             }
             getListOfSubjects();
-           /* if(global_classNumber===undefined && global_classLetter===undefined){
-
-            }else {
-                getListOfSubjectsForCertainClassNumberAndClassLetter();
-            }*/
+            /*   if(global_classNumber===undefined && global_classLetter===undefined){
+               }else {
+                   getListOfSubjectsForCertainClassNumberAndClassLetter();
+               }*/
 
         },
         error: function (e) {
@@ -117,43 +117,15 @@ function getListOfClassLetters(classNumber) {
 }
 
 function getListOfSubjects() {
-   /* $("div").remove(".select-items, .select-hide, .select-selected");*/
+
+
     $('#select_SubjectId_gradeBook option').each(function() {
         $(this).remove();
     });
- /*      $("div").remove(".select-items, .select-hide, .select-selected");
-    $('#select_ClassLetterId_gradeBook option').each(function() {
-        $(this).remove();
-    });
-    $('#select_SubjectId_gradeBook option').each(function() {
-        $(this).remove();
-    });*/
-/*    console.log("1111");
-    console.log($("div .select-selected").length);
 
-    var l=$("div .select-selected").length;
-    for(var i=0;i<l-1;i++){
-        $("div .select-selected")[i].remove();
-        console.log("i="+i)
-    }
-    console.log("22222");
-    console.log($("div .select-selected").length);*/
-
-
-
-
-/*    var j=0;
-    for(j;j<$("div .select-items").length;j++){
-        $("div .select-items")[j].remove();
-    }
-    console.log("End");
-    console.log($("div .select-selected").length);
-    console.log($("div .select-items").length);*/
     $.ajax({
         method: "GET",
         url: "/getListOfSubjects",
-        //http://api.jquery.com/jQuery.ajax/
-        //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
         processData: false, //prevent jQuery from automatically transforming the data into a query string
         contentType: false,
         cache: true,
@@ -176,37 +148,23 @@ function getListOfSubjects() {
 }
 
 function getListOfSubjectsForCertainClassNumberAndClassLetter() {
+    console.log("Tyt yaaaaaaaa");
+
     $('#select_SubjectId_gradeBook option').each(function() {
         $(this).remove();
     });
-    /*    $("div").remove(".select-items, .select-hide, .select-selected");
-        $('#select_ClassLetterId_gradeBook option').each(function() {
-            $(this).remove();
-        });
-        $('#select_SubjectId_gradeBook option').each(function() {
-            $(this).remove();
-        });*/
-/*    console.log("F");
-    console.log($("div .select-selected"));
 
-    console.log("One");
-    console.log($("div .select-items"));
-    console.log("Two");
-    console.log($("div .select-items")[0].remove());
-    console.log($("div .select-items")[1].remove());
-    console.log($("div .select-selected")[0].remove());
-    console.log($("div .select-selected")[1].remove());
-    console.log($("div .select-selected")[2].remove());
-    console.log("Three");
-    console.log($("div .select-items"));*/
     $.ajax({
         method: "GET",
-        url: "/getListOfSubjects?classNumber="+global_classNumber+"&classLetter="+global_classLetter,
+        url: "/getListOfSubjectForCertainClassRoom/"+global_classNumber+"/"+global_classLetter,
         processData: false, //prevent jQuery from automatically transforming the data into a query string
         contentType: false,
         cache: true,
         timeout: 60000000,
         success: function (result) {
+            console.log("Result");
+            console.log(result);
+            console.log(result.data);
 
             var x = document.getElementById("select_SubjectId_gradeBook");
             i=0;
@@ -215,6 +173,13 @@ function getListOfSubjectsForCertainClassNumberAndClassLetter() {
                 option.text = result.data[i];
                 x.add(option);
             }
+            if (result.data.length===0){
+                var option = document.createElement("option");
+                option.text = "Nothing";
+                x.add(option);
+            }
+
+
             $("div").remove(".select-items, .select-hide, .select-selected");
             customSelectDefault();
         },
