@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Service
-public class MyPageRestService {
+public class My_Page_Edit_Data_Rest_Service {
     @Value("${upload.path}")
     private String uploadPath;
     @Autowired

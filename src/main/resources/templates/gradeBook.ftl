@@ -15,11 +15,19 @@
             <option>Select Class:</option>
         </select>
     </div>
-    <div class="custom-select-new" id="ClassLetterId_gradeBook">
+
+    <div class="custom-select-new">
         <select id="select_ClassLetterId_gradeBook">
             <option>Select Letter:</option>
         </select>
     </div>
+
+    <div class="custom-select-new">
+        <select id="select_SubjectId_gradeBook">
+            <option>Select Subject:</option>
+        </select>
+    </div>
+
 </div>
 
 
