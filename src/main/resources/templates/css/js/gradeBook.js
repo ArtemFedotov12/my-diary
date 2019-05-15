@@ -24,7 +24,6 @@ classLetterId.addEventListener("click", function() {
             getListOfSubjectsForCertainClassNumberAndClassLetter();
         }
 
-
     }
 );
 
@@ -167,17 +166,24 @@ function getListOfSubjectsForCertainClassNumberAndClassLetter() {
             console.log(result.data);
 
             var x = document.getElementById("select_SubjectId_gradeBook");
+
+            if (result.data.length===0){
+                var optionDefault = document.createElement("option");
+                optionDefault .text = "Nothing";
+                x.add(optionDefault );
+            }else{
+                var temporaryOption=document.createElement("option");
+                temporaryOption.text="Select Subject:";
+                x.add(temporaryOption);
+            }
+
             i=0;
             for(i;i<result.data.length;i++){
                 var option = document.createElement("option");
                 option.text = result.data[i];
                 x.add(option);
             }
-            if (result.data.length===0){
-                var option = document.createElement("option");
-                option.text = "Nothing";
-                x.add(option);
-            }
+
 
 
             $("div").remove(".select-items, .select-hide, .select-selected");
