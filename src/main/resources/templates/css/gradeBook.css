@@ -14,8 +14,10 @@
 
 /*the container must be positioned relative:*/
 .custom-select-new {
+    z-index: 1;
     position: relative;
     font-family: Arial;
+    margin-bottom: 50px;
 }
 
 .custom-select-new select {

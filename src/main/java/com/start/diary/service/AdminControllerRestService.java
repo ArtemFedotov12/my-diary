@@ -41,6 +41,8 @@ public class AdminControllerRestService {
 
 
     public ServiceResponse<Map<Integer, String>> generateCodeGetMethod(User user) {
+
+        //class org.hibernate.collection.internal.PersistentBag
         if(user.getActivationCodeForProductList() == null) {
             user.setActivationCodeForProductList(new ArrayList<>());
         }

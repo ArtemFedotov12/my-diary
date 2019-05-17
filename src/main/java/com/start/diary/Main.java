@@ -7,9 +7,11 @@ public class Main {
     public static void main(String[] args) {
 
 
-        HashSet<String> setOfString = new HashSet<>();
-        setOfString.add("123");
-        System.out.println(setOfString);
+        byte i = 120;
+        byte j = 5;
+        byte result = i;
+
+
 
     }
 }

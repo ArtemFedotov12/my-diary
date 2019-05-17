@@ -3,6 +3,11 @@
 
 <@h.head>
     <link rel="stylesheet" type="text/css" href="/templates/css/gradeBook.css"/>
+    <#--Handson Table-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/handsontable@latest/dist/handsontable.full.min.css">
+    <#--Handson Table-->
+    <link rel="stylesheet" type="text/css" href="https://handsontable.com/static/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/handsontable@latest/dist/handsontable.full.min.js"></script>
 </@h.head>
 
 
@@ -22,7 +27,7 @@
         </select>
     </div>
 
-    <div class="custom-select-new">
+    <div class="custom-select-new" id="SubjectId_gradeBook">
         <select id="select_SubjectId_gradeBook">
             <option>Select Subject:</option>
         </select>
@@ -32,7 +37,7 @@
 
 
 
-    <div id="hot"></div>
+    <div id="hot" style="z-index: 0;"></div>
 
 
 
@@ -43,4 +48,7 @@
 <script src="/templates/css/js/footer.js" type="text/javascript"></script>
 <script src="/templates/css/js/gradeBook.js"></script>
 <script src="/templates/css/js/customSelect.js"></script>
+<script src="/templates/css/js/handsomeTable.js"></script>
+<#--Handson Table-->
+
 </body>

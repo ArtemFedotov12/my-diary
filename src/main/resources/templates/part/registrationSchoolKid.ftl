@@ -12,7 +12,7 @@
                 <#--Error Message-->
             </div>
             <label><b>Login</b></label>
-            <input type="text" class="form-control"  name="login" id="loginSCHOOLKID" placeholder="Name" autocomplete="off" value="T"/>
+            <input type="text" class="form-control"  name="login" id="loginSCHOOLKID" placeholder="Name" autocomplete="off" value="K1"/>
         </div>
 
         <div>
@@ -20,7 +20,7 @@
                 <#--Error Message-->
             </div>
             <label><b>Email</b></label>
-            <input type="email" class="form-control"  name="email" id="emailSCHOOLKID" placeholder="pewe@email-host.info" autocomplete="off" value="pewe@email-host.info"/>
+            <input type="email" class="form-control"  name="email" id="emailSCHOOLKID" placeholder="pewe@email-host.info" autocomplete="off" value="mohi@clickmail.info"/>
         </div>
 
 
@@ -70,7 +70,7 @@
                 <#--Error Message-->
             </div>
             <label><b>Access Key</b></label>
-            <input type="text" class="form-control" name="accessKeyForSchoolKid" id="accessKeyForSchoolKidSCHOOLKID" placeholder="Access Key" value="robot" autocomplete="off" >
+            <input type="text" class="form-control" name="accessKeyForSchoolKid" id="accessKeyForSchoolKidSCHOOLKID" placeholder="Access Key" value="robot2" autocomplete="off" >
         </div>
 
         <div class="content">

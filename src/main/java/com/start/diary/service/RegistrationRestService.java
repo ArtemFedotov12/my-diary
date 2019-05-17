@@ -118,7 +118,6 @@ public class RegistrationRestService {
 
         if(role.compareTo("SCHOOLKID")==0) {
             checkAdditionalFieldsForSchoolKid(user, map);
-            user.setAccessKeyForSchoolKid(null);
             user.setRoles(Collections.singleton(Role.SCHOOLKID));
         }
 
@@ -132,7 +131,6 @@ public class RegistrationRestService {
             user.setActiveEmail(false);
             userRepo.save(user);
         }
-
     }
 
 
@@ -181,7 +179,6 @@ public class RegistrationRestService {
             map.put("accessKeyForSchoolKidError", "Please fill Access Key");
         }
         ClassRoom classRoomDb = classRoomRepo.findByAccessKeyForSchoolKid(user.getAccessKeyForSchoolKid());
-        System.out.println(classRoomDb);
         if(classRoomDb ==null && !user.getAccessKeyForSchoolKid().isEmpty()){
             map.put("accessKeyForSchoolKidError", "Access Key isn't correct");
         }

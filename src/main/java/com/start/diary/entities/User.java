@@ -62,22 +62,35 @@ public class User implements UserDetails{
     private String accessKeyForTeacher;
 
     private String activationCodeEmail;
-    //@NotBlank(message = "Please fill the number of school")
-    //i think it will be added automatic, Pupil won't write this, because teacher will give accessKey
-    private String classNumber;
+
 
     //in html(ftl) we don't use filename to pass file
     //in html we write  type="file" name="file" and get MultipartFile file
     private String filename;
 
     private boolean activeEmail;
+
+    //Oy it is completely wrong
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //@ElementCollection
+    //@CollectionTable())
     //If DIRECTOR pay for product he will get this code
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
     private List<ActivationCode> activationCodeForProductList;
 
+    //it is to fetch users by(7 A) for GradeBook Page
+  /*  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "class_room_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    */
+ /*   @OneToOne(cascade=CascadeType.ALL,mappedBy="user")
+    private ClassRoom classRoom;*/
+
 
     //it is located on User Home Page(on page classroom teacher)
+    //It is a little redundant, i use it only to map data to User object in controller
+    //Better fix it
     private String accessKeyForSchoolKid;
 
 

@@ -1,5 +1,11 @@
 var global_classNumber;
 var global_classLetter;
+var global_subject;
+
+window.addEventListener("load", function(){
+    getListOfClassNumbers();
+
+});
 
 
 var classNumberId = document.getElementById("ClassNumberId_gradeBook");
@@ -12,6 +18,8 @@ classNumberId.addEventListener("click", function() {
         getListOfClassLetters(classNumber);
     }
 );
+
+
 
 var classLetterId = document.getElementById("ClassLetterId_gradeBook");
 classLetterId.addEventListener("click", function() {
@@ -27,10 +35,27 @@ classLetterId.addEventListener("click", function() {
     }
 );
 
-window.addEventListener("load", function(){
-    getListOfClassNumbers();
 
-});
+var subjectId = document.getElementById("SubjectId_gradeBook");
+subjectId.addEventListener("click", function() {
+
+        global_classNumber = $("#ClassNumberId_gradeBook .select-selected").text();
+        global_classLetter = $("#ClassLetterId_gradeBook .select-selected").text();
+        global_subject = $("#SubjectId_gradeBook .select-selected").text();
+
+      /*  console.log(global_classNumber);
+        console.log(global_classLetter);
+        console.log(global_subject);*/
+
+        if(global_classNumber!==undefined && global_classLetter!==undefined && global_subject!==undefined){
+            getListOfKidsForCertainGradeBook();
+        }
+
+    }
+);
+
+
+
 
 
 function getListOfClassNumbers(){
@@ -147,7 +172,7 @@ function getListOfSubjects() {
 }
 
 function getListOfSubjectsForCertainClassNumberAndClassLetter() {
-    console.log("Tyt yaaaaaaaa");
+
 
     $('#select_SubjectId_gradeBook option').each(function() {
         $(this).remove();
@@ -161,9 +186,7 @@ function getListOfSubjectsForCertainClassNumberAndClassLetter() {
         cache: true,
         timeout: 60000000,
         success: function (result) {
-            console.log("Result");
-            console.log(result);
-            console.log(result.data);
+
 
             var x = document.getElementById("select_SubjectId_gradeBook");
 
@@ -194,3 +217,24 @@ function getListOfSubjectsForCertainClassNumberAndClassLetter() {
     });
 }
 
+function getListOfKidsForCertainGradeBook() {
+
+
+    $.ajax({
+        method: "GET",
+        url: "/getListOfKidsForCertainGradeBook/"+global_classNumber+"/"+global_classLetter+"/"+global_subject,
+        processData: false, //prevent jQuery from automatically transforming the data into a query string
+        contentType: false,
+        cache: true,
+        timeout: 60000000,
+        success: function (result) {
+            console.log(result);
+
+            console.log(result.data[0].firstName + " " +result.data[0].lastName);
+
+            createTable(result);
+        },
+        errorr: function (e) {
+        }
+    });
+}

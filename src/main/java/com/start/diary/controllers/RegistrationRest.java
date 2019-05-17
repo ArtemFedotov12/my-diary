@@ -53,6 +53,7 @@ public class RegistrationRest {
                                        Errors errors
     ) throws IOException {
         System.out.println("RegistrationRest");
+        System.out.println(user);
 
         Map<String, String> map = new HashMap<>(ControllerUtils.getErrors(errors));
         ServiceResponse<Map<String, String>> response = new ServiceResponse<>("success", map);
