@@ -8,6 +8,7 @@ public enum Role implements GrantedAuthority {
     SCHOOLKID,
     ADMIN,
     DIRECTOR,
+    PARENT,
     TEACHER;
 
     @Override

@@ -11,9 +11,11 @@ function createTable(result) {
     var dataObject = [];
     var len = result.data.length;
     console.log(len+"eeeeeee");
+    console.log(result.data[0].id);
     for (var i = 0; i < len; i++) {
         dataObject.push({
-            name: result.data[i].firstName + " " +result.data[i].lastName
+            name: result.data[i].firstName + " " +result.data[i].lastName,
+            id: result.data[i].id
         });
     }
 
@@ -42,6 +44,9 @@ function createTable(result) {
         data: dataObject,
         columns: [
             {
+                data: 'id'
+            },
+            {
                 data: 'name'
             },
             {
@@ -64,6 +69,7 @@ function createTable(result) {
         dropdownMenu: true,
         rowHeaders: true,
         colHeaders: [
+            'Id',
             'Name'
         ],
         columnSorting: {
@@ -76,12 +82,17 @@ function createTable(result) {
     var hot = new Handsontable(hotElement, hotSettings);
     hot.updateSettings({
         hiddenColumns: {
-            columns: [2],
-            indicators: true
+            columns: [0],
+            indicators: false
         }
     });
+    var plugin = hot.getPlugin('hiddenColumns');
 
     //Hide license
     $("#hot-display-license-info").css("display", "none");
+
+    plugin.showColumn(0);
+    console.log(plugin.showColumn(0));
+
 }
 
