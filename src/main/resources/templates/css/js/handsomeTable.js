@@ -70,7 +70,9 @@ function createTable(result) {
         rowHeaders: true,
         colHeaders: [
             'Id',
-            'Name'
+            'Name',
+            'Grade',
+            'Grade'
         ],
         columnSorting: {
             indicator: true
