@@ -12,7 +12,7 @@
     <body class="body">
 <@navFoot.navbarFooter>
 
-<h1>sxsd</h1>
+<h1>Admin Page</h1>
     <input id="currentUserId" type="hidden" value="${currentUserId}">
 
     <input id="btnCodeGeneration" type="button" onclick="putActivationCode(${currentUserId})" value="GenerateCode">

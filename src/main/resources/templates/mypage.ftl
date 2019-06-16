@@ -40,7 +40,7 @@
                 <div class="image column">
 
                     <#if userMyPage.filename?? && userMyPage.filename!="">
-                        <div>Block1</div>
+                    <div>  </div>
                         <img id="imgMyPage" src="/img/${userMyPage.filename}" alt="photo" style="width: 100%">
                         <div id="uploadPhoto" style="display: none">
                             <input type="file" name="file" id="fileMyPage" class="inputfile" data-multiple-caption="{count} files selected" style="display: none"/>
