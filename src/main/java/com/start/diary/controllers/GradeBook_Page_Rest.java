@@ -35,7 +35,7 @@ public class GradeBook_Page_Rest {
     //Get List of Kids who learn in this classRoom
     //CertainGradeBook because of table Grade_book (fields:  ClassRoom(7 A) ,  Subject(English)  )
     @GetMapping("/getListOfKidsForCertainGradeBook/{classNumber}/{classLetter}/{nameOfSubject}")
-    public ResponseEntity<Object> getListOfKidsForCertainGradeBook(@Requesше tBody ClassRoom classRoom,
+    public ResponseEntity<Object> getListOfKidsForCertainGradeBook(@RequestBody ClassRoom classRoom,
                                                                    Subject subject) {
 
         ServiceResponse<List<User>> response= gradebook_page_rest_service.getListOfKidsForCertainGradeBook(classRoom,subject);
